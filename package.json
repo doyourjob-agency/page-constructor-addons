@@ -1,11 +1,11 @@
 {
-  "name": "@gravity-ui/page-constructor-addons",
+  "name": "@doyourjob-agency/page-constructor-addons",
   "version": "2.0.0",
   "description": "Components and plugins for @gravity-ui/page-constructor",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/gravity-ui/page-constructor-addons"
+    "url": "https://github.com/doyourjob-agency/page-constructor-addons"
   },
   "exports": {
     ".": {
