@@ -1,6 +1,4 @@
 import '../styles/storybook/index.scss';
-import '@gravity-ui/uikit/styles/styles.scss';
-import '@gravity-ui/page-constructor/styles/styles.scss';
 
 import {MobileProvider, Platform} from '@gravity-ui/uikit';
 import {Theme} from '@gravity-ui/page-constructor';
@@ -8,7 +6,6 @@ import {Theme} from '@gravity-ui/page-constructor';
 import React from 'react';
 import {MINIMAL_VIEWPORTS} from '@storybook/addon-viewport';
 import type {Decorator, Preview} from '@storybook/react';
-import {withMobile} from './decorators/withMobile';
 import {withLang} from './decorators/withLang';
 import {withTheme} from './decorators/withTheme';
 import {DocsDecorator} from './decorators/docs';
@@ -40,7 +37,7 @@ const withContextProvider: Decorator = (Story, context) => {
 };
 
 const preview: Preview = {
-    decorators: [withLang, withMobile, withTheme, withContextProvider],
+    decorators: [withLang, withTheme, withContextProvider],
     parameters: {
         layout: 'fullscreen',
         docs: {

@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {StoryFn, StoryContext} from '@storybook/react';
 import {UIKIT_ROOT_CLASS} from '../../src/constants';
 import {Theme} from '@gravity-ui/page-constructor';
+import {ThemeProvider} from '@gravity-ui/uikit';
 
 export const withTheme = (Story: StoryFn, context: StoryContext) => {
     const [prevTheme, setPrevTheme] = React.useState(context.globals.theme);
@@ -36,5 +37,9 @@ export const withTheme = (Story: StoryFn, context: StoryContext) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    return <Story {...context} />;
+    return (
+        <ThemeProvider theme={theme}>
+            <Story {...context} />
+        </ThemeProvider>
+    );
 };
