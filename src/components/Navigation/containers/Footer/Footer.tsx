@@ -23,7 +23,7 @@ const columnSize = {
 
 export const Footer = (props: FooterProps) => {
     const {type = 'default', underline, columns, media, customItems} = props;
-    const [isMobile] = useMobile();
+    const isMobile = useMobile();
 
     const mediaContent = useMemo(() => {
         if (!media) {
