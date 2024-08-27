@@ -1,0 +1,56 @@
+/* use this for style redefinitions to awoid problems with
+unpredictable css rules order in build */
+
+.pc-addons-mobile-navigation-popup {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: var(--pc-addons-navigation-popup-z-index);
+  padding: calc(var(--pc-addons-navigation-header-height) - 16px) 0 32px;
+  background-color: var(--g-color-base-background);
+  border-radius: 0 0 var(--pc-addons-navigation-border-radius) var(--pc-addons-navigation-border-radius);
+  box-shadow: 0 3px 10px var(--g-color-base-generic);
+}
+
+.pc-addons-mobile-navigation-popup__transition-enter {
+  transform: translateY(-30px);
+  opacity: 0;
+}
+
+.pc-addons-mobile-navigation-popup__transition-enter-active {
+  transform: translateY(0);
+  opacity: 1;
+  transition: transform 0.4s, opacity 0.4s;
+}
+
+.pc-addons-mobile-navigation-popup__transition-exit {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.pc-addons-mobile-navigation-popup__transition-exit .pc-addons-mobile-navigation-popup__container {
+  opacity: 0;
+}
+
+.pc-addons-mobile-navigation-popup__transition-exit-active {
+  transform: translateY(-30px);
+  opacity: 0;
+  transition: transform 0.4s, opacity 0.4s;
+}
+
+.pc-addons-mobile-navigation-popup__no-scroll {
+  overflow: hidden;
+}
+
+.pc-addons-mobile-navigation-popup__container {
+  padding: 4px 48px 0;
+  overflow: scroll;
+  height: 100%;
+}
+
+@media (max-width: 576px) {
+  .pc-addons-mobile-navigation-popup__container {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}

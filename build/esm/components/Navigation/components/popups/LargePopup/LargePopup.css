@@ -1,0 +1,72 @@
+/* use this for style redefinitions to awoid problems with
+unpredictable css rules order in build */
+
+:root {
+  --pc-addons-navigation-header-height: 64px;
+  --pc-addons-navigation-search-input-indent: 10px;
+  --pc-addons-navigation-popup-padding: 7px;
+  --pc-addons-navigation-popup-z-index: 99;
+  --pc-addons-arrow-size: 20px;
+}
+
+.g-root {
+  --pc-addons-navigation-color-tag-yellow: var(--g-color-base-warning-light);
+  --pc-addons-navigation-color-tag-green: var(--g-color-base-positive-light);
+  --pc-addons-navigation-color-tag-blue: var(--g-color-base-info-light);
+  --pc-addons-navigation-border-radius: var(--pc-border-radius, 24px);
+}
+
+.pc-addons-large-popup__categories {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--g-text-body-2-font-size);
+  line-height: var(--g-text-body-2-line-height);
+  max-height: calc(100vh - var(--pc-addons-navigation-header-height) - 224px);
+  overflow: auto;
+  width: 100%;
+}
+
+.pc-addons-large-popup__categories_with-scroll {
+  padding-right: 8px;
+}
+
+.pc-addons-large-popup__links {
+  margin-top: 24px;
+}
+
+.pc-addons-large-popup__link {
+  margin: 0 0 4px;
+  padding: 8px 12px;
+}
+
+.pc-addons-large-popup__search {
+  margin-top: 16px;
+}
+
+.pc-addons-large-popup__title {
+  margin-bottom: 8px;
+  padding: var(--pc-addons-navigation-popup-padding) 12px;
+}
+
+.pc-addons-large-popup__left {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-between;
+  padding-right: 48px;
+}
+
+.pc-addons-large-popup__controls {
+  max-width: 100%;
+}
+
+.pc-addons-large-popup__right {
+  max-height: calc(100vh - var(--pc-addons-navigation-header-height) - 64px);
+  overflow: auto;
+  overflow-y: auto;
+  padding-left: 16px;
+}
+
+.pc-addons-large-popup__items.row.row {
+  margin-left: -16px;
+}

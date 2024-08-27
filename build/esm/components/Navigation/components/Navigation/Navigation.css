@@ -1,0 +1,30 @@
+/* use this for style redefinitions to awoid problems with
+unpredictable css rules order in build */
+
+.pc-addons-navigation {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--g-text-body-2-font-size);
+  line-height: var(--g-text-body-2-line-height);
+  display: flex;
+  align-items: center;
+  margin-left: 2px;
+}
+
+@media (max-width: 768px) {
+  .pc-addons-navigation {
+    display: none;
+  }
+}
+
+.pc-addons-navigation__popup_medium {
+  padding-left: 4px;
+  padding-right: 16px;
+}
+
+@media (max-width: 769px) {
+  .pc-addons-navigation {
+    display: none;
+  }
+}

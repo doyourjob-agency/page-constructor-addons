@@ -1,0 +1,20 @@
+.pc-addons-navigation-popup {
+  width: calc(100% + 64px);
+  margin: 0 -32px;
+  padding: 20px 24px 24px 12px;
+  border-radius: var(--pc-addons-navigation-border-radius);
+  background: var(--g-color-base-float);
+  z-index: 10;
+}
+
+.pc-addons-navigation-popup:not(.pc-addons-navigation-popup_with-background) {
+  box-shadow: 0 4px 24px var(--g-color-base-generic), 0 2px 8px var(--g-color-base-generic);
+}
+
+.pc-addons-navigation-popup__grid-container {
+  padding: 0;
+}
+
+.pc-addons-navigation-popup:focus {
+  outline: 0;
+}

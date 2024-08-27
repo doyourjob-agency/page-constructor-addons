@@ -1,0 +1,72 @@
+/* use this for style redefinitions to awoid problems with
+unpredictable css rules order in build */
+
+.pc-addons-mobile-navigation-item {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  padding: 12px 0;
+}
+
+.pc-addons-mobile-navigation-item_type_link {
+  text-decoration: none;
+  display: block;
+  color: var(--g-color-text-primary);
+}
+
+.pc-addons-mobile-navigation-item__arrow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: var(--pc-addons-arrow-size);
+  height: var(--pc-addons-arrow-size);
+  min-width: var(--pc-addons-arrow-size);
+}
+
+.pc-addons-mobile-navigation-item__text {
+  padding-right: 20px;
+}
+
+.pc-addons-mobile-navigation-item__list {
+  padding: 10px 20px;
+  background-color: var(--g-color-base-generic);
+  border-radius: var(--g-border-radius-l);
+}
+
+.pc-addons-mobile-navigation-item__list:not(:first-child) {
+  margin-top: 12px;
+}
+
+.pc-addons-mobile-navigation-item__list-items {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pc-addons-mobile-navigation-item__list-title {
+  font-size: var(--g-text-body-2-font-size);
+  line-height: var(--g-text-body-2-line-height);
+  margin: 0;
+  padding: 10px 0;
+}
+
+.pc-addons-mobile-navigation-item__list-item {
+  text-decoration: none;
+  display: block;
+  color: var(--g-color-text-primary);
+  padding: 10px 0;
+}
+
+.pc-addons-mobile-navigation-item__list-item:hover, .pc-addons-mobile-navigation-item__list-item:active {
+  --pc-text-header-color: inherit;
+  color: inherit;
+}
+
+.pc-addons-mobile-navigation-item__list-link {
+  outline: none;
+  color: var(--g-color-text-link);
+  text-decoration: none;
+  cursor: pointer;
+  display: block;
+  padding: 10px 0;
+}

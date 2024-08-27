@@ -1,0 +1,105 @@
+/* use this for style redefinitions to awoid problems with
+unpredictable css rules order in build */
+
+:root {
+  --footer-margin-xs: 12px;
+  --footer-margin-s: 16px;
+  --footer-margin-m: 24px;
+  --footer-margin-l: 32px;
+  --footer-margin-xl: 48px;
+}
+
+.pc-addons-footer {
+  font-size: var(--g-text-body-2-font-size);
+  line-height: var(--g-text-body-2-line-height);
+}
+
+.pc-addons-footer_type_default .pc-addons-footer__container-fluid {
+  padding-top: var(--footer-margin-xl);
+}
+
+.pc-addons-footer_type_simple {
+  margin: 0 40px;
+}
+
+.pc-addons-footer__group-wrapper + .pc-addons-footer__group-wrapper {
+  margin-top: var(--footer-margin-xl);
+}
+
+.pc-addons-footer__underline {
+  border-top: 1px solid var(--g-color-line-generic);
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: var(--footer-margin-l) 0;
+}
+
+.pc-addons-footer__column_underline:not(:only-child) {
+  margin-top: var(--footer-margin-xl);
+}
+
+.pc-addons-footer__underline-links {
+  display: flex;
+  color: var(--g-color-text-primary);
+}
+
+.pc-addons-footer__item:focus {
+  outline: 2px solid var(--g-color-line-focus);
+  outline-offset: 0;
+}
+
+.pc-addons-footer__item:focus:not(:focus-visible) {
+  outline: 0;
+}
+
+.pc-addons-footer__item_underline:not(:last-child) {
+  margin-right: var(--footer-margin-m);
+}
+
+.pc-addons-footer__item_lang-switch {
+  top: -3px;
+}
+
+.pc-addons-footer__copyright {
+  font-size: var(--g-text-body-2-font-size);
+  line-height: var(--g-text-body-2-line-height);
+  color: var(--g-color-text-primary);
+}
+
+.mobile .pc-addons-footer_type_simple {
+  margin: 0 20px;
+}
+
+@media (max-width: 1081px) {
+  .pc-addons-footer__underline {
+    flex-direction: column;
+  }
+  .pc-addons-footer__underline-links:not(:last-child) {
+    margin-bottom: var(--footer-margin-s);
+  }
+  .pc-addons-footer__project {
+    margin: 0 var(--footer-margin-m) 0 0;
+  }
+}
+@media (max-width: 769px) {
+  .pc-addons-footer__underline-links {
+    flex-direction: column;
+  }
+  .pc-addons-footer__item_underline:not(:last-child) {
+    margin-bottom: var(--footer-margin-s);
+  }
+  .pc-addons-footer__project {
+    margin: 0 0 var(--footer-margin-s) 0;
+  }
+  .pc-addons-footer__column {
+    margin-top: var(--footer-margin-xl);
+  }
+  .pc-addons-footer_type_simple {
+    margin: 0 20px;
+  }
+}
+@media (min-width: 577px) and (max-width: 769px) {
+  .pc-addons-footer__column_underline {
+    padding: 0 8px;
+  }
+}

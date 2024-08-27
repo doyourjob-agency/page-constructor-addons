@@ -1,0 +1,174 @@
+/* use this for style redefinitions to awoid problems with
+unpredictable css rules order in build */
+
+.pc-addons-header {
+  --g-scrollbar-width: 8px;
+  --g-color-scroll-handle: var(--g-color-base-generic);
+  --g-color-scroll-handle-hover: var(--g-color-line-generic);
+  position: relative;
+  width: 100%;
+  max-width: min(100% - 32px, 1296px);
+  margin: 0 auto;
+  padding: 12px 32px 0;
+  background: var(--pc-transparent);
+  border-radius: var(--pc-addons-navigation-border-radius);
+  z-index: calc(var(--pc-addons-navigation-popup-z-index) + 1);
+}
+
+.pc-addons-header_with-background {
+  background: var(--g-color-base-background);
+}
+
+.pc-addons-header_with-background.pc-addons-header_with-shadow {
+  box-shadow: 0 4px 24px var(--g-color-base-generic);
+}
+
+.pc-addons-header_one-row {
+  padding-bottom: 12px;
+}
+
+.pc-addons-header__container {
+  display: flex;
+  justify-content: space-between;
+  height: 36px;
+}
+
+.pc-addons-header__left, .pc-addons-header__right {
+  display: flex;
+  align-items: center;
+}
+
+.pc-addons-header__left {
+  margin-right: 32px;
+}
+
+.pc-addons-header__right {
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.pc-addons-header__icons-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.pc-addons-header__buttons {
+  display: flex;
+  margin-left: 8px;
+}
+
+.pc-addons-header__icon {
+  color: var(--g-color-text-hint);
+  transition: color 0.2s;
+}
+
+.pc-addons-header__user {
+  margin-left: 12px;
+}
+
+@media (max-width: 768px) {
+  .pc-addons-header__user {
+    display: none;
+  }
+}
+
+.pc-addons-header__back {
+  position: relative;
+  left: 2px;
+}
+
+.pc-addons-header__back-icon {
+  color: var(--g-color-text-hint);
+}
+
+.pc-addons-header__back {
+  display: none;
+}
+
+.pc-addons-header__back:hover:before {
+  background: none;
+}
+
+.pc-addons-header__back:hover .pc-addons-header__icon {
+  color: var(--g-color-text-complementary);
+}
+
+.pc-addons-header__scroller {
+  margin-top: 12px;
+}
+
+@media (max-width: 768px) {
+  .pc-addons-header__scroller {
+    display: none;
+  }
+}
+
+.pc-addons-header__popup {
+  --yc-popup-border-width: 0;
+  --yc-popup-border-color: none;
+  border-radius: var(--pc-addons-navigation-border-radius);
+  --yc-popover-max-width: 1296px;
+  --yc-popover-padding: 20px;
+  width: var(--yc-popover-max-width);
+  left: 0;
+  box-shadow: 0 4px 24px var(--g-color-base-generic-hover), 0 2px 8px var(--g-color-base-generic-hover);
+}
+
+.pc-addons-header__popup_with-background {
+  border-radius: 0 0 var(--pc-addons-navigation-border-radius) var(--pc-addons-navigation-border-radius);
+}
+
+.pc-addons-header__scroll-arrow {
+  height: var(--pc-addons-arrow-size);
+  color: var(--g-color-text-hint);
+}
+
+.pc-addons-header__user-popup {
+  --yc-popup-border-width: 0;
+  --yc-popup-border-color: none;
+  border-radius: var(--g-border-radius-m);
+  box-shadow: 0 3px 10px var(--g-color-base-generic-hover);
+}
+
+@media (max-width: 1081px) {
+  .pc-addons-header__left {
+    margin-right: 0;
+  }
+}
+@media (min-width: 769px) {
+  .pc-addons-header__logo-img {
+    height: 30px;
+  }
+}
+@media (max-width: 768px) {
+  .pc-addons-header {
+    max-width: 100%;
+    padding: 16px 40px 16px 48px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+  .pc-addons-header__left {
+    margin-right: 12px;
+  }
+  .pc-addons-header__icons-container {
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+  }
+  .pc-addons-header_search .pc-addons-header__logo {
+    display: none;
+  }
+  .pc-addons-header_search .pc-addons-header__back {
+    display: block;
+  }
+}
+@media (max-width: 576px) {
+  .pc-addons-header {
+    padding-left: 24px;
+    padding-right: 16px;
+  }
+  .pc-addons-header__container {
+    height: 36px;
+  }
+}

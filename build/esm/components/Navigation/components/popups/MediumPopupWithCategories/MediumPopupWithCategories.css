@@ -1,0 +1,37 @@
+:root {
+  --pc-addons-navigation-header-height: 64px;
+  --pc-addons-navigation-search-input-indent: 10px;
+  --pc-addons-navigation-popup-padding: 7px;
+  --pc-addons-navigation-popup-z-index: 99;
+  --pc-addons-arrow-size: 20px;
+}
+
+.g-root {
+  --pc-addons-navigation-color-tag-yellow: var(--g-color-base-warning-light);
+  --pc-addons-navigation-color-tag-green: var(--g-color-base-positive-light);
+  --pc-addons-navigation-color-tag-blue: var(--g-color-base-info-light);
+  --pc-addons-navigation-border-radius: var(--pc-border-radius, 24px);
+}
+
+.pc-addons-medium-popup-with-categories {
+  max-height: calc(100vh - var(--pc-addons-navigation-header-height) - 64px);
+  overflow: auto;
+  display: flex;
+  padding: 0 8px;
+}
+
+.pc-addons-medium-popup-with-categories__title {
+  margin-bottom: 8px;
+  padding: var(--pc-addons-navigation-popup-padding) 20px;
+}
+
+.pc-addons-medium-popup-with-categories__items {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 1080px) {
+  .pc-addons-medium-popup-with-categories__col:not(:first-child) {
+    padding-top: 16px;
+  }
+}

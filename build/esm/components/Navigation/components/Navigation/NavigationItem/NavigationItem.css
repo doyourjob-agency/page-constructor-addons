@@ -1,0 +1,73 @@
+/* use this for style redefinitions to awoid problems with
+unpredictable css rules order in build */
+
+.pc-addons-navigation-item {
+  white-space: nowrap;
+  color: var(--g-color-text-primary);
+}
+
+.pc-addons-navigation-item:hover .pc-addons-navigation-item__text {
+  color: var(--g-color-text-link);
+}
+
+.pc-addons-navigation-item__popup {
+  --yc-popup-border-width: 0;
+  --yc-popup-border-color: none;
+  border-radius: var(--pc-addons-navigation-border-radius);
+  --yc-popover-max-width: 1296px;
+  --yc-popover-padding: 20px;
+  width: var(--yc-popover-max-width);
+  left: 0;
+  box-shadow: 0 4px 24px var(--g-color-base-generic-hover), 0 2px 8px var(--g-color-base-generic-hover);
+}
+
+.pc-addons-navigation-item__text {
+  padding: 0;
+  font: inherit;
+  border: none;
+  outline: none;
+  background: none;
+  cursor: pointer;
+  text-decoration: none;
+  display: block;
+  margin: 0 12px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid transparent;
+  color: var(--g-color-text-primary);
+  position: relative;
+}
+
+.pc-addons-navigation-item__text:focus::before {
+  content: "";
+  width: 100%;
+  height: calc(100% - 12px - 2px);
+  position: absolute;
+  outline: 2px solid var(--g-color-line-focus);
+  border-radius: var(--g-focus-border-radius);
+  left: 0;
+  right: 0;
+  top: 2px;
+}
+
+.pc-addons-navigation-item__text:focus:not(:focus-visible)::before {
+  display: none;
+}
+
+.pc-addons-navigation-item__text_active {
+  color: var(--g-color-text-link);
+  border-color: var(--g-color-text-link);
+}
+
+.pc-addons-navigation-item__text_cursor_default {
+  cursor: default;
+}
+
+.pc-addons-navigation-item:first-child .pc-addons-navigation-item__text {
+  margin-left: 0;
+}
+
+@media (max-width: 1296px) {
+  .pc-addons-navigation-item__popup {
+    --yc-popover-max-width: calc(100% - 32px);
+  }
+}
