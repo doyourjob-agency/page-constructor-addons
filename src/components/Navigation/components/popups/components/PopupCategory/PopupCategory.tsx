@@ -3,9 +3,9 @@ import React from 'react';
 import {block} from '../../../../../../utils/cn';
 import {CategoryData} from '../../../../models';
 
-import './LargePopupCategory.scss';
+import './PopupCategory.scss';
 
-const b = block('large-popup-category');
+const b = block('popup-category');
 
 interface ExtraPopupCategoryProps {
     data: CategoryData;
@@ -13,7 +13,7 @@ interface ExtraPopupCategoryProps {
     isActive: boolean;
 }
 
-export const LargePopupCategory = ({data, onClick, isActive}: ExtraPopupCategoryProps) => {
+export const PopupCategory = ({data, onClick, isActive}: ExtraPopupCategoryProps) => {
     const {title} = data;
 
     return (

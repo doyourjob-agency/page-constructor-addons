@@ -1,19 +1,23 @@
 import React from 'react';
 
-import {Row} from '@gravity-ui/page-constructor';
+import {GridColumnSizesType, Row} from '@gravity-ui/page-constructor';
 
 import {block} from '../../../../../../utils/cn';
 import {CategoryGroupData} from '../../../../models';
 import {NavigationPopupItem} from '../../../Navigation/NavigationPopupItem/NavigationPopupItem';
-import {LargeGroupPopupTitle} from '../LargeGroupPopupTitle/LargeGroupPopupTitle';
+import {PopupTitle} from '../PopupTitle/PopupTitle';
 
-import './LargePopupSecondaryGroup.scss';
+import './PopupSecondaryGroup.scss';
 
-const b = block('large-popup-secondary-group');
+const b = block('popup-secondary-group');
 
-export const LargePopupSecondaryGroup = (props: CategoryGroupData) => (
+type PopupSecondaryGroupProps = CategoryGroupData & {
+    sizes?: GridColumnSizesType;
+};
+
+export const PopupSecondaryGroup = ({sizes, ...props}: PopupSecondaryGroupProps) => (
     <div className={b()}>
-        <LargeGroupPopupTitle {...props} className={b('title')} />
+        <PopupTitle {...props} className={b('title')} />
         <div>
             <Row className={b('items')}>
                 {Object.values(props.items).map(({title: popupTitle, icon, url: itemUrl}) => {
@@ -25,6 +29,7 @@ export const LargePopupSecondaryGroup = (props: CategoryGroupData) => (
                             title={popupTitle}
                             padding="s"
                             imageSize="s"
+                            sizes={sizes}
                         />
                     );
                 })}

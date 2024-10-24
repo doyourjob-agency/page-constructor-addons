@@ -1,7 +1,7 @@
 @import '../../../../../../../styles/mixins.scss';
 @import '../../../../../../../styles/variables.scss';
 
-$block: '.#{$ns}large-popup-category';
+$block: '.#{$ns}popup-category';
 
 #{$block} {
     margin-bottom: calc($indentXXXS / 2);

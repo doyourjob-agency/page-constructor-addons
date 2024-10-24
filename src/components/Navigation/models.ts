@@ -11,6 +11,7 @@ export enum NavigationItemType {
     LargePopup = 'large-popup',
     MediumPopup = 'medium-popup',
     MediumPopupWithCategories = 'medium-popup-with-categories',
+    MediumPopupWithFloors = 'medium-popup-with-floors',
     Link = 'link',
 }
 
