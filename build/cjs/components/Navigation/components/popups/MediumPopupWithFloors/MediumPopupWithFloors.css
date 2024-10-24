@@ -1,0 +1,7 @@
+.pc-addons-medium-popup-with-floors {
+  max-height: calc(100vh - var(--pc-addons-navigation-header-height) - 64px);
+  overflow: auto;
+  overflow-y: auto;
+  padding-left: 12px;
+  margin-right: -12px;
+}

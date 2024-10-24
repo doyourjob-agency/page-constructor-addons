@@ -8,6 +8,7 @@ export var NavigationItemType;
     NavigationItemType["LargePopup"] = "large-popup";
     NavigationItemType["MediumPopup"] = "medium-popup";
     NavigationItemType["MediumPopupWithCategories"] = "medium-popup-with-categories";
+    NavigationItemType["MediumPopupWithFloors"] = "medium-popup-with-floors";
     NavigationItemType["Link"] = "link";
 })(NavigationItemType || (NavigationItemType = {}));
 export var NavigationTagColor;

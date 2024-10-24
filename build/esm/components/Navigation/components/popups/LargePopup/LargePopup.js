@@ -4,10 +4,10 @@ import { Col, GridColumnSize, Link, Row } from '@gravity-ui/page-constructor';
 import { block } from '../../../../../utils/cn';
 import { getFlatList, getHeaderHeight } from '../../../utils';
 import { SearchResult } from '../../SearchResult/SearchResult';
-import { LargePopupCategory } from './LargePopupCategory/LargePopupCategory';
-import { LargePopupGroup } from './LargePopupGroup/LargePopupGroup';
-import { LargePopupSecondaryGroup } from './LargePopupSecondaryGroup/LargePopupSecondaryGroup';
-import Search from './Search/Search';
+import { PopupCategory } from '../components/PopupCategory/PopupCategory';
+import { PopupGroup } from '../components/PopupGroup/PopupGroup';
+import { PopupSecondaryGroup } from '../components/PopupSecondaryGroup/PopupSecondaryGroup';
+import Search from '../components/Search/Search';
 import './LargePopup.css';
 const b = block('large-popup');
 const LARGE_POPUP_INDENT = 240;
@@ -61,7 +61,7 @@ export const LargePopup = (props) => {
                 React.createElement("ul", { className: b('categories', { 'with-scroll': categoriesWithScroll }), ref: categoriesRef, style: {
                         maxHeight: `${maxHeightCategories}px`,
                         minHeight: `${minHeightCategories}px`,
-                    } }, Object.values(categories).map((category) => (React.createElement(LargePopupCategory, { data: category, onClick: changeCategory, key: category.slug, isActive: currentCategory.slug === category.slug })))),
+                    } }, Object.values(categories).map((category) => (React.createElement(PopupCategory, { data: category, onClick: changeCategory, key: category.slug, isActive: currentCategory.slug === category.slug })))),
                 React.createElement("div", { className: b('controls'), ref: controlsRef },
                     React.createElement("div", { className: b('links') }, links &&
                         links.map((link) => (React.createElement(Link, { className: b('link'), url: link.url, text: link.text, textSize: "m", key: link.url, theme: "normal", arrow: true })))),
@@ -69,6 +69,6 @@ export const LargePopup = (props) => {
             React.createElement(Col, { className: b('right'), sizes: { [GridColumnSize.Lg]: 9, [GridColumnSize.All]: 8 }, ref: rightSideRef },
                 React.createElement("div", { className: b('right-content'), ref: rightSideContentRef }, search ? (React.createElement(SearchResult, { value: search, data: flatList, section: section, className: b('items') })) : (React.createElement(Fragment, null, currentCategoryData.groups.map((group, index) => {
                     const key = group.title || group.url || index;
-                    return index ? (React.createElement(LargePopupSecondaryGroup, Object.assign({}, group, { key: key }))) : (React.createElement(LargePopupGroup, Object.assign({}, group, { section: section, key: key })));
+                    return index ? (React.createElement(PopupSecondaryGroup, Object.assign({}, group, { key: key }))) : (React.createElement(PopupGroup, Object.assign({}, group, { section: section, key: key })));
                 }))))))));
 };

@@ -10,6 +10,7 @@ const models_1 = require("../../models");
 const LargePopup_1 = require("../popups/LargePopup/LargePopup");
 const MediumPopup_1 = require("../popups/MediumPopup/MediumPopup");
 const MediumPopupWithCategories_1 = require("../popups/MediumPopupWithCategories/MediumPopupWithCategories");
+const MediumPopupWithFloors_1 = require("../popups/MediumPopupWithFloors/MediumPopupWithFloors");
 const NavigationItem_1 = require("./NavigationItem/NavigationItem");
 const NavigationPopup_1 = require("./NavigationPopup/NavigationPopup");
 const b = (0, cn_1.block)('navigation');
@@ -23,6 +24,8 @@ const getPopupContent = (sectionData) => {
             return react_1.default.createElement(MediumPopup_1.MediumPopup, { data: data });
         case models_1.NavigationItemType.MediumPopupWithCategories:
             return react_1.default.createElement(MediumPopupWithCategories_1.MediumPopupWithCategories, { data: data });
+        case models_1.NavigationItemType.MediumPopupWithFloors:
+            return react_1.default.createElement(MediumPopupWithFloors_1.MediumPopupWithFloors, { data: data });
         default:
             return null;
     }

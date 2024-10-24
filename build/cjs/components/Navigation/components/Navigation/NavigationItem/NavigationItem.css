@@ -28,6 +28,7 @@ unpredictable css rules order in build */
   outline: none;
   background: none;
   cursor: pointer;
+  color: inherit;
   text-decoration: none;
   display: block;
   margin: 0 12px;

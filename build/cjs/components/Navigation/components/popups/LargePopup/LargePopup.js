@@ -8,10 +8,10 @@ const page_constructor_1 = require("@gravity-ui/page-constructor");
 const cn_1 = require("../../../../../utils/cn");
 const utils_1 = require("../../../utils");
 const SearchResult_1 = require("../../SearchResult/SearchResult");
-const LargePopupCategory_1 = require("./LargePopupCategory/LargePopupCategory");
-const LargePopupGroup_1 = require("./LargePopupGroup/LargePopupGroup");
-const LargePopupSecondaryGroup_1 = require("./LargePopupSecondaryGroup/LargePopupSecondaryGroup");
-const Search_1 = tslib_1.__importDefault(require("./Search/Search"));
+const PopupCategory_1 = require("../components/PopupCategory/PopupCategory");
+const PopupGroup_1 = require("../components/PopupGroup/PopupGroup");
+const PopupSecondaryGroup_1 = require("../components/PopupSecondaryGroup/PopupSecondaryGroup");
+const Search_1 = tslib_1.__importDefault(require("../components/Search/Search"));
 const b = (0, cn_1.block)('large-popup');
 const LARGE_POPUP_INDENT = 240;
 const LargePopup = (props) => {
@@ -64,7 +64,7 @@ const LargePopup = (props) => {
                 react_1.default.createElement("ul", { className: b('categories', { 'with-scroll': categoriesWithScroll }), ref: categoriesRef, style: {
                         maxHeight: `${maxHeightCategories}px`,
                         minHeight: `${minHeightCategories}px`,
-                    } }, Object.values(categories).map((category) => (react_1.default.createElement(LargePopupCategory_1.LargePopupCategory, { data: category, onClick: changeCategory, key: category.slug, isActive: currentCategory.slug === category.slug })))),
+                    } }, Object.values(categories).map((category) => (react_1.default.createElement(PopupCategory_1.PopupCategory, { data: category, onClick: changeCategory, key: category.slug, isActive: currentCategory.slug === category.slug })))),
                 react_1.default.createElement("div", { className: b('controls'), ref: controlsRef },
                     react_1.default.createElement("div", { className: b('links') }, links &&
                         links.map((link) => (react_1.default.createElement(page_constructor_1.Link, { className: b('link'), url: link.url, text: link.text, textSize: "m", key: link.url, theme: "normal", arrow: true })))),
@@ -72,7 +72,7 @@ const LargePopup = (props) => {
             react_1.default.createElement(page_constructor_1.Col, { className: b('right'), sizes: { [page_constructor_1.GridColumnSize.Lg]: 9, [page_constructor_1.GridColumnSize.All]: 8 }, ref: rightSideRef },
                 react_1.default.createElement("div", { className: b('right-content'), ref: rightSideContentRef }, search ? (react_1.default.createElement(SearchResult_1.SearchResult, { value: search, data: flatList, section: section, className: b('items') })) : (react_1.default.createElement(react_1.Fragment, null, currentCategoryData.groups.map((group, index) => {
                     const key = group.title || group.url || index;
-                    return index ? (react_1.default.createElement(LargePopupSecondaryGroup_1.LargePopupSecondaryGroup, Object.assign({}, group, { key: key }))) : (react_1.default.createElement(LargePopupGroup_1.LargePopupGroup, Object.assign({}, group, { section: section, key: key })));
+                    return index ? (react_1.default.createElement(PopupSecondaryGroup_1.PopupSecondaryGroup, Object.assign({}, group, { key: key }))) : (react_1.default.createElement(PopupGroup_1.PopupGroup, Object.assign({}, group, { section: section, key: key })));
                 }))))))));
 };
 exports.LargePopup = LargePopup;
