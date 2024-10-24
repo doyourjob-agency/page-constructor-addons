@@ -7,5 +7,6 @@ $block: '.#{$ns}medium-popup-with-floors';
     @include navigation-overflow-popup($indentXL);
 
     overflow-y: auto;
-    padding-left: $indentXS;
+    padding-left: $indentXXS;
+    margin-right: -$indentXXS;
 }
