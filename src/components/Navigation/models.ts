@@ -61,8 +61,9 @@ export interface NavigationItem {
     title: string;
     slug: string;
     url: string;
-    description: string;
+    description?: string;
     icon?: string;
+    image?: string | null;
     tag?: NavigationTag;
 }
 
@@ -71,6 +72,9 @@ export interface CategoryGroupData {
     items: NavigationItem[];
     imageSize?: 's' | 'xm' | 'm';
     url?: string;
+    showItemDescriptions?: 'yes' | 'no';
+    showItemIcons?: 'yes' | 'no';
+    backgroundColor?: string;
 }
 
 export interface CategoryData {

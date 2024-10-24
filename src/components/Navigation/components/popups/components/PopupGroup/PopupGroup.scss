@@ -6,14 +6,28 @@ $paddingTop: 14px;
 $block: '.#{$ns}popup-group';
 
 #{$block} {
+    margin-left: -$indentXXS;
+    padding-left: $indentXXS;
+    border-radius: var(--g-border-radius-xl);
+
+    & + & {
+        margin-top: $indentXXS;
+    }
+
     &__title {
         margin-bottom: $indentXXXS;
         padding: var(--pc-addons-navigation-popup-padding) $indentXXS;
     }
 
     &__items {
-        &.row.row {
+        &.row.row.row {
             margin-left: -$indentXS;
+        }
+    }
+
+    &__items_fix {
+        &.row.row.row {
+            margin-left: -$indentXXS;
         }
     }
 }

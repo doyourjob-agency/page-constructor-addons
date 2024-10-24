@@ -17,7 +17,6 @@ import './NavigationPopupItem.scss';
 const b = block('navigation-popup-item');
 
 export interface NavigationPopupItemProps extends Partial<NavigationItem> {
-    image?: string | null;
     hover?: boolean;
     sizes?: GridColumnSizesType;
     className?: string;

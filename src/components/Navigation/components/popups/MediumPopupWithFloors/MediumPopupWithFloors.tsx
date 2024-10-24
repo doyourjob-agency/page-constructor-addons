@@ -1,11 +1,10 @@
 import React from 'react';
 
-import {GridColumnSize, Row} from '@gravity-ui/page-constructor';
+import {GridColumnSize} from '@gravity-ui/page-constructor';
 
 import {block} from '../../../../../utils/cn';
 import {PopupData} from '../../../models';
 import {PopupGroup} from '../components/PopupGroup/PopupGroup';
-import {PopupSecondaryGroup} from '../components/PopupSecondaryGroup/PopupSecondaryGroup';
 
 import './MediumPopupWithFloors.scss';
 
@@ -23,16 +22,15 @@ const DefaultItemSizes = {
 
 export const MediumPopupWithFloors = ({data}: MediumPopupWithFloorsProps) => {
     return (
-        <Row className={b()}>
-            {data.groups.map((group, index) => {
-                const key = group.title || group.url || index;
-
-                return index ? (
-                    <PopupSecondaryGroup {...group} key={key} sizes={DefaultItemSizes} />
-                ) : (
-                    <PopupGroup {...group} key={key} sizes={DefaultItemSizes} />
-                );
-            })}
-        </Row>
+        <div className={b()}>
+            {data.groups.map((group, index) => (
+                <PopupGroup
+                    {...group}
+                    key={group.title || group.url || index}
+                    sizes={DefaultItemSizes}
+                    withFixItems
+                />
+            ))}
+        </div>
     );
 };
