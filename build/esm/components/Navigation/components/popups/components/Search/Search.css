@@ -1,0 +1,39 @@
+/* use this for style redefinitions to awoid problems with
+unpredictable css rules order in build */
+
+.pc-addons-popup-search {
+  font-size: var(--g-text-body-1-font-size);
+  line-height: var(--g-text-body-1-line-height);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  max-width: 376px;
+  height: 44px;
+  transition: width 0.3s;
+}
+
+.pc-addons-popup-search__close-button, .pc-addons-popup-search__search-button {
+  position: absolute;
+  z-index: 2;
+  right: 10px;
+  color: var(--g-color-text-hint);
+}
+
+.pc-addons-popup-search__search-button:hover {
+  color: var(--g-color-text-secondary);
+}
+
+.pc-addons-popup-search__search-suggest-container {
+  width: 100%;
+}
+
+.pc-addons-popup-search__search-suggest .yc-text-input__control {
+  padding-right: 32px;
+}
+
+.pc-addons-popup-search_size_s {
+  height: 36px;
+  width: 352px;
+  max-width: 100%;
+}

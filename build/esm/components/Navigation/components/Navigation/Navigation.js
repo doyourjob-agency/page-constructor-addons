@@ -6,6 +6,7 @@ import { NavigationItemType, } from '../../models';
 import { LargePopup } from '../popups/LargePopup/LargePopup';
 import { MediumPopup } from '../popups/MediumPopup/MediumPopup';
 import { MediumPopupWithCategories } from '../popups/MediumPopupWithCategories/MediumPopupWithCategories';
+import { MediumPopupWithFloors } from '../popups/MediumPopupWithFloors/MediumPopupWithFloors';
 import { NavigationItem } from './NavigationItem/NavigationItem';
 import { NavigationPopup } from './NavigationPopup/NavigationPopup';
 import './Navigation.css';
@@ -20,6 +21,8 @@ const getPopupContent = (sectionData) => {
             return React.createElement(MediumPopup, { data: data });
         case NavigationItemType.MediumPopupWithCategories:
             return React.createElement(MediumPopupWithCategories, { data: data });
+        case NavigationItemType.MediumPopupWithFloors:
+            return React.createElement(MediumPopupWithFloors, { data: data });
         default:
             return null;
     }

@@ -3,7 +3,6 @@ import type { GridColumnSizesType } from '@gravity-ui/page-constructor';
 import { NavigationItem } from '../../../models';
 import './NavigationPopupItem.css';
 export interface NavigationPopupItemProps extends Partial<NavigationItem> {
-    image?: string | null;
     hover?: boolean;
     sizes?: GridColumnSizesType;
     className?: string;

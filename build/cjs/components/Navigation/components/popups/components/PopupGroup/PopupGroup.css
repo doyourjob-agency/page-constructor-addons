@@ -1,0 +1,22 @@
+.pc-addons-popup-group {
+  margin-left: -12px;
+  padding-left: 12px;
+  border-radius: var(--g-border-radius-xl);
+}
+
+.pc-addons-popup-group + .pc-addons-popup-group {
+  margin-top: 12px;
+}
+
+.pc-addons-popup-group__title {
+  margin-bottom: 8px;
+  padding: var(--pc-addons-navigation-popup-padding) 12px;
+}
+
+.pc-addons-popup-group__items.row.row.row {
+  margin-left: -16px;
+}
+
+.pc-addons-popup-group__items_fix.row.row.row {
+  margin-left: -12px;
+}
