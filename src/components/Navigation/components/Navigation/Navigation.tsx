@@ -13,6 +13,7 @@ import {
 import {LargePopup, LargePopupProps} from '../popups/LargePopup/LargePopup';
 import {MediumPopup} from '../popups/MediumPopup/MediumPopup';
 import {MediumPopupWithCategories} from '../popups/MediumPopupWithCategories/MediumPopupWithCategories';
+import {MediumPopupWithFloors} from '../popups/MediumPopupWithFloors/MediumPopupWithFloors';
 
 import {NavigationItem} from './NavigationItem/NavigationItem';
 import {NavigationPopup} from './NavigationPopup/NavigationPopup';
@@ -41,6 +42,8 @@ const getPopupContent = (sectionData: NavigationSectionData) => {
             return <MediumPopup data={data as PopupData} />;
         case NavigationItemType.MediumPopupWithCategories:
             return <MediumPopupWithCategories data={data as PopupData} />;
+        case NavigationItemType.MediumPopupWithFloors:
+            return <MediumPopupWithFloors data={data as PopupData} />;
         default:
             return null;
     }

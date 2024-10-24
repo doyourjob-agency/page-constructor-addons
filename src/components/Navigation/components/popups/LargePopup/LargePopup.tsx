@@ -13,11 +13,10 @@ import {
 } from '../../../models';
 import {getFlatList, getHeaderHeight} from '../../../utils';
 import {SearchResult} from '../../SearchResult/SearchResult';
-
-import {LargePopupCategory} from './LargePopupCategory/LargePopupCategory';
-import {LargePopupGroup} from './LargePopupGroup/LargePopupGroup';
-import {LargePopupSecondaryGroup} from './LargePopupSecondaryGroup/LargePopupSecondaryGroup';
-import Search from './Search/Search';
+import {PopupCategory} from '../components/PopupCategory/PopupCategory';
+import {PopupGroup} from '../components/PopupGroup/PopupGroup';
+import {PopupSecondaryGroup} from '../components/PopupSecondaryGroup/PopupSecondaryGroup';
+import Search from '../components/Search/Search';
 
 import './LargePopup.scss';
 
@@ -101,7 +100,7 @@ export const LargePopup = (props: LargePopupProps) => {
                         }}
                     >
                         {Object.values(categories).map((category) => (
-                            <LargePopupCategory
+                            <PopupCategory
                                 data={category}
                                 onClick={changeCategory}
                                 key={category.slug}
@@ -157,9 +156,9 @@ export const LargePopup = (props: LargePopupProps) => {
                                     const key = group.title || group.url || index;
 
                                     return index ? (
-                                        <LargePopupSecondaryGroup {...group} key={key} />
+                                        <PopupSecondaryGroup {...group} key={key} />
                                     ) : (
-                                        <LargePopupGroup {...group} section={section} key={key} />
+                                        <PopupGroup {...group} section={section} key={key} />
                                     );
                                 })}
                             </Fragment>

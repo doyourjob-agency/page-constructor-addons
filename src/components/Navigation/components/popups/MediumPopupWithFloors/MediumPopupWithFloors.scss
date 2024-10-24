@@ -1,0 +1,11 @@
+@import '../../../../../../styles/variables.scss';
+@import '../../../styles/mixins.scss';
+
+$block: '.#{$ns}medium-popup-with-floors';
+
+#{$block} {
+    @include navigation-overflow-popup($indentXL);
+
+    overflow-y: auto;
+    padding-left: $indentXS;
+}
