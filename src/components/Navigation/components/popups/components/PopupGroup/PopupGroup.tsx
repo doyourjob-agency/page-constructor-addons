@@ -15,9 +15,16 @@ type PopupGroupProps = CategoryGroupData & {
     section?: string;
     sizes?: GridColumnSizesType;
     withFixItems?: boolean;
+    withPadding?: boolean;
 };
 
-export const PopupGroup = ({sizes, section, withFixItems, ...group}: PopupGroupProps) => {
+export const PopupGroup = ({
+    sizes,
+    section,
+    withFixItems,
+    withPadding,
+    ...group
+}: PopupGroupProps) => {
     const items = useMemo(
         () =>
             group.items.map((item) => ({
@@ -30,12 +37,17 @@ export const PopupGroup = ({sizes, section, withFixItems, ...group}: PopupGroupP
     );
 
     return (
-        <div className={b()} style={{backgroundColor: group.backgroundColor}}>
-            <Row>
-                <Col className={b('title')}>
-                    <PopupTitle {...group} />
-                </Col>
-            </Row>
+        <div
+            className={withPadding ? [b(), b('padding')].join(' ') : b()}
+            style={{backgroundColor: group.backgroundColor}}
+        >
+            {group.title && (
+                <Row>
+                    <Col className={b('title')}>
+                        <PopupTitle {...group} />
+                    </Col>
+                </Row>
+            )}
             <div>
                 <NavigationItemsList
                     items={items}

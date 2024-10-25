@@ -29,6 +29,7 @@ export const MediumPopupWithFloors = ({data}: MediumPopupWithFloorsProps) => {
                     key={group.title || group.url || index}
                     sizes={DefaultItemSizes}
                     withFixItems
+                    withPadding
                 />
             ))}
         </div>

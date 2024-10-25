@@ -30,4 +30,9 @@ $block: '.#{$ns}popup-group';
             margin-left: -$indentXXS;
         }
     }
+
+    &__padding {
+        padding-top: $indentXXXS;
+        padding-bottom: $indentXXXS;
+    }
 }
