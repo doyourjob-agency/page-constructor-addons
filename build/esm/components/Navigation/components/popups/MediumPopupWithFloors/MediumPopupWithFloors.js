@@ -10,5 +10,5 @@ const DefaultItemSizes = {
     [GridColumnSize.All]: 12,
 };
 export const MediumPopupWithFloors = ({ data }) => {
-    return (React.createElement("div", { className: b() }, data.groups.map((group, index) => (React.createElement(PopupGroup, Object.assign({}, group, { key: group.title || group.url || index, sizes: DefaultItemSizes, withFixItems: true }))))));
+    return (React.createElement("div", { className: b() }, data.groups.map((group, index) => (React.createElement(PopupGroup, Object.assign({}, group, { key: group.title || group.url || index, sizes: DefaultItemSizes, withFixItems: true, withPadding: true }))))));
 };

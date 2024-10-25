@@ -13,6 +13,6 @@ const DefaultItemSizes = {
     [page_constructor_1.GridColumnSize.All]: 12,
 };
 const MediumPopupWithFloors = ({ data }) => {
-    return (react_1.default.createElement("div", { className: b() }, data.groups.map((group, index) => (react_1.default.createElement(PopupGroup_1.PopupGroup, Object.assign({}, group, { key: group.title || group.url || index, sizes: DefaultItemSizes, withFixItems: true }))))));
+    return (react_1.default.createElement("div", { className: b() }, data.groups.map((group, index) => (react_1.default.createElement(PopupGroup_1.PopupGroup, Object.assign({}, group, { key: group.title || group.url || index, sizes: DefaultItemSizes, withFixItems: true, withPadding: true }))))));
 };
 exports.MediumPopupWithFloors = MediumPopupWithFloors;

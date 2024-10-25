@@ -20,3 +20,8 @@
 .pc-addons-popup-group__items_fix.row.row.row {
   margin-left: -12px;
 }
+
+.pc-addons-popup-group__padding {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}

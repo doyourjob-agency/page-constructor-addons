@@ -5,6 +5,7 @@ type PopupGroupProps = CategoryGroupData & {
     section?: string;
     sizes?: GridColumnSizesType;
     withFixItems?: boolean;
+    withPadding?: boolean;
 };
-export declare const PopupGroup: ({ sizes, section, withFixItems, ...group }: PopupGroupProps) => React.JSX.Element;
+export declare const PopupGroup: ({ sizes, section, withFixItems, withPadding, ...group }: PopupGroupProps) => React.JSX.Element;
 export {};
