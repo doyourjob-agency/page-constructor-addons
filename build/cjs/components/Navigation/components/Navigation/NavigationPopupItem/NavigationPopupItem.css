@@ -49,6 +49,10 @@ unpredictable css rules order in build */
   background-color: var(--g-color-base-simple-hover);
 }
 
+.pc-addons-navigation-popup-item__content_disable {
+  pointer-events: none;
+}
+
 .pc-addons-navigation-popup-item__icon {
   color: var(--g-color-base-brand);
 }

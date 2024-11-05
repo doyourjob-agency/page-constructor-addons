@@ -10,6 +10,10 @@ unpredictable css rules order in build */
   color: var(--g-color-text-link);
 }
 
+.pc-addons-navigation-item_disable {
+  pointer-events: none;
+}
+
 .pc-addons-navigation-item__popup {
   --yc-popup-border-width: 0;
   --yc-popup-border-color: none;

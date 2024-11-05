@@ -42,7 +42,12 @@ export const NavigationItem = ({ item, isActive, handleActiveTab, handleOpenPopu
     useEffect(() => setupRouteChangeHandler === null || setupRouteChangeHandler === void 0 ? void 0 : setupRouteChangeHandler(() => {
         handleMouseLeave();
     }), [handleMouseLeave, setupRouteChangeHandler]);
+    if (type === NavigationItemType.Link) {
+        return (React.createElement("li", { key: title, className: b({ disable: !(link === null || link === void 0 ? void 0 : link.url) }), onMouseEnter: handleMouseEnter, onMouseLeave: handleMouseLeave },
+            React.createElement("a", Object.assign({ className: b('text', { active: isActive }), href: link === null || link === void 0 ? void 0 : link.url }, linkProps, { onClick: handleOnClick, "aria-current": isCurrentPage ? 'page' : undefined }), title),
+            children));
+    }
     return (React.createElement("li", { key: title, className: b({}), onMouseEnter: handleMouseEnter, onMouseLeave: handleMouseLeave },
-        type === NavigationItemType.Link ? (React.createElement("a", Object.assign({ className: b('text', { active: isActive }), href: link === null || link === void 0 ? void 0 : link.url }, linkProps, { onClick: handleOnClick, "aria-current": isCurrentPage ? 'page' : undefined }), title)) : (React.createElement("button", { className: b('text', { active: isActive, cursor: 'default' }), onClick: handleMouseEnter, "aria-expanded": isActive, "aria-controls": tooltipId }, title)),
+        React.createElement("button", { className: b('text', { active: isActive, cursor: 'default' }), onClick: handleMouseEnter, "aria-expanded": isActive, "aria-controls": tooltipId }, title),
         children));
 };

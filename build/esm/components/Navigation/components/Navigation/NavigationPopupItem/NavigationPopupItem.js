@@ -25,7 +25,7 @@ export const NavigationPopupItem = (props) => {
     const navigationTag = tag && React.createElement(NavigationTag, Object.assign({ className: b('tag'), size: "s" }, tag));
     const isCurrentPage = useIsCurrentPage(url);
     return (React.createElement(Col, { className: b(null, className), sizes: sizes },
-        React.createElement("a", { className: b('content', { hover, padding }), href: url, onClick: handleOnClick, "aria-current": isCurrentPage ? 'page' : undefined },
+        React.createElement("a", { className: b('content', { hover, padding, disable: !url }), href: url, onClick: handleOnClick, "aria-current": isCurrentPage ? 'page' : undefined },
             icon && (React.createElement("div", { className: b('icon-container') },
                 React.createElement(Icon, { className: b('icon'), data: icon, size: 16 }))),
             image && (React.createElement("div", { className: b('image-container') },

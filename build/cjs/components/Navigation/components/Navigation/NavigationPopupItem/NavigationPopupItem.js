@@ -28,7 +28,7 @@ const NavigationPopupItem = (props) => {
     const navigationTag = tag && react_1.default.createElement(Tag_1.NavigationTag, Object.assign({ className: b('tag'), size: "s" }, tag));
     const isCurrentPage = (0, useIsCurrentPage_1.useIsCurrentPage)(url);
     return (react_1.default.createElement(page_constructor_1.Col, { className: b(null, className), sizes: sizes },
-        react_1.default.createElement("a", { className: b('content', { hover, padding }), href: url, onClick: handleOnClick, "aria-current": isCurrentPage ? 'page' : undefined },
+        react_1.default.createElement("a", { className: b('content', { hover, padding, disable: !url }), href: url, onClick: handleOnClick, "aria-current": isCurrentPage ? 'page' : undefined },
             icon && (react_1.default.createElement("div", { className: b('icon-container') },
                 react_1.default.createElement(uikit_1.Icon, { className: b('icon'), data: icon, size: 16 }))),
             image && (react_1.default.createElement("div", { className: b('image-container') },
