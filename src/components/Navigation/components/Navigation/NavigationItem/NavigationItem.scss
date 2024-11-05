@@ -15,6 +15,10 @@ $block: '.#{$ns}navigation-item';
         }
     }
 
+    &_disable {
+        pointer-events: none;
+    }
+
     &__popup {
         @include popup-styles(var(--pc-addons-navigation-border-radius));
 

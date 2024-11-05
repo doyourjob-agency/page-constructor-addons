@@ -80,14 +80,14 @@ export const NavigationItem: FC<NavigationItemOwnProps> = ({
         [handleMouseLeave, setupRouteChangeHandler],
     );
 
-    return (
-        <li
-            key={title}
-            className={b({})}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-        >
-            {type === NavigationItemType.Link ? (
+    if (type === NavigationItemType.Link) {
+        return (
+            <li
+                key={title}
+                className={b({disable: !link?.url})}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+            >
                 <a
                     className={b('text', {active: isActive})}
                     href={link?.url}
@@ -97,16 +97,26 @@ export const NavigationItem: FC<NavigationItemOwnProps> = ({
                 >
                     {title}
                 </a>
-            ) : (
-                <button
-                    className={b('text', {active: isActive, cursor: 'default'})}
-                    onClick={handleMouseEnter}
-                    aria-expanded={isActive}
-                    aria-controls={tooltipId}
-                >
-                    {title}
-                </button>
-            )}
+                {children}
+            </li>
+        );
+    }
+
+    return (
+        <li
+            key={title}
+            className={b({})}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+        >
+            <button
+                className={b('text', {active: isActive, cursor: 'default'})}
+                onClick={handleMouseEnter}
+                aria-expanded={isActive}
+                aria-controls={tooltipId}
+            >
+                {title}
+            </button>
             {children}
         </li>
     );

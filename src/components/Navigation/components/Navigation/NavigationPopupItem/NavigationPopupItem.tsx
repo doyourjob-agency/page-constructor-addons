@@ -58,7 +58,7 @@ export const NavigationPopupItem = (props: NavigationPopupItemProps) => {
     return (
         <Col className={b(null, className)} sizes={sizes}>
             <a
-                className={b('content', {hover, padding})}
+                className={b('content', {hover, padding, disable: !url})}
                 href={url}
                 onClick={handleOnClick}
                 aria-current={isCurrentPage ? 'page' : undefined}

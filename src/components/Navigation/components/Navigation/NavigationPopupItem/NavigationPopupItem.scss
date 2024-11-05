@@ -47,6 +47,10 @@ $block: '.#{$ns}navigation-popup-item';
                 background-color: var(--g-color-base-simple-hover);
             }
         }
+
+        &_disable {
+            pointer-events: none;
+        }
     }
 
     &__icon {
