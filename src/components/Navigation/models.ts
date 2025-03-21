@@ -53,7 +53,8 @@ export type SetupRouteChangeHandler = (handler: () => void) => void;
 
 export interface NavigationTag {
     text: string;
-    color?: NavigationTagColor;
+    color?: string;
+    textColor?: string;
     size?: 's' | 'm';
 }
 
