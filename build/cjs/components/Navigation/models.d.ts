@@ -44,7 +44,8 @@ export interface AnalyticsEvent extends PCAnalyticsEvent {
 export type SetupRouteChangeHandler = (handler: () => void) => void;
 export interface NavigationTag {
     text: string;
-    color?: NavigationTagColor;
+    color?: string;
+    textColor?: string;
     size?: 's' | 'm';
 }
 export interface NavigationItem {

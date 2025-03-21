@@ -11,18 +11,6 @@ unpredictable css rules order in build */
   text-transform: capitalize;
 }
 
-.pc-addons-navigation-tag_color_yellow {
-  background-color: var(--pc-addons-navigation-color-tag-yellow);
-}
-
-.pc-addons-navigation-tag_color_green {
-  background-color: var(--pc-addons-navigation-color-tag-green);
-}
-
-.pc-addons-navigation-tag_color_blue {
-  background-color: var(--pc-addons-navigation-color-tag-blue);
-}
-
 .pc-addons-navigation-tag_size_s {
   font-size: var(--g-text-caption-2-font-size);
   padding: 0 4px;
