@@ -7,5 +7,6 @@ export interface NavigationPopupItemProps extends Partial<NavigationItem> {
     className?: string;
     padding?: 'default' | 's';
     imageSize?: 's' | 'xm' | 'm';
+    target?: string;
 }
 export declare const NavigationPopupItem: (props: NavigationPopupItemProps) => React.JSX.Element;

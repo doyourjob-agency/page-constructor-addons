@@ -9,14 +9,17 @@ const useIsCurrentPage_1 = require("../../../../../hooks/useIsCurrentPage");
 const cn_1 = require("../../../../../utils/cn");
 const constants_1 = require("../../../constants");
 const analytics_1 = require("../../../contexts/analytics");
+const location_1 = require("../../../contexts/location");
 const navigation_section_1 = require("../../../contexts/navigation-section");
 const models_1 = require("../../../models");
 const Tag_1 = require("../../Tag/Tag");
 const b = (0, cn_1.block)('navigation-popup-item');
 const NavigationPopupItem = (props) => {
-    const { icon, url, title, tag, description, image, imageSize = 'm', hover, className, sizes = constants_1.DefaultCategorizedItemSizes, padding = 'default', } = props;
+    const { icon, url, target, title, tag, description, image, imageSize = 'm', hover, className, sizes = constants_1.DefaultCategorizedItemSizes, padding = 'default', } = props;
     const navigationSection = (0, react_1.useContext)(navigation_section_1.NavigationSectionContext);
     const { sendEvents } = (0, react_1.useContext)(analytics_1.AnalyticsContext) || {};
+    const { hostname } = (0, react_1.useContext)(location_1.LocationContext) || {};
+    const linkProps = url ? (0, page_constructor_1.getLinkProps)(url, hostname, target) : {};
     const handleOnClick = (0, react_1.useCallback)(() => {
         sendEvents === null || sendEvents === void 0 ? void 0 : sendEvents([
             {
@@ -28,7 +31,7 @@ const NavigationPopupItem = (props) => {
     const navigationTag = tag && react_1.default.createElement(Tag_1.NavigationTag, Object.assign({ className: b('tag'), size: "s" }, tag));
     const isCurrentPage = (0, useIsCurrentPage_1.useIsCurrentPage)(url);
     return (react_1.default.createElement(page_constructor_1.Col, { className: b(null, className), sizes: sizes },
-        react_1.default.createElement("a", { className: b('content', { hover, padding, disable: !url }), href: url, onClick: handleOnClick, "aria-current": isCurrentPage ? 'page' : undefined },
+        react_1.default.createElement("a", Object.assign({ className: b('content', { hover, padding, disable: !url }), href: url }, linkProps, { onClick: handleOnClick, "aria-current": isCurrentPage ? 'page' : undefined }),
             icon && (react_1.default.createElement("div", { className: b('icon-container') },
                 react_1.default.createElement(uikit_1.Icon, { className: b('icon'), data: icon, size: 16 }))),
             image && (react_1.default.createElement("div", { className: b('image-container') },
