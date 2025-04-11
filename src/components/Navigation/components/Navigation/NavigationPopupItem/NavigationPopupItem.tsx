@@ -1,13 +1,14 @@
 import React, {useCallback, useContext} from 'react';
 
 import type {GridColumnSizesType} from '@gravity-ui/page-constructor';
-import {Col, HTML, Image} from '@gravity-ui/page-constructor';
+import {Col, HTML, Image, getLinkProps} from '@gravity-ui/page-constructor';
 import {Icon} from '@gravity-ui/uikit';
 
 import {useIsCurrentPage} from '../../../../../hooks/useIsCurrentPage';
 import {block} from '../../../../../utils/cn';
 import {DefaultCategorizedItemSizes} from '../../../constants';
 import {AnalyticsContext} from '../../../contexts/analytics';
+import {LocationContext} from '../../../contexts/location';
 import {NavigationSectionContext} from '../../../contexts/navigation-section';
 import {AnalyticsEventType, NavigationItem} from '../../../models';
 import {NavigationTag} from '../../Tag/Tag';
@@ -22,12 +23,14 @@ export interface NavigationPopupItemProps extends Partial<NavigationItem> {
     className?: string;
     padding?: 'default' | 's';
     imageSize?: 's' | 'xm' | 'm';
+    target?: string;
 }
 
 export const NavigationPopupItem = (props: NavigationPopupItemProps) => {
     const {
         icon,
         url,
+        target,
         title,
         tag,
         description,
@@ -41,6 +44,9 @@ export const NavigationPopupItem = (props: NavigationPopupItemProps) => {
 
     const navigationSection = useContext(NavigationSectionContext);
     const {sendEvents} = useContext(AnalyticsContext) || {};
+    const {hostname} = useContext(LocationContext) || {};
+
+    const linkProps = url ? getLinkProps(url, hostname, target) : {};
 
     const handleOnClick = useCallback(() => {
         sendEvents?.([
@@ -60,6 +66,7 @@ export const NavigationPopupItem = (props: NavigationPopupItemProps) => {
             <a
                 className={b('content', {hover, padding, disable: !url})}
                 href={url}
+                {...linkProps}
                 onClick={handleOnClick}
                 aria-current={isCurrentPage ? 'page' : undefined}
             >
