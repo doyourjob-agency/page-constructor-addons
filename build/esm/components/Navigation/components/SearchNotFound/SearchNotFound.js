@@ -1,5 +1,5 @@
 import React from 'react';
-import { GridColumnSize, Row, Title } from '@gravity-ui/page-constructor';
+import { GridColumnSize, Row, Title } from '@doyourjob/gravity-ui-page-constructor';
 import { block } from '../../../../utils/cn';
 import i18n from './i18n';
 import './SearchNotFound.css';

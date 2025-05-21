@@ -1,5 +1,5 @@
 import React, { useCallback, useContext } from 'react';
-import { Col, HTML, Image, getLinkProps } from '@gravity-ui/page-constructor';
+import { Col, HTML, Image, getLinkProps } from '@doyourjob/gravity-ui-page-constructor';
 import { Icon } from '@gravity-ui/uikit';
 import { useIsCurrentPage } from '../../../../../hooks/useIsCurrentPage';
 import { block } from '../../../../../utils/cn';

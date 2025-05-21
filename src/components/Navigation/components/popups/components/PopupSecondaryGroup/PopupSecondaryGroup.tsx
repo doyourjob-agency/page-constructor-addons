@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {GridColumnSizesType, Row} from '@gravity-ui/page-constructor';
+import {GridColumnSizesType, Row} from '@doyourjob/gravity-ui-page-constructor';
 
 import {block} from '../../../../../../utils/cn';
 import {CategoryGroupData} from '../../../../models';

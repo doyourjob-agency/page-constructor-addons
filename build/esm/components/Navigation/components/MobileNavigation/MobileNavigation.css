@@ -5,8 +5,8 @@ unpredictable css rules order in build */
   margin: 0;
   padding: 0;
   list-style: none;
-  font-size: var(--g-text-body-2-font-size);
-  line-height: var(--g-text-body-2-line-height);
+  font-size: var(--g-text-body-2-font-size, var(--pc-text-body-2-font-size));
+  line-height: var(--g-text-body-2-line-height, var(--pc-text-body-2-line-height));
 }
 
 .pc-addons-mobile-navigation__icon {

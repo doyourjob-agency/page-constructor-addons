@@ -3,8 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Header = exports.MOBILE_ICON_SIZE = void 0;
 const tslib_1 = require("tslib");
 const react_1 = tslib_1.__importStar(require("react"));
+const gravity_ui_page_constructor_1 = require("@doyourjob/gravity-ui-page-constructor");
 const icons_1 = require("@gravity-ui/icons");
-const page_constructor_1 = require("@gravity-ui/page-constructor");
 const uikit_1 = require("@gravity-ui/uikit");
 const cn_1 = require("../../../../utils/cn");
 const ButtonsContainer_1 = require("../../components/ButtonsContainer/ButtonsContainer");
@@ -110,7 +110,7 @@ const Header = ({ data, customElements, setupRouteChangeHandler, renderSearch, c
                     right,
                     navigation ? (react_1.default.createElement(MobileNavigation_1.MobileNavigation, { toogleOpen: toggleMobileNavigationPopup, isOpened: isMobileNavigationOpen, isSearchOpen: isSearchMode, data: navigation, buttons: buttons, onMenuScroll: onMenuScroll, popupClassName: b('user-popup'), customElements: customElements })) : null)),
             navigation ? (react_1.default.createElement("div", { className: b('scroller') },
-                react_1.default.createElement(page_constructor_1.OverflowScroller, { arrowClassName: b('scroll-arrow'), arrowSize: 14 },
+                react_1.default.createElement(gravity_ui_page_constructor_1.OverflowScroller, { arrowClassName: b('scroll-arrow'), arrowSize: 14 },
                     react_1.default.createElement(Navigation_1.Navigation, { data: navigation, headerRef: headerRef, handleOpenPopup: handleOpenPopup, handleClosePopup: handleClosePopup, withBackground: withBackground })))) : null)));
 };
 exports.Header = Header;

@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Footer = void 0;
 const tslib_1 = require("tslib");
 const react_1 = tslib_1.__importStar(require("react"));
-const page_constructor_1 = require("@gravity-ui/page-constructor");
+const gravity_ui_page_constructor_1 = require("@doyourjob/gravity-ui-page-constructor");
 const uikit_1 = require("@gravity-ui/uikit");
 const cn_1 = require("../../../../utils/cn");
 const EnrichedLink_1 = require("../../../EnrichedLink/EnrichedLink");
@@ -22,13 +22,13 @@ const Footer = (props) => {
         if (!media) {
             return null;
         }
-        return react_1.default.createElement(page_constructor_1.Col, { sizes: { all: 12, md: media.md || 6 } }, media.item);
+        return react_1.default.createElement(gravity_ui_page_constructor_1.Col, { sizes: { all: 12, md: media.md || 6 } }, media.item);
     }, [media]);
     const groupLinks = (0, react_1.useMemo)(() => {
         if (!(columns === null || columns === void 0 ? void 0 : columns.length)) {
             return null;
         }
-        return (react_1.default.createElement(react_1.default.Fragment, null, columns.map((groups, index) => (react_1.default.createElement(page_constructor_1.Col, { key: index, className: b('column'), sizes: columnSize }, groups.map((group, groupIndex) => (react_1.default.createElement(GroupLinks_1.default, { key: groupIndex, columnGroup: group, className: b('group-wrapper') }))))))));
+        return (react_1.default.createElement(react_1.default.Fragment, null, columns.map((groups, index) => (react_1.default.createElement(gravity_ui_page_constructor_1.Col, { key: index, className: b('column'), sizes: columnSize }, groups.map((group, groupIndex) => (react_1.default.createElement(GroupLinks_1.default, { key: groupIndex, columnGroup: group, className: b('group-wrapper') }))))))));
     }, [columns]);
     const isSimple = type === 'simple';
     const underlineBlock = (0, react_1.useMemo)(() => {
@@ -47,12 +47,12 @@ const Footer = (props) => {
                 underline.copyright && (react_1.default.createElement("div", { className: b('copyright') }, underline.copyright)))));
     }, [underline, isSimple, isMobile]);
     const isRightMedia = (media === null || media === void 0 ? void 0 : media.position) === 'right';
-    return (react_1.default.createElement("footer", { className: b({ type }) }, isSimple ? (underlineBlock) : (react_1.default.createElement(page_constructor_1.Grid, { containerClass: b('container-fluid') },
-        react_1.default.createElement(page_constructor_1.Row, { className: b('wrapper') },
+    return (react_1.default.createElement("footer", { className: b({ type }) }, isSimple ? (underlineBlock) : (react_1.default.createElement(gravity_ui_page_constructor_1.Grid, { containerClass: b('container-fluid') },
+        react_1.default.createElement(gravity_ui_page_constructor_1.Row, { className: b('wrapper') },
             !isRightMedia && mediaContent,
             groupLinks,
             isRightMedia && mediaContent,
             customItems,
-            react_1.default.createElement(page_constructor_1.Col, { className: b('column', { underline: true }), sizes: { all: 12 } }, underlineBlock))))));
+            react_1.default.createElement(gravity_ui_page_constructor_1.Col, { className: b('column', { underline: true }), sizes: { all: 12 } }, underlineBlock))))));
 };
 exports.Footer = Footer;

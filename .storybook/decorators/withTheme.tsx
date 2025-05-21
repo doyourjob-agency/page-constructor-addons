@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {StoryFn, StoryContext} from '@storybook/react';
 import {UIKIT_ROOT_CLASS} from '../../src/constants';
-import {Theme} from '@gravity-ui/page-constructor';
+import {Theme} from '@doyourjob/gravity-ui-page-constructor';
 import {ThemeProvider} from '@gravity-ui/uikit';
 
 export const withTheme = (Story: StoryFn, context: StoryContext) => {

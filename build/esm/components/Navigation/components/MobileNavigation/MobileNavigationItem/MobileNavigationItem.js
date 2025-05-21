@@ -1,5 +1,5 @@
 import React, { Fragment, useCallback, useContext, useMemo, useState } from 'react';
-import { Foldable, ToggleArrow, getLinkProps } from '@gravity-ui/page-constructor';
+import { Foldable, ToggleArrow, getLinkProps } from '@doyourjob/gravity-ui-page-constructor';
 import { block } from '../../../../../utils/cn';
 import { LocationContext } from '../../../contexts/location';
 import { NavigationItemType, } from '../../../models';

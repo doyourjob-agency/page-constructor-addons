@@ -1,5 +1,5 @@
 import type { FC } from 'react';
-import { GridColumnSizesType } from '@gravity-ui/page-constructor';
+import { GridColumnSizesType } from '@doyourjob/gravity-ui-page-constructor';
 import { NavigationItem } from '../../../models';
 interface NavigationItemsListProps {
     items: NavigationItem[];

@@ -1,7 +1,7 @@
 import type {FC, ReactNode} from 'react';
 import React, {useCallback, useContext, useEffect} from 'react';
 
-import {getLinkProps} from '@gravity-ui/page-constructor';
+import {getLinkProps} from '@doyourjob/gravity-ui-page-constructor';
 
 import {useIsCurrentPage} from '../../../../../hooks/useIsCurrentPage';
 import {block} from '../../../../../utils/cn';

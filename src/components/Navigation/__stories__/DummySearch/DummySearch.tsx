@@ -1,7 +1,7 @@
 import React, {useCallback, useContext, useState} from 'react';
 
+import {OutsideClick} from '@doyourjob/gravity-ui-page-constructor';
 import {Magnifier} from '@gravity-ui/icons';
-import {OutsideClick} from '@gravity-ui/page-constructor';
 import {Button, Icon, useUniqId} from '@gravity-ui/uikit';
 
 import {block} from '../../../../utils/cn';

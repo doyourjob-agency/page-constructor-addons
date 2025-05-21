@@ -2,8 +2,8 @@
 unpredictable css rules order in build */
 
 .pc-addons-navigation-popup-item {
-  font-size: var(--g-text-body-2-font-size);
-  line-height: var(--g-text-body-2-line-height);
+  font-size: var(--g-text-body-2-font-size, var(--pc-text-body-2-font-size));
+  line-height: var(--g-text-body-2-line-height, var(--pc-text-body-2-line-height));
   margin-bottom: 2px;
 }
 
@@ -71,8 +71,8 @@ unpredictable css rules order in build */
 }
 
 .pc-addons-navigation-popup-item__description {
-  font-size: var(--g-text-body-1-font-size);
-  line-height: var(--g-text-body-1-line-height);
+  font-size: var(--g-text-body-1-font-size, var(--pc-text-body-1-font-size));
+  line-height: var(--g-text-body-1-line-height, var(--pc-text-body-1-line-height));
   display: block;
   margin-top: 2px;
   color: var(--g-color-text-secondary);

@@ -1,6 +1,6 @@
 import { __rest } from "tslib";
 import React, { Fragment } from 'react';
-import { AnalyticsContext, Theme } from '@gravity-ui/page-constructor';
+import { AnalyticsContext, Theme } from '@doyourjob/gravity-ui-page-constructor';
 import { DeviceContext } from '../../contexts/device';
 import { LocationContext } from '../../contexts/location';
 import { MobileContext } from '../../contexts/mobile';

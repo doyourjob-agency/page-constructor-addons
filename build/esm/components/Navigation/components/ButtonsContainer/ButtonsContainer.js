@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button as PCButton } from '@gravity-ui/page-constructor';
+import { Button as PCButton } from '@doyourjob/gravity-ui-page-constructor';
 import { block } from '../../../../utils/cn';
 import './ButtonsContainer.css';
 export var ButtonsContainerDirection;

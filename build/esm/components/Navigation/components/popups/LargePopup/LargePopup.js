@@ -1,6 +1,6 @@
 import React, { Fragment, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { Col, GridColumnSize, Link, Row } from '@doyourjob/gravity-ui-page-constructor';
 import { Magnifier } from '@gravity-ui/icons';
-import { Col, GridColumnSize, Link, Row } from '@gravity-ui/page-constructor';
 import { block } from '../../../../../utils/cn';
 import { getFlatList, getHeaderHeight } from '../../../utils';
 import { SearchResult } from '../../SearchResult/SearchResult';

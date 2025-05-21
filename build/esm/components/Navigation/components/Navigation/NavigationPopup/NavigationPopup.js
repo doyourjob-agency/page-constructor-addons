@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid } from '@gravity-ui/page-constructor';
+import { Grid } from '@doyourjob/gravity-ui-page-constructor';
 import ReactDOM from 'react-dom';
 import { FocusTrap } from '../../../../../utils/FocusTrap';
 import { block } from '../../../../../utils/cn';

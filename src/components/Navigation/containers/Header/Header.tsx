@@ -8,8 +8,8 @@ import React, {
     useState,
 } from 'react';
 
+import {ClassNameProps, OverflowScroller} from '@doyourjob/gravity-ui-page-constructor';
 import {ChevronLeft} from '@gravity-ui/icons';
-import {ClassNameProps, OverflowScroller} from '@gravity-ui/page-constructor';
 import {Button, Icon} from '@gravity-ui/uikit';
 
 import {block} from '../../../../utils/cn';

@@ -1,4 +1,4 @@
-import type {ClassNameProps} from '@gravity-ui/page-constructor';
+import type {ClassNameProps} from '@doyourjob/gravity-ui-page-constructor';
 
 import type {EnrichedLinkProps} from '../../../EnrichedLink/EnrichedLink';
 import {LangSwitchProps} from '../../components/LangSwitch';

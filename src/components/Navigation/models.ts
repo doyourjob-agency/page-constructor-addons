@@ -1,5 +1,5 @@
-import {AnalyticsEvent as PCAnalyticsEvent} from '@gravity-ui/page-constructor';
-import type {ButtonProps, LinkProps} from '@gravity-ui/page-constructor';
+import {AnalyticsEvent as PCAnalyticsEvent} from '@doyourjob/gravity-ui-page-constructor';
+import type {ButtonProps, LinkProps} from '@doyourjob/gravity-ui-page-constructor';
 import {SVGIconData} from '@gravity-ui/uikit/build/esm/components/Icon/types';
 
 export enum AnalyticsEventType {

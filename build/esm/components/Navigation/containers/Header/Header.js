@@ -1,7 +1,7 @@
 import { __rest } from "tslib";
 import React, { useCallback, useContext, useEffect, useMemo, useRef, useState, } from 'react';
+import { OverflowScroller } from '@doyourjob/gravity-ui-page-constructor';
 import { ChevronLeft } from '@gravity-ui/icons';
-import { OverflowScroller } from '@gravity-ui/page-constructor';
 import { Button, Icon } from '@gravity-ui/uikit';
 import { block } from '../../../../utils/cn';
 import { ButtonsContainer } from '../../components/ButtonsContainer/ButtonsContainer';

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {ClassNameProps} from '@gravity-ui/page-constructor';
+import {ClassNameProps} from '@doyourjob/gravity-ui-page-constructor';
 
 import {block} from '../../../../utils/cn';
 import {NavigationTagColor, NavigationTag as NavigationTagModel} from '../../models';

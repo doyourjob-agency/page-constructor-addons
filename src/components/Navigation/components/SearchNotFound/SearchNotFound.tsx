@@ -1,7 +1,7 @@
 import React from 'react';
 
-import type {TextSize} from '@gravity-ui/page-constructor';
-import {GridColumnSize, Row, Title} from '@gravity-ui/page-constructor';
+import type {TextSize} from '@doyourjob/gravity-ui-page-constructor';
+import {GridColumnSize, Row, Title} from '@doyourjob/gravity-ui-page-constructor';
 
 import {block} from '../../../../utils/cn';
 

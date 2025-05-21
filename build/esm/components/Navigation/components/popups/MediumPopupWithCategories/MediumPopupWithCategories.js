@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { BREAKPOINTS, Col, GridColumnSize, Row, Title, useWindowBreakpoint, } from '@gravity-ui/page-constructor';
+import { BREAKPOINTS, Col, GridColumnSize, Row, Title, useWindowBreakpoint, } from '@doyourjob/gravity-ui-page-constructor';
 import { block } from '../../../../../utils/cn';
 import { NavigationPopupItem, } from '../../Navigation/NavigationPopupItem/NavigationPopupItem';
 import './MediumPopupWithCategories.css';

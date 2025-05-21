@@ -1,7 +1,7 @@
 import React, {Fragment} from 'react';
 
-import type {TextSize} from '@gravity-ui/page-constructor';
-import {Row, Title, block} from '@gravity-ui/page-constructor';
+import type {TextSize} from '@doyourjob/gravity-ui-page-constructor';
+import {Row, Title, block} from '@doyourjob/gravity-ui-page-constructor';
 
 import {NavigationItem} from '../../models';
 import {applySearch} from '../../utils';

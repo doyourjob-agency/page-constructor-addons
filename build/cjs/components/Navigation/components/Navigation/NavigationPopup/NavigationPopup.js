@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.NavigationPopup = void 0;
 const tslib_1 = require("tslib");
 const react_1 = tslib_1.__importDefault(require("react"));
-const page_constructor_1 = require("@gravity-ui/page-constructor");
+const gravity_ui_page_constructor_1 = require("@doyourjob/gravity-ui-page-constructor");
 const react_dom_1 = tslib_1.__importDefault(require("react-dom"));
 const FocusTrap_1 = require("../../../../../utils/FocusTrap");
 const cn_1 = require("../../../../../utils/cn");
@@ -14,7 +14,7 @@ const NavigationPopup = ({ withBackground, headerRef, children, className, id, }
             react_1.default.createElement("div", { 
                 // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
                 tabIndex: 0, className: b({ ['with-background']: withBackground }, className), id: id },
-                react_1.default.createElement(page_constructor_1.Grid, { containerClass: b('grid-container') }, children))), headerRef.current)
+                react_1.default.createElement(gravity_ui_page_constructor_1.Grid, { containerClass: b('grid-container') }, children))), headerRef.current)
         : null;
 };
 exports.NavigationPopup = NavigationPopup;

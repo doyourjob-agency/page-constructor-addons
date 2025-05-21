@@ -1,5 +1,5 @@
 import React from 'react';
-import { ClassNameProps, Theme } from '@gravity-ui/page-constructor';
+import { ClassNameProps, Theme } from '@doyourjob/gravity-ui-page-constructor';
 import { LogoData } from '../../models';
 import './Logo.css';
 export interface LogoProps extends LogoData, ClassNameProps {

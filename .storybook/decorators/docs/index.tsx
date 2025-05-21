@@ -7,7 +7,7 @@ import {MobileContext} from '../../../src/context/mobileContext';
 import {cn} from '../../../src/utils/cn';
 
 import './DocsDecorator.scss';
-import {Theme} from '@gravity-ui/page-constructor';
+import {Theme} from '@doyourjob/gravity-ui-page-constructor';
 
 export interface DocsDecoratorProps extends React.PropsWithChildren<DocsContainerProps> {}
 

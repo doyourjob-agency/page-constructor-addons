@@ -1,6 +1,6 @@
 import React from 'react';
 
-import type {ClassNameProps} from '@gravity-ui/page-constructor';
+import type {ClassNameProps} from '@doyourjob/gravity-ui-page-constructor';
 import type {IconData, LinkProps} from '@gravity-ui/uikit';
 import {Icon, Link} from '@gravity-ui/uikit';
 

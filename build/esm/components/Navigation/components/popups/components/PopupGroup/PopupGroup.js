@@ -1,6 +1,6 @@
 import { __rest } from "tslib";
 import React, { useMemo } from 'react';
-import { Col, Row } from '@gravity-ui/page-constructor';
+import { Col, Row } from '@doyourjob/gravity-ui-page-constructor';
 import { block } from '../../../../../../utils/cn';
 import { NavigationItemsList } from '../../../Navigation/NavigationItemsList/NavigationItemsList';
 import { PopupTitle } from '../PopupTitle/PopupTitle';

@@ -1,5 +1,5 @@
 import React from 'react';
-import type { ClassNameProps } from '@gravity-ui/page-constructor';
+import type { ClassNameProps } from '@doyourjob/gravity-ui-page-constructor';
 import type { IconData } from '@gravity-ui/uikit';
 import './EnrichedLink.css';
 export interface EnrichedLinkProps extends ClassNameProps {

@@ -2,8 +2,8 @@
 unpredictable css rules order in build */
 
 .pc-addons-popup-search {
-  font-size: var(--g-text-body-1-font-size);
-  line-height: var(--g-text-body-1-line-height);
+  font-size: var(--g-text-body-1-font-size, var(--pc-text-body-1-font-size));
+  line-height: var(--g-text-body-1-line-height, var(--pc-text-body-1-line-height));
   position: relative;
   display: flex;
   align-items: center;

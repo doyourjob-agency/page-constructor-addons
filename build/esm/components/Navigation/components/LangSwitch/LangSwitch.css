@@ -14,8 +14,8 @@ unpredictable css rules order in build */
 }
 
 .pc-addons-lang-switch_size_m {
-  font-size: var(--g-text-body-2-font-size);
-  line-height: var(--g-text-body-2-line-height);
+  font-size: var(--g-text-body-2-font-size, var(--pc-text-body-2-font-size));
+  line-height: var(--g-text-body-2-line-height, var(--pc-text-body-2-line-height));
 }
 
 .pc-addons-lang-switch__icon {

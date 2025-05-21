@@ -10,8 +10,8 @@ unpredictable css rules order in build */
 }
 
 .pc-addons-footer {
-  font-size: var(--g-text-body-2-font-size);
-  line-height: var(--g-text-body-2-line-height);
+  font-size: var(--g-text-body-2-font-size, var(--pc-text-body-2-font-size));
+  line-height: var(--g-text-body-2-line-height, var(--pc-text-body-2-line-height));
 }
 
 .pc-addons-footer_type_default .pc-addons-footer__container-fluid {
@@ -61,8 +61,8 @@ unpredictable css rules order in build */
 }
 
 .pc-addons-footer__copyright {
-  font-size: var(--g-text-body-2-font-size);
-  line-height: var(--g-text-body-2-line-height);
+  font-size: var(--g-text-body-2-font-size, var(--pc-text-body-2-font-size));
+  line-height: var(--g-text-body-2-line-height, var(--pc-text-body-2-line-height));
   color: var(--g-color-text-primary);
 }
 

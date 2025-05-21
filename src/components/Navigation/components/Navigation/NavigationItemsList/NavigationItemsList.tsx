@@ -1,7 +1,7 @@
 import type {FC} from 'react';
 import React from 'react';
 
-import {GridColumnSizesType, Row} from '@gravity-ui/page-constructor';
+import {GridColumnSizesType, Row} from '@doyourjob/gravity-ui-page-constructor';
 
 import {NavigationItem} from '../../../models';
 import {NavigationPopupItem} from '../NavigationPopupItem/NavigationPopupItem';

@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.NavigationPopupItem = void 0;
 const tslib_1 = require("tslib");
 const react_1 = tslib_1.__importStar(require("react"));
-const page_constructor_1 = require("@gravity-ui/page-constructor");
+const gravity_ui_page_constructor_1 = require("@doyourjob/gravity-ui-page-constructor");
 const uikit_1 = require("@gravity-ui/uikit");
 const useIsCurrentPage_1 = require("../../../../../hooks/useIsCurrentPage");
 const cn_1 = require("../../../../../utils/cn");
@@ -19,7 +19,7 @@ const NavigationPopupItem = (props) => {
     const navigationSection = (0, react_1.useContext)(navigation_section_1.NavigationSectionContext);
     const { sendEvents } = (0, react_1.useContext)(analytics_1.AnalyticsContext) || {};
     const { hostname } = (0, react_1.useContext)(location_1.LocationContext) || {};
-    const linkProps = url ? (0, page_constructor_1.getLinkProps)(url, hostname, target) : {};
+    const linkProps = url ? (0, gravity_ui_page_constructor_1.getLinkProps)(url, hostname, target) : {};
     const handleOnClick = (0, react_1.useCallback)(() => {
         sendEvents === null || sendEvents === void 0 ? void 0 : sendEvents([
             {
@@ -30,17 +30,17 @@ const NavigationPopupItem = (props) => {
     }, [sendEvents, navigationSection, url]);
     const navigationTag = tag && react_1.default.createElement(Tag_1.NavigationTag, Object.assign({ className: b('tag'), size: "s" }, tag));
     const isCurrentPage = (0, useIsCurrentPage_1.useIsCurrentPage)(url);
-    return (react_1.default.createElement(page_constructor_1.Col, { className: b(null, className), sizes: sizes },
+    return (react_1.default.createElement(gravity_ui_page_constructor_1.Col, { className: b(null, className), sizes: sizes },
         react_1.default.createElement("a", Object.assign({ className: b('content', { hover, padding, disable: !url }), href: url }, linkProps, { onClick: handleOnClick, "aria-current": isCurrentPage ? 'page' : undefined }),
             icon && (react_1.default.createElement("div", { className: b('icon-container') },
                 react_1.default.createElement(uikit_1.Icon, { className: b('icon'), data: icon, size: 16 }))),
             image && (react_1.default.createElement("div", { className: b('image-container') },
-                react_1.default.createElement(page_constructor_1.Image, { className: b('image', { size: imageSize }), src: image }))),
+                react_1.default.createElement(gravity_ui_page_constructor_1.Image, { className: b('image', { size: imageSize }), src: image }))),
             react_1.default.createElement("div", { className: b('container', { 'with-margin': Boolean(icon) }) },
                 react_1.default.createElement("div", { className: b('title-tag-wrapper') },
                     react_1.default.createElement("span", { className: b('title') }, title),
                     "\u00A0",
                     navigationTag),
-                description && react_1.default.createElement(page_constructor_1.HTML, { className: b('description') }, description)))));
+                description && react_1.default.createElement(gravity_ui_page_constructor_1.HTML, { className: b('description') }, description)))));
 };
 exports.NavigationPopupItem = NavigationPopupItem;

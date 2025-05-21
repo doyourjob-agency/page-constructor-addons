@@ -1,5 +1,5 @@
 import React from 'react';
-import { ClassNameProps } from '@gravity-ui/page-constructor';
+import { ClassNameProps } from '@doyourjob/gravity-ui-page-constructor';
 import { NavigationTag as NavigationTagModel } from '../../models';
 import './Tag.css';
 export interface NavigationTagProps extends NavigationTagModel, ClassNameProps {

@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react';
 
-import {AnalyticsContext, Theme} from '@gravity-ui/page-constructor';
+import {AnalyticsContext, Theme} from '@doyourjob/gravity-ui-page-constructor';
 
 import {AnalyticsContextProps} from '../../contexts/analytics';
 import {DeviceContext, DeviceContextProps} from '../../contexts/device';

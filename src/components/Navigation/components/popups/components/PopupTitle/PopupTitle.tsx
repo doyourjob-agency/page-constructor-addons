@@ -1,7 +1,7 @@
 import React, {useMemo} from 'react';
 
-import type {ClassNameProps, TextSize} from '@gravity-ui/page-constructor';
-import {Title} from '@gravity-ui/page-constructor';
+import type {ClassNameProps, TextSize} from '@doyourjob/gravity-ui-page-constructor';
+import {Title} from '@doyourjob/gravity-ui-page-constructor';
 
 import {CategoryGroupData} from '../../../../models';
 

@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 
-import {ClassNameProps, Theme} from '@gravity-ui/page-constructor';
+import {ClassNameProps, Theme} from '@doyourjob/gravity-ui-page-constructor';
 
 import {block} from '../../../../utils/cn';
 import {MobileContext} from '../../contexts/mobile';

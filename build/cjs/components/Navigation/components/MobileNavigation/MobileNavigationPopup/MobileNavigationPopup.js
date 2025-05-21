@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.MobileNavigationPopup = void 0;
 const tslib_1 = require("tslib");
 const react_1 = tslib_1.__importStar(require("react"));
-const page_constructor_1 = require("@gravity-ui/page-constructor");
+const gravity_ui_page_constructor_1 = require("@doyourjob/gravity-ui-page-constructor");
 const uikit_1 = require("@gravity-ui/uikit");
 const react_dom_1 = tslib_1.__importDefault(require("react-dom"));
 const react_transition_group_1 = require("react-transition-group");
@@ -41,7 +41,7 @@ const MobileNavigationPopup = ({ isOpened, onClose, children, onMenuScroll, }) =
         return null;
     }
     return react_dom_1.default.createPortal(react_1.default.createElement(react_transition_group_1.CSSTransition, { in: isOpened, classNames: b('transition'), unmountOnExit: true, timeout: TRANSITION_TIME },
-        react_1.default.createElement(page_constructor_1.OutsideClick, { className: b(), onOutsideClick: onClose },
+        react_1.default.createElement(gravity_ui_page_constructor_1.OutsideClick, { className: b(), onOutsideClick: onClose },
             react_1.default.createElement("div", { ref: ref, className: b('container'), style: { maxHeight: `${containerHeight}px` } }, children))), body);
 };
 exports.MobileNavigationPopup = MobileNavigationPopup;

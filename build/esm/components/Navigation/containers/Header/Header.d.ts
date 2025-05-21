@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { ClassNameProps } from '@gravity-ui/page-constructor';
+import { ClassNameProps } from '@doyourjob/gravity-ui-page-constructor';
 import { NavigationData, SetupRouteChangeHandler } from '../../models';
 import './Header.css';
 export declare const MOBILE_ICON_SIZE = 24;

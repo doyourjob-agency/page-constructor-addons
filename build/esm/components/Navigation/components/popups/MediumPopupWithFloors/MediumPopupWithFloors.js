@@ -1,5 +1,5 @@
 import React from 'react';
-import { GridColumnSize } from '@gravity-ui/page-constructor';
+import { GridColumnSize } from '@doyourjob/gravity-ui-page-constructor';
 import { block } from '../../../../../utils/cn';
 import { PopupGroup } from '../components/PopupGroup/PopupGroup';
 import './MediumPopupWithFloors.css';

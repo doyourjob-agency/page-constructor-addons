@@ -1,7 +1,7 @@
 import '../styles/storybook/index.scss';
 
 import {MobileProvider, Platform} from '@gravity-ui/uikit';
-import {Theme} from '@gravity-ui/page-constructor';
+import {Theme} from '@doyourjob/gravity-ui-page-constructor';
 
 import React from 'react';
 import {MINIMAL_VIEWPORTS} from '@storybook/addon-viewport';

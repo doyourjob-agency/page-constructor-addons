@@ -39,8 +39,8 @@ unpredictable css rules order in build */
 }
 
 .pc-addons-logo__text {
-  font-size: var(--g-text-header-1-font-size);
-  line-height: var(--g-text-header-1-line-height);
+  font-size: var(--g-text-header-1-font-size, var(--pc-text-header-1-font-size));
+  line-height: var(--g-text-header-1-line-height, var(--pc-text-header-1-line-height));
   color: var(--pc-text-header-color);
   font-weight: var(--g-text-accent-font-weight);
   margin-left: 12px;

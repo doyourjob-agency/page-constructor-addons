@@ -1,7 +1,7 @@
 import React from 'react';
 
+import type {ButtonProps} from '@doyourjob/gravity-ui-page-constructor';
 import {Bars, Xmark} from '@gravity-ui/icons';
-import type {ButtonProps} from '@gravity-ui/page-constructor';
 import {Button, Icon} from '@gravity-ui/uikit';
 
 import {block} from '../../../../utils/cn';

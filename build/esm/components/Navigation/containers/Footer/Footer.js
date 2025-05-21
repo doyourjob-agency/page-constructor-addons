@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { Col, Grid, Row } from '@gravity-ui/page-constructor';
+import { Col, Grid, Row } from '@doyourjob/gravity-ui-page-constructor';
 import { useMobile } from '@gravity-ui/uikit';
 import { block } from '../../../../utils/cn';
 import { EnrichedLink } from '../../../EnrichedLink/EnrichedLink';

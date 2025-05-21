@@ -1,5 +1,5 @@
 import React from 'react';
-import type { GridColumnSizesType } from '@gravity-ui/page-constructor';
+import type { GridColumnSizesType } from '@doyourjob/gravity-ui-page-constructor';
 import { NavigationItem } from '../../../models';
 import './NavigationPopupItem.css';
 export interface NavigationPopupItemProps extends Partial<NavigationItem> {

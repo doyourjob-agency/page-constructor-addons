@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from 'react';
-import type { ButtonProps } from '@gravity-ui/page-constructor';
+import type { ButtonProps } from '@doyourjob/gravity-ui-page-constructor';
 import type { ButtonWidth } from '@gravity-ui/uikit';
 export declare enum ButtonsContainerDirection {
     Row = "row",

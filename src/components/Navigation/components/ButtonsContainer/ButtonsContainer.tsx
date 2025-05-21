@@ -1,7 +1,7 @@
 import React, {PropsWithChildren} from 'react';
 
-import type {ButtonProps} from '@gravity-ui/page-constructor';
-import {Button as PCButton} from '@gravity-ui/page-constructor';
+import type {ButtonProps} from '@doyourjob/gravity-ui-page-constructor';
+import {Button as PCButton} from '@doyourjob/gravity-ui-page-constructor';
 import type {ButtonWidth} from '@gravity-ui/uikit';
 
 import {block} from '../../../../utils/cn';

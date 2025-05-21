@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { Row, Title, block } from '@gravity-ui/page-constructor';
+import { Row, Title, block } from '@doyourjob/gravity-ui-page-constructor';
 import { applySearch } from '../../utils';
 import { NavigationItemsList } from '../Navigation/NavigationItemsList/NavigationItemsList';
 import { SearchNotFound } from '../SearchNotFound/SearchNotFound';

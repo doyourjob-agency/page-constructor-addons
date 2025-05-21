@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Col, GridColumnSize, Row} from '@gravity-ui/page-constructor';
+import {Col, GridColumnSize, Row} from '@doyourjob/gravity-ui-page-constructor';
 
 import {block} from '../../../../../utils/cn';
 import {PopupData} from '../../../models';

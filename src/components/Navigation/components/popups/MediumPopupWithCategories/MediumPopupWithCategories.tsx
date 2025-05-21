@@ -7,7 +7,7 @@ import {
     Row,
     Title,
     useWindowBreakpoint,
-} from '@gravity-ui/page-constructor';
+} from '@doyourjob/gravity-ui-page-constructor';
 
 import {block} from '../../../../../utils/cn';
 import {PopupData} from '../../../models';

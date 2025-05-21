@@ -1,5 +1,5 @@
 import React from 'react';
-import { GridColumnSizesType } from '@gravity-ui/page-constructor';
+import { GridColumnSizesType } from '@doyourjob/gravity-ui-page-constructor';
 import { CategoryGroupData } from '../../../../models';
 import './PopupSecondaryGroup.css';
 type PopupSecondaryGroupProps = CategoryGroupData & {

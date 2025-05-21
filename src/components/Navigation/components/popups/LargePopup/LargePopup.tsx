@@ -1,8 +1,8 @@
 import React, {Fragment, useCallback, useEffect, useMemo, useRef, useState} from 'react';
 
+import type {LinkProps} from '@doyourjob/gravity-ui-page-constructor';
+import {Col, GridColumnSize, Link, Row} from '@doyourjob/gravity-ui-page-constructor';
 import {Magnifier} from '@gravity-ui/icons';
-import type {LinkProps} from '@gravity-ui/page-constructor';
-import {Col, GridColumnSize, Link, Row} from '@gravity-ui/page-constructor';
 
 import {block} from '../../../../../utils/cn';
 import {

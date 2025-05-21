@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { OutsideClick } from '@gravity-ui/page-constructor';
+import { OutsideClick } from '@doyourjob/gravity-ui-page-constructor';
 import { useBodyScrollLock } from '@gravity-ui/uikit';
 import ReactDOM from 'react-dom';
 import { CSSTransition } from 'react-transition-group';
