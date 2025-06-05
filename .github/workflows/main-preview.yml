@@ -1,32 +1,34 @@
-name: Main Preview
+name: Deploy Storybook to GitHub Pages
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
 
 jobs:
-  main:
-    name: Build and Deploy
+  build-and-deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      PREVIEW_DEST_PATH: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/main
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
         with:
-          fetch-depth: 0
-      - name: Setup Node
-        uses: actions/setup-node@v2
+          node-version: '18'
+          cache: npm
+
+      - run: npm ci
+
+      - run: npm run storybook:build
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          node-version: 18
-      - name: Install Packages
-        run: npm ci
-        shell: bash
-      - name: Build Storybook
-        run: npx sb build
-        shell: bash
-      - name: Upload to S3
-        uses: gravity-ui/preview-upload-to-s3-action@v1
-        with:
-          src-path: storybook-static
-          dest-path: /page-constructor-addons/main/
-          s3-key-id: ${{ secrets.STORYBOOK_S3_KEY_ID }}
-          s3-secret-key: ${{ secrets.STORYBOOK_S3_SECRET_KEY }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: ./storybook-static
+          destination_dir: main
+          prune: true

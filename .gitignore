@@ -7,6 +7,7 @@
 node_modules
 
 # Generated content
+/build
 /storybook-static
 /configure
 /styles/**/*.css

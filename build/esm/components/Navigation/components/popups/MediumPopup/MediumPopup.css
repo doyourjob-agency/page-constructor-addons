@@ -1,6 +1,0 @@
-.pc-addons-medium-popup {
-  max-height: calc(100vh - var(--pc-addons-navigation-header-height) - 64px);
-  overflow: auto;
-  display: flex;
-  flex-wrap: wrap;
-}
