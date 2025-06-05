@@ -1,6 +1,9 @@
 import {Markdown, Meta} from '@storybook/blocks';
 
 import CHANGELOG from '../../CHANGELOG.md?raw';
+import Info from './Info.md';
 
-<Meta title="Changelog"/>
+<Meta title="Changelog" />
+
+<Markdown>{Info}</Markdown>
 <Markdown>{CHANGELOG}</Markdown>

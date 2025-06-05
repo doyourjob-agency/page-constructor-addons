@@ -1,6 +1,6 @@
 {
   "name": "@doyourjob/page-constructor-addons",
-  "version": "2.1.6",
+  "version": "2.1.7",
   "description": "Components and plugins for @doyourjob/gravity-ui-page-constructor",
   "license": "MIT",
   "repository": {
@@ -72,7 +72,7 @@
     "react-transition-group": "^4.4.5"
   },
   "peerDependencies": {
-    "@doyourjob/gravity-ui-page-constructor": "^5.31.18",
+    "@doyourjob/gravity-ui-page-constructor": "^5.31.32",
     "@gravity-ui/uikit": "^6.23.1",
     "react": "^16.0.0 || ^17.0.0 || ^18.0.0"
   },
