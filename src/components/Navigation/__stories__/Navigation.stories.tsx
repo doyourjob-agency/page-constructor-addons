@@ -27,3 +27,20 @@ const DefaultTemplate: StoryFn<HeaderProps> = (args, context) => (
 export const Default = DefaultTemplate.bind({});
 
 Default.args = data.default as HeaderProps;
+
+const ScrollOffsetTemplate: StoryFn<HeaderProps> = (args, context) => (
+    <div style={{height: '3000px', background: '#f0f0f0'}}>
+        <div style={{position: 'fixed', top: 0, width: '100%'}}>
+            <Header
+                {...args}
+                isMobile={context.globals.platform === 'mobile'}
+                theme={context.globals.theme}
+                renderSearch={renderDummySearch}
+            />
+        </div>
+    </div>
+);
+
+export const ScrollOffset = ScrollOffsetTemplate.bind({});
+
+ScrollOffset.args = {...data.default, scrollOffset: 100} as HeaderProps;

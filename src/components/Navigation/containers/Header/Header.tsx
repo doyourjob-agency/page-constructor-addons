@@ -41,6 +41,7 @@ export interface HeaderProps extends ClassNameProps {
     // TODO: remove when search suggest will be opensourced
     renderSearch?: (props: {onActiveToggle: (isActive: boolean) => void}) => ReactNode;
     setupRouteChangeHandler?: SetupRouteChangeHandler;
+    scrollOffset?: number;
 }
 
 export const Header = ({
@@ -49,6 +50,7 @@ export const Header = ({
     setupRouteChangeHandler,
     renderSearch,
     className,
+    scrollOffset = 0,
 }: HeaderProps) => {
     const {logo, langSwitchItems, buttons: buttonConfigs, navigation} = data;
     const headerRef = useRef<HTMLDivElement>(null);
@@ -121,10 +123,9 @@ export const Header = ({
         const onScroll = () => {
             const scrollTop = window.pageYOffset;
 
-            if (scrollTop === 0 && withBackground) {
-                setWithBackground(false);
-            } else if (scrollTop > 0 && !withBackground) {
-                setWithBackground(true);
+            const shouldShowBg = scrollTop > scrollOffset;
+            if (withBackground !== shouldShowBg) {
+                setWithBackground(shouldShowBg);
             }
 
             if (scrollTop === 0 && pageHasScroll) {
