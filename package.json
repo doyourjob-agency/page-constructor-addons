@@ -89,7 +89,6 @@
     "@gravity-ui/uikit": "^6.23.1",
     "@storybook/addon-actions": "^7.1.0",
     "@storybook/addon-essentials": "^7.1.0",
-    "@storybook/addon-knobs": "^7.0.2",
     "@storybook/addon-viewport": "^7.1.0",
     "@storybook/preset-scss": "^1.0.3",
     "@storybook/react": "^7.1.0",

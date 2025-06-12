@@ -9,13 +9,8 @@ const config = {
     stories: ['./stories/**/*.mdx', '../src/**/__stories__/*.mdx', '../src/**/*.stories.@(ts|tsx)'],
     addons: [
         '@storybook/preset-scss',
-        {
-            name: '@storybook/addon-essentials',
-            options: {
-                backgrounds: false,
-            },
-        },
-        '@storybook/addon-knobs',
+        {name: '@storybook/addon-essentials', options: {backgrounds: false, actions: false}},
+        './addons/addon-yaml/preset',
         './addons/theme-addon/register.tsx',
     ],
 };
