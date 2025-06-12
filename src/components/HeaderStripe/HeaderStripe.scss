@@ -1,0 +1,94 @@
+@import '../../../styles/mixins.scss';
+@import '../../../styles/variables.scss';
+
+$block: '.#{$ns}header-stripe';
+
+#{$block} {
+    &__root {
+        z-index: calc(var(--pc-addons-navigation-popup-z-index) + 1);
+
+        width: 100%;
+
+        color: var(--g-color-text-brand-contrast);
+        background-color: var(--g-color-base-brand);
+
+        &_only-desktop {
+            display: none;
+
+            @media (min-width: map-get($gridBreakpoints, 'md')) {
+                display: block;
+            }
+        }
+    }
+
+    &__content {
+        position: relative;
+
+        display: flex;
+        overflow: hidden;
+        align-items: center;
+
+        height: 56px;
+
+        @media (min-width: map-get($gridBreakpoints, 'md')) {
+            height: 36px;
+        }
+    }
+
+    &__item {
+        position: absolute;
+
+        overflow: hidden;
+
+        width: 100%;
+        max-width: 100%;
+
+        font-size: var(--g-text-body-1-font-size);
+        font-weight: 500;
+        line-height: 20px;
+        text-align: center;
+
+        opacity: 0;
+
+        transition: transform 500ms ease-in-out, opacity 500ms ease-in-out;
+        transform: translateY(-100%);
+
+        a {
+            color: inherit;
+        }
+
+        &_active {
+            opacity: 1;
+
+            transform: translateY(0);
+        }
+
+        &_prev {
+            transform: translateY(100%);
+        }
+    }
+
+    &__item-content {
+        display: -webkit-box; // stylelint-disable-line value-no-vendor-prefix
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+
+        max-height: 40px;
+
+        @media (min-width: map-get($gridBreakpoints, 'md')) {
+            display: block;
+
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+    }
+
+    &__item-link {
+        display: block;
+
+        width: 100%;
+
+        text-decoration: none;
+    }
+}

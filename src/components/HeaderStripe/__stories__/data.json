@@ -1,0 +1,21 @@
+{
+  "default": {
+    "items": [
+      "Test 1",
+      {
+        "text": "🚀 Test with link",
+        "link": "https://google.com/",
+        "target": "_blank",
+        "onlyDesktop": false
+      },
+      {
+        "text": "Test with only desktop",
+        "onlyDesktop": true
+      }
+    ],
+    "onlyDesktop": false
+  },
+  "singleItem": {
+    "items": ["Test 1"]
+  }
+}
