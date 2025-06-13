@@ -73,7 +73,7 @@ export const Navigation = ({
             if (event.key === 'Escape') {
                 setActiveTab(NO_MENU_TAB_SELECTED);
                 setPretendentAciveTab(NO_MENU_TAB_SELECTED);
-                previouslyFocusedElement?.focus();
+                previouslyFocusedElement?.focus({preventScroll: true});
             }
         },
         [previouslyFocusedElement],
