@@ -72,6 +72,7 @@ export function FocusTrap({
                         escapeDeactivates: false,
                         clickOutsideDeactivates: false,
                         allowOutsideClick: true,
+                        preventScroll: true,
                     });
                 }
                 updateContainerElements();
