@@ -1,7 +1,8 @@
 import React, {useEffect, useMemo, useState} from 'react';
 
 import {Col, Grid} from '@doyourjob/gravity-ui-page-constructor';
-import {useMobile} from '@gravity-ui/uikit';
+import {Xmark} from '@gravity-ui/icons';
+import {Icon, useMobile} from '@gravity-ui/uikit';
 
 import {block} from '../../utils/cn';
 
@@ -24,6 +25,7 @@ export type HeaderStripeProps = {
     items: HeaderStripeItemType[];
     onlyDesktop?: boolean;
     isAbsolute?: boolean;
+    onClose?: () => void;
 };
 
 const b = block('header-stripe');
@@ -49,6 +51,7 @@ export const HeaderStripe = ({
     background,
     backgroundImage,
     onlyDesktop,
+    onClose,
 }: HeaderStripeProps) => {
     const [activeIndex, setActiveIndex] = useState(0);
     const isMobile = useMobile();
@@ -120,6 +123,11 @@ export const HeaderStripe = ({
                                 </div>
                             );
                         })}
+                        {onClose && (
+                            <button className={b('close')} onClick={onClose}>
+                                <Icon data={Xmark} className={b('close-icon')} size={16} />
+                            </button>
+                        )}
                     </div>
                 </Col>
             </Grid>

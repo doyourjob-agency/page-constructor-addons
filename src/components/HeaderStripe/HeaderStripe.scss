@@ -24,6 +24,8 @@ $block: '.#{$ns}header-stripe';
     &__content {
         position: relative;
 
+        padding: 0 $indentM;
+
         display: flex;
         overflow: hidden;
         align-items: center;
@@ -90,5 +92,28 @@ $block: '.#{$ns}header-stripe';
         width: 100%;
 
         text-decoration: none;
+    }
+
+    &__close {
+        position: absolute;
+        top: 0;
+        right: 0;
+
+        width: $indentM;
+        height: 100%;
+        border: none;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        color: var(--g-color-text-brand-contrast);
+        background: transparent;
+
+        cursor: pointer;
+
+        &:hover {
+            opacity: 0.6;
+        }
     }
 }
