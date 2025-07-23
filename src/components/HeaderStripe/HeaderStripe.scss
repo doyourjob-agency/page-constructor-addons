@@ -99,6 +99,11 @@ $block: '.#{$ns}header-stripe';
         width: 100%;
 
         text-decoration: none;
+
+        @media (min-width: map-get($gridBreakpoints, 'md')) {
+            overflow: hidden;
+            text-overflow: inherit;
+        }
     }
 
     &__close {
