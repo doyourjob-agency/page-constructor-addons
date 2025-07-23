@@ -2,6 +2,8 @@
 @import '../../../styles/variables.scss';
 
 $block: '.#{$ns}header-stripe';
+$heightDesktop: 56px;
+$heightMobile: 36px;
 
 #{$block} {
     &__root {
@@ -11,6 +13,8 @@ $block: '.#{$ns}header-stripe';
 
         color: var(--g-color-text-brand-contrast);
         background-color: var(--g-color-base-brand);
+        overflow: hidden;
+        animation: expand-mobile 0.5s ease forwards;
 
         &_only-desktop {
             display: none;
@@ -18,6 +22,10 @@ $block: '.#{$ns}header-stripe';
             @media (min-width: map-get($gridBreakpoints, 'md')) {
                 display: block;
             }
+        }
+
+        @media (min-width: map-get($gridBreakpoints, 'md')) {
+            animation: expand-desktop 0.5s ease forwards;
         }
     }
 
@@ -28,7 +36,7 @@ $block: '.#{$ns}header-stripe';
         overflow: hidden;
         align-items: center;
 
-        height: 56px;
+        height: $heightDesktop;
 
         &_with-close {
             padding: 0 $indentM;
@@ -40,7 +48,7 @@ $block: '.#{$ns}header-stripe';
         }
 
         @media (min-width: map-get($gridBreakpoints, 'md')) {
-            height: 36px;
+            height: $heightMobile;
         }
     }
 
@@ -127,5 +135,23 @@ $block: '.#{$ns}header-stripe';
         &:hover {
             opacity: 0.6;
         }
+    }
+}
+
+@keyframes expand-mobile {
+    from {
+        max-height: 0;
+    }
+    to {
+        max-height: $heightDesktop;
+    }
+}
+
+@keyframes expand-desktop {
+    from {
+        max-height: 0;
+    }
+    to {
+        max-height: $heightMobile;
     }
 }
