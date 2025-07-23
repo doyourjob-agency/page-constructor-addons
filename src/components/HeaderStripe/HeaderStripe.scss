@@ -24,13 +24,20 @@ $block: '.#{$ns}header-stripe';
     &__content {
         position: relative;
 
-        padding: 0 $indentM;
-
         display: flex;
         overflow: hidden;
         align-items: center;
 
         height: 56px;
+
+        &_with-close {
+            padding: 0 $indentM;
+
+            #{$block}__item {
+                width: calc(100% - ($indentM * 2));
+                max-width: calc(100% - ($indentM * 2));
+            }
+        }
 
         @media (min-width: map-get($gridBreakpoints, 'md')) {
             height: 36px;

@@ -100,7 +100,7 @@ export const HeaderStripe = ({
         <div className={b('root', {'only-desktop': onlyDesktop})} style={rootStyle}>
             <Grid>
                 <Col>
-                    <div className={b('content')}>
+                    <div className={b('content', {'with-close': Boolean(onClose)})}>
                         {filteredItems.map((item, index) => {
                             const isActive = index === activeIndex;
                             const isPrev =
