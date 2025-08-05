@@ -27,6 +27,14 @@ $heightMobile: 36px;
         @media (min-width: map-get($gridBreakpoints, 'md')) {
             animation: expand-desktop 0.5s ease forwards;
         }
+
+        &_closing {
+            animation: constrict-mobile 0.5s ease forwards;
+
+            @media (min-width: map-get($gridBreakpoints, 'md')) {
+                animation: constrict-desktop 0.5s ease forwards;
+            }
+        }
     }
 
     &__content {
@@ -147,11 +155,29 @@ $heightMobile: 36px;
     }
 }
 
+@keyframes constrict-mobile {
+    from {
+        max-height: $heightDesktop;
+    }
+    to {
+        max-height: 0;
+    }
+}
+
 @keyframes expand-desktop {
     from {
         max-height: 0;
     }
     to {
         max-height: $heightMobile;
+    }
+}
+
+@keyframes constrict-desktop {
+    from {
+        max-height: $heightMobile;
+    }
+    to {
+        max-height: 0;
     }
 }

@@ -1,10 +1,12 @@
-import React, {useEffect, useMemo, useState} from 'react';
+import React, {useCallback, useEffect, useMemo, useState} from 'react';
 
 import {Col, Grid} from '@doyourjob/gravity-ui-page-constructor';
 import {Xmark} from '@gravity-ui/icons';
 import {Icon, useMobile} from '@gravity-ui/uikit';
 
 import {block} from '../../utils/cn';
+
+import i18n from './i18n';
 
 import './HeaderStripe.scss';
 
@@ -25,6 +27,7 @@ export type HeaderStripeProps = {
     items: HeaderStripeItemType[];
     onlyDesktop?: boolean;
     isAbsolute?: boolean;
+    canClose?: boolean;
     onClose?: () => void;
 };
 
@@ -51,9 +54,11 @@ export const HeaderStripe = ({
     background,
     backgroundImage,
     onlyDesktop,
+    canClose,
     onClose,
 }: HeaderStripeProps) => {
     const [activeIndex, setActiveIndex] = useState(0);
+    const [isClosing, setIsClosing] = useState(false);
     const isMobile = useMobile();
 
     const filteredItems = useMemo(
@@ -63,6 +68,11 @@ export const HeaderStripe = ({
                 : items,
         [items, isMobile],
     );
+
+    const handleClose = useCallback(() => {
+        setIsClosing(true);
+        onClose?.();
+    }, [onClose]);
 
     useEffect(() => {
         if (filteredItems.length > 0) {
@@ -97,7 +107,10 @@ export const HeaderStripe = ({
     }, [textColor, background, backgroundImage]);
 
     return (
-        <div className={b('root', {'only-desktop': onlyDesktop})} style={rootStyle}>
+        <div
+            className={b('root', {'only-desktop': onlyDesktop, closing: isClosing})}
+            style={rootStyle}
+        >
             <Grid>
                 <Col>
                     <div className={b('content', {'with-close': Boolean(onClose)})}>
@@ -123,8 +136,12 @@ export const HeaderStripe = ({
                                 </div>
                             );
                         })}
-                        {onClose && (
-                            <button className={b('close')} onClick={onClose}>
+                        {canClose && (
+                            <button
+                                aria-label={i18n('close')}
+                                className={b('close')}
+                                onClick={handleClose}
+                            >
                                 <Icon data={Xmark} className={b('close-icon')} size={16} />
                             </button>
                         )}
