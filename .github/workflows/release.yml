@@ -26,12 +26,13 @@ jobs:
 
       - run: npm ci
 
-      - run: |
-          BRANCH="${GITHUB_REF_NAME}"
-          echo "Detected branch: $BRANCH"
-
-          if [ "$BRANCH" = "main" ]; then
-            npm publish
+      - name: Publish
+        run: |
+          if [[ "$GITHUB_REF_NAME" == *"-"* ]]; then
+            TAG=$(echo "$GITHUB_REF_NAME" | sed -E 's/^v[0-9.]+-([a-zA-Z0-9]+).*/\1/')
+            echo "📦 Publishing prerelease with tag '$TAG'"
+            npm publish --tag "$TAG"
           else
-            npm publish --tag dev
+            echo "📦 Publishing stable version (latest)"
+            npm publish
           fi
