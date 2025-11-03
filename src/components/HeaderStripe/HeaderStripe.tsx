@@ -1,11 +1,11 @@
 import React, {useCallback, useEffect, useMemo, useState} from 'react';
 
 import {Col, Grid} from '@doyourjob/gravity-ui-page-constructor';
-import {Xmark} from '@gravity-ui/icons';
 import {Icon, useMobile} from '@gravity-ui/uikit';
 
 import {block} from '../../utils/cn';
 
+import {CloseIcon} from './CloseIcon';
 import i18n from './i18n';
 
 import './HeaderStripe.scss';
@@ -16,6 +16,8 @@ type HeaderStripeItemType =
           link?: string;
           target?: string;
           onlyDesktop?: boolean;
+          background?: string;
+          textColor?: string;
       }
     | string;
 
@@ -106,6 +108,18 @@ export const HeaderStripe = ({
         return properties;
     }, [textColor, background, backgroundImage]);
 
+    const contentStyle = useMemo(() => {
+        const item = filteredItems[activeIndex];
+        const properties: React.CSSProperties = {};
+        if (typeof item === 'object' && item.background) {
+            properties.background = item.background;
+        }
+        if (typeof item === 'object' && item.textColor) {
+            properties.color = item.textColor;
+        }
+        return properties;
+    }, [filteredItems, activeIndex]);
+
     return (
         <div
             className={b('root', {'only-desktop': onlyDesktop, closing: isClosing})}
@@ -113,7 +127,10 @@ export const HeaderStripe = ({
         >
             <Grid>
                 <Col>
-                    <div className={b('content', {'with-close': Boolean(onClose)})}>
+                    <div
+                        className={b('content', {'with-close': Boolean(onClose)})}
+                        style={contentStyle}
+                    >
                         {filteredItems.map((item, index) => {
                             const isActive = index === activeIndex;
                             const isPrev =
@@ -142,7 +159,7 @@ export const HeaderStripe = ({
                                 className={b('close')}
                                 onClick={handleClose}
                             >
-                                <Icon data={Xmark} className={b('close-icon')} size={16} />
+                                <Icon data={CloseIcon} className={b('close-icon')} size={16} />
                             </button>
                         )}
                     </div>

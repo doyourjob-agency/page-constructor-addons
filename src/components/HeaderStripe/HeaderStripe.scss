@@ -3,7 +3,7 @@
 
 $block: '.#{$ns}header-stripe';
 $heightDesktop: 56px;
-$heightMobile: 36px;
+$heightMobile: 28px;
 
 #{$block} {
     &__root {
@@ -12,7 +12,6 @@ $heightMobile: 36px;
         width: 100%;
 
         color: var(--g-color-text-brand-contrast);
-        background-color: var(--g-color-base-brand);
         overflow: hidden;
         animation: expand-mobile 0.5s ease forwards;
 
@@ -45,6 +44,7 @@ $heightMobile: 36px;
         align-items: center;
 
         height: $heightDesktop;
+        border-radius: $indentXXS;
 
         &_with-close {
             padding: 0 $indentM;
@@ -126,8 +126,8 @@ $heightMobile: 36px;
         position: absolute;
         top: 0;
         right: 0;
+        padding: 0 $indentXXS;
 
-        width: $indentM;
         height: 100%;
         border: none;
 
@@ -136,7 +136,7 @@ $heightMobile: 36px;
         justify-content: center;
 
         background: transparent;
-        color: inherit;
+        color: #737373;
 
         cursor: pointer;
 
