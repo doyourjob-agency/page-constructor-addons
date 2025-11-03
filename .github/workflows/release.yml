@@ -26,4 +26,12 @@ jobs:
 
       - run: npm ci
 
-      - run: npm publish
+      - run: |
+          BRANCH="${GITHUB_REF_NAME}"
+          echo "Detected branch: $BRANCH"
+
+          if [ "$BRANCH" = "main" ]; then
+            npm publish
+          else
+            npm publish --tag dev
+          fi
