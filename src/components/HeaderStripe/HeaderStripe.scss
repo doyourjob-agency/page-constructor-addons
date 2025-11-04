@@ -45,6 +45,9 @@ $heightMobile: 28px;
 
         height: $heightDesktop;
         border-radius: $indentXXS;
+        background: transparent;
+        color: inherit;
+        transition: background 0.3s ease, color 0.3s ease;
 
         &_with-close {
             padding: 0 $indentM;
