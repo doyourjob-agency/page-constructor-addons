@@ -6,14 +6,20 @@
         "text": "🚀 Test with link",
         "link": "https://google.com/",
         "target": "_blank",
-        "onlyDesktop": false
+        "onlyDesktop": false,
+        "background": "#001A2B",
+        "textColor": "white"
       },
       {
         "text": "Test with only desktop",
-        "onlyDesktop": true
+        "onlyDesktop": true,
+        "background": "#001A2B",
+        "textColor": "white"
       }
     ],
-    "onlyDesktop": false
+    "canClose": true,
+    "onlyDesktop": false,
+    "newDesign": true
   },
   "singleItem": {
     "items": ["Test 1"]

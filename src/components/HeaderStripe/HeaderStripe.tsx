@@ -6,6 +6,7 @@ import {Icon, useMobile} from '@gravity-ui/uikit';
 
 import {block} from '../../utils/cn';
 
+import {CloseIcon} from './CloseIcon';
 import i18n from './i18n';
 
 import './HeaderStripe.scss';
@@ -16,6 +17,8 @@ type HeaderStripeItemType =
           link?: string;
           target?: string;
           onlyDesktop?: boolean;
+          background?: string;
+          textColor?: string;
       }
     | string;
 
@@ -29,6 +32,7 @@ export type HeaderStripeProps = {
     isAbsolute?: boolean;
     canClose?: boolean;
     onClose?: () => void;
+    newDesign?: boolean;
 };
 
 const b = block('header-stripe');
@@ -56,6 +60,7 @@ export const HeaderStripe = ({
     onlyDesktop,
     canClose,
     onClose,
+    newDesign,
 }: HeaderStripeProps) => {
     const [activeIndex, setActiveIndex] = useState(0);
     const [isClosing, setIsClosing] = useState(false);
@@ -106,14 +111,33 @@ export const HeaderStripe = ({
         return properties;
     }, [textColor, background, backgroundImage]);
 
+    const contentStyle = useMemo(() => {
+        const item = filteredItems[activeIndex];
+        const properties: React.CSSProperties = {};
+        if (typeof item === 'object' && item.background) {
+            properties.background = item.background;
+        }
+        if (typeof item === 'object' && item.textColor) {
+            properties.color = item.textColor;
+        }
+        return properties;
+    }, [filteredItems, activeIndex]);
+
     return (
         <div
-            className={b('root', {'only-desktop': onlyDesktop, closing: isClosing})}
+            className={b('root', {
+                'only-desktop': onlyDesktop,
+                closing: isClosing,
+                'new-design': newDesign,
+            })}
             style={rootStyle}
         >
             <Grid>
                 <Col>
-                    <div className={b('content', {'with-close': Boolean(onClose)})}>
+                    <div
+                        className={b('content', {'with-close': Boolean(onClose)})}
+                        style={contentStyle}
+                    >
                         {filteredItems.map((item, index) => {
                             const isActive = index === activeIndex;
                             const isPrev =
@@ -142,7 +166,11 @@ export const HeaderStripe = ({
                                 className={b('close')}
                                 onClick={handleClose}
                             >
-                                <Icon data={Xmark} className={b('close-icon')} size={16} />
+                                <Icon
+                                    data={newDesign ? CloseIcon : Xmark}
+                                    className={b('close-icon')}
+                                    size={16}
+                                />
                             </button>
                         )}
                     </div>

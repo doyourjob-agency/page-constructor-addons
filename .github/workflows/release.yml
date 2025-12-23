@@ -26,4 +26,13 @@ jobs:
 
       - run: npm ci
 
-      - run: npm publish
+      - name: Publish
+        run: |
+          if [[ "$GITHUB_REF_NAME" == *"-"* ]]; then
+            TAG=$(echo "$GITHUB_REF_NAME" | sed -E 's/^v[0-9.]+-([a-zA-Z0-9]+).*/\1/')
+            echo "📦 Publishing prerelease with tag '$TAG'"
+            npm publish --tag "$TAG"
+          else
+            echo "📦 Publishing stable version (latest)"
+            npm publish
+          fi

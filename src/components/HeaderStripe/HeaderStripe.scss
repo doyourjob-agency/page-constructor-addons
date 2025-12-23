@@ -2,11 +2,12 @@
 @import '../../../styles/variables.scss';
 
 $block: '.#{$ns}header-stripe';
-$heightDesktop: 56px;
-$heightMobile: 36px;
 
 #{$block} {
     &__root {
+        --local-hs-height-desktop: 56px;
+        --local-hs-height-mobile: 36px;
+
         z-index: calc(var(--pc-addons-navigation-popup-z-index) + 1);
 
         width: 100%;
@@ -35,6 +36,25 @@ $heightMobile: 36px;
                 animation: constrict-desktop 0.5s ease forwards;
             }
         }
+
+        &_new-design {
+            --local-hs-height-mobile: 28px;
+
+            background-color: transparent;
+
+            & #{$block}__content {
+                border-radius: $indentXXS;
+                background: transparent;
+                color: inherit;
+                transition: background 0.3s ease, color 0.3s ease;
+            }
+
+            & #{$block}__close {
+                width: auto;
+                padding: 0 $indentXXS;
+                color: #737373;
+            }
+        }
     }
 
     &__content {
@@ -44,7 +64,7 @@ $heightMobile: 36px;
         overflow: hidden;
         align-items: center;
 
-        height: $heightDesktop;
+        height: var(--local-hs-height-desktop);
 
         &_with-close {
             padding: 0 $indentM;
@@ -56,7 +76,7 @@ $heightMobile: 36px;
         }
 
         @media (min-width: map-get($gridBreakpoints, 'md')) {
-            height: $heightMobile;
+            height: var(--local-hs-height-mobile);
         }
     }
 
@@ -151,13 +171,13 @@ $heightMobile: 36px;
         max-height: 0;
     }
     to {
-        max-height: $heightDesktop;
+        max-height: var(--local-hs-height-desktop);
     }
 }
 
 @keyframes constrict-mobile {
     from {
-        max-height: $heightDesktop;
+        max-height: var(--local-hs-height-desktop);
     }
     to {
         max-height: 0;
@@ -169,13 +189,13 @@ $heightMobile: 36px;
         max-height: 0;
     }
     to {
-        max-height: $heightMobile;
+        max-height: var(--local-hs-height-mobile);
     }
 }
 
 @keyframes constrict-desktop {
     from {
-        max-height: $heightMobile;
+        max-height: var(--local-hs-height-mobile);
     }
     to {
         max-height: 0;
