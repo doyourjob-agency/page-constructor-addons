@@ -112,6 +112,9 @@ export const HeaderStripe = ({
     }, [textColor, background, backgroundImage]);
 
     const contentStyle = useMemo(() => {
+        if (!newDesign) {
+            return {};
+        }
         const item = filteredItems[activeIndex];
         const properties: React.CSSProperties = {};
         if (typeof item === 'object' && item.background) {
@@ -121,7 +124,7 @@ export const HeaderStripe = ({
             properties.color = item.textColor;
         }
         return properties;
-    }, [filteredItems, activeIndex]);
+    }, [newDesign, filteredItems, activeIndex]);
 
     return (
         <div
