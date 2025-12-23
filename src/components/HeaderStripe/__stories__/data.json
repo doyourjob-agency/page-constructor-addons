@@ -9,13 +9,19 @@
         "onlyDesktop": false,
         "background": "#001A2B",
         "textColor": "white"
+      },
+      {
+        "text": "Test with only desktop",
+        "onlyDesktop": true,
+        "background": "#001A2B",
+        "textColor": "white"
       }
     ],
     "canClose": true,
-    "onlyDesktop": false
+    "onlyDesktop": false,
+    "newDesign": true
   },
   "singleItem": {
-    "items": ["Test 1"],
-    "background": "rgb(255, 190, 92)"
+    "items": ["Test 1"]
   }
 }
