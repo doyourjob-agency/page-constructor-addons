@@ -27,7 +27,7 @@ export const NavigationItemsList: FC<NavigationItemsListProps> = ({
                     {...item}
                     sizes={sizes}
                     className={itemClassName}
-                    key={item.slug + index}
+                    key={`${item.slug}-${index}`}
                     hover
                 />
             ))}
