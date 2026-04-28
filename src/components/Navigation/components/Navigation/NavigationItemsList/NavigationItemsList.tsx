@@ -22,12 +22,12 @@ export const NavigationItemsList: FC<NavigationItemsListProps> = ({
 }) => {
     return (
         <Row className={className}>
-            {items.map((item) => (
+            {items.map((item, index) => (
                 <NavigationPopupItem
                     {...item}
                     sizes={sizes}
                     className={itemClassName}
-                    key={item.slug}
+                    key={item.slug + index}
                     hover
                 />
             ))}
