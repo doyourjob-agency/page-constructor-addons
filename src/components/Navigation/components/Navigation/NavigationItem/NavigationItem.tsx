@@ -19,8 +19,8 @@ interface NavigationItemOwnProps {
     index: number;
     item: NavigationSectionData;
     isActive: boolean;
-    handleOpenPopup: () => void;
-    handleClosePopup: () => void;
+    handleOpenPopup?: () => void;
+    handleClosePopup?: () => void;
     handleActiveTab: (currentIndex: number) => void;
     children?: ReactNode;
     tooltipId?: string;
@@ -50,13 +50,13 @@ export const NavigationItem: FC<NavigationItemOwnProps> = ({
         handleActiveTab(index);
 
         if (isPopupExist) {
-            handleOpenPopup();
+            handleOpenPopup?.();
         }
     }, [handleActiveTab, handleOpenPopup, index, isPopupExist]);
 
     const handleMouseLeave = useCallback(() => {
         if (isPopupExist) {
-            handleClosePopup();
+            handleClosePopup?.();
         }
         handleActiveTab(NO_MENU_TAB_SELECTED);
     }, [handleActiveTab, handleClosePopup, isPopupExist]);

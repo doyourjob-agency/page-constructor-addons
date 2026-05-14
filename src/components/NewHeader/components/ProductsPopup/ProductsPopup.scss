@@ -1,0 +1,119 @@
+@import '../../../../../styles/mixins';
+@import '../../../../../styles/variables';
+@import '../../styles/mixins.scss';
+
+$block: '.#{$ns}products-popup';
+
+#{$block} {
+    border-radius: var(--pc-border-radius, 24px);
+    background: var(--g-color-base-float);
+    box-shadow: 0 4px 24px var(--g-color-base-generic), 0 2px 8px var(--g-color-base-generic);
+
+    @include navigation-overflow-popup($indentXL);
+    max-width: 1200px;
+    width: 100%;
+    border-radius: var(--pc-border-radius, 24px);
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    &__container {
+        padding: 0;
+    }
+
+    & > div + div {
+        border-top: 1px solid #e4ebf0;
+    }
+
+    &__wrap {
+        padding: 24px;
+
+        gap: 24px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__title {
+        @include text-size(header-1);
+
+        padding: 24px;
+        max-width: 108px;
+        font-weight: 600;
+        background-color: #e0e0e0;
+    }
+
+    &__subtitle {
+        @include text-size(header-1);
+
+        font-weight: 700;
+        color: #e0e0e0;
+    }
+
+    &__powered-card {
+        @include text-size(body-2);
+
+        font-weight: 500;
+        background-color: #f2f6f9;
+        border-radius: 16px;
+        padding: 16px;
+        display: flex;
+        gap: 24px;
+
+        &-wrap {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            flex: 1;
+            gap: 20px;
+        }
+
+        &-description {
+            color: #9fb1bd;
+        }
+
+        &-container-image {
+            flex: 1;
+            max-width: 140px;
+        }
+
+        &-image {
+            width: 100%;
+            aspect-ratio: 1;
+        }
+    }
+
+    &__run-card {
+        @include text-size(body-2);
+
+        font-weight: 500;
+        border-radius: 16px;
+        background-color: #f2f6f9;
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        height: 100%;
+
+        &_border {
+            border: 1px solid #e4ebf0;
+            background-color: transparent;
+        }
+
+        &-wrap {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            gap: 4px;
+        }
+
+        &-description {
+            color: #9fb1bd;
+        }
+
+        &-image {
+            height: 40px;
+        }
+    }
+}
