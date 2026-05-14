@@ -65,10 +65,10 @@ export const LoginButton = ({data, headerRef, setupRouteChangeHandler}: LoginBut
 
     return (
         <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-            Login
+            {data.text}
             {isActive && (
                 <NavigationPopup headerRef={headerRef}>
-                    <LoginPopup {...(data as LoginPopupData)} />
+                    <LoginPopup {...data} />
                 </NavigationPopup>
             )}
         </div>

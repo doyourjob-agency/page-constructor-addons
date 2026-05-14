@@ -1,7 +1,7 @@
 import React from 'react';
 
 import type {GridColumnSizesType} from '@doyourjob/gravity-ui-page-constructor';
-import {Col, HTML, Image} from '@doyourjob/gravity-ui-page-constructor';
+import {Col, HTML, Image, getLinkProps} from '@doyourjob/gravity-ui-page-constructor';
 import {Icon} from '@gravity-ui/uikit';
 
 import {block} from '../../../../utils/cn';
@@ -42,7 +42,11 @@ export const PopupItem = (props: PopupItemProps) => {
 
     return (
         <Col className={b(null, className)} sizes={sizes}>
-            <a className={b('content', {hover, padding, disable: !url})} href={url} target={target}>
+            <a
+                className={b('content', {hover, padding, disable: !url})}
+                href={url}
+                {...getLinkProps(url || '', undefined, target)}
+            >
                 {icon && (
                     <div className={b('icon-container')}>
                         <Icon className={b('icon')} data={icon} size={16} />

@@ -5,7 +5,6 @@
 $block: '.#{$ns}resources-popup';
 
 #{$block} {
-    border-radius: var(--pc-border-radius, 24px);
     background: var(--g-color-base-float);
     box-shadow: 0 4px 24px var(--g-color-base-generic), 0 2px 8px var(--g-color-base-generic);
 
@@ -141,7 +140,7 @@ $block: '.#{$ns}resources-popup';
             left: $indentXXS;
             padding: $indentXXXS $indentXXS;
             border-radius: $indentXXXS;
-            background-color: white;
+            background-color: #ffffff;
         }
 
         &-container-image {

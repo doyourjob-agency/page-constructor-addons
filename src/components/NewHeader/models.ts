@@ -23,10 +23,17 @@ export interface LogoData {
     alt?: string;
 }
 
+export interface NavigationTag {
+    text: string;
+    color?: string;
+    textColor?: string;
+    size?: 's' | 'm';
+}
+
 export interface PopupItemData {
     title: string;
-    slug: string;
     url: string;
+    slug?: string;
     description?: string;
     icon?: string;
     image?: string | null;
@@ -44,19 +51,116 @@ export interface MediumPopupData {
     groups: CategoryGroupData[];
 }
 
-export interface ProductsPopupData {}
+export interface SpecialCardData {
+    title: string;
+    description: string;
+    image: string;
+}
 
-export interface SolutionsPopupData {}
+export interface RunCardData {
+    title: string;
+    description: string;
+    image: string;
+    border?: boolean;
+}
 
-export interface WhyPopupData {}
+export interface ProductsPopupSection {
+    title: string;
+    subtitle: string;
+    items?: PopupItemData[];
+    runCards?: RunCardData[];
+}
 
-export interface ResourcesPopupData {}
+export interface ProductsPopupData {
+    sections: ProductsPopupSection[];
+    poweredCard: SpecialCardData;
+}
 
-export interface CompanyPopupData {}
+export interface SolutionsPopupSection {
+    title: string;
+    subtitle: string;
+    items: PopupItemData[];
+}
 
-export interface InvestorPopupData {}
+export interface SolutionsPopupData {
+    sections: SolutionsPopupSection[];
+}
 
-export interface LoginPopupData {}
+export interface WhyPopupGroup {
+    title: string;
+    items: PopupItemData[];
+}
+
+export interface WhyPopupData {
+    groups: WhyPopupGroup[];
+    card: SpecialCardData;
+}
+
+export interface BannerData {
+    title: string;
+    description: string;
+    image: string;
+    icon: string;
+    url: string;
+}
+
+export interface EventCardData {
+    tag: string;
+    title: string;
+    date: string;
+    image: string;
+    location: string;
+}
+
+export interface ResourcesPopupGroup {
+    title: string;
+    subtitle: string;
+    url: string;
+    items: PopupItemData[];
+}
+
+export interface ResourcesPopupData {
+    groups: ResourcesPopupGroup[];
+    banner: BannerData;
+    events: {
+        title: string;
+        items: EventCardData[];
+    };
+}
+
+export interface CompanyPopupSection {
+    title: string;
+    items: PopupItemData[];
+}
+
+export interface CompanyPopupData {
+    sections: CompanyPopupSection[];
+}
+
+export interface StockData {
+    title: string;
+    price: string;
+    date: string;
+}
+
+export interface InvestorPopupData {
+    title: string;
+    subtitle: string;
+    url: string;
+    items: PopupItemData[];
+    stock: StockData;
+}
+
+export interface LoginItemData {
+    title: string;
+    subtitle: string;
+    url?: string;
+}
+
+export interface LoginPopupData {
+    text: string;
+    items: LoginItemData[];
+}
 
 export interface NavigationDefaultData {
     title: string;
@@ -142,10 +246,3 @@ export interface NavigationData {
 }
 
 export type SetupRouteChangeHandler = (handler: () => void) => void;
-
-export interface NavigationTag {
-    text: string;
-    color?: string;
-    textColor?: string;
-    size?: 's' | 'm';
-}

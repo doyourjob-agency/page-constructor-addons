@@ -1,6 +1,8 @@
 import type {FC, ReactNode} from 'react';
 import React, {useCallback, useContext, useEffect} from 'react';
 
+import {getLinkProps} from '@doyourjob/gravity-ui-page-constructor';
+
 import {block} from '../../../../utils/cn';
 import {NO_MENU_TAB_SELECTED} from '../../constants';
 import {RouteChangeHandlerContext} from '../../contexts/route-change';
@@ -55,7 +57,7 @@ export const NavigationItem: FC<NavigationItemOwnProps> = ({
                 <a
                     className={b('text', {active: isActive})}
                     href={item.data?.url}
-                    target={item.data?.target}
+                    {...getLinkProps(item.data?.url || '', undefined, item.data?.target)}
                 >
                     {item.title}
                 </a>

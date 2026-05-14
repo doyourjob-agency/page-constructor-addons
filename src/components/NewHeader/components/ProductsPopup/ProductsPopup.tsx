@@ -3,231 +3,125 @@ import React from 'react';
 import {Col, Grid, GridColumnSize, Image, Row} from '@doyourjob/gravity-ui-page-constructor';
 
 import {block} from '../../../../utils/cn';
-import {ProductsPopupData} from '../../models';
+import {ProductsPopupData, RunCardData, SpecialCardData} from '../../models';
 import {PopupItem} from '../PopupItem/PopupItem';
 
 import './ProductsPopup.scss';
 
 const b = block('products-popup');
 
-const PoveredCard = () => {
+const PoweredCard = ({title, description, image}: SpecialCardData) => {
     return (
         <div className={b('powered-card')}>
             <div className={b('powered-card-wrap')}>
-                <div className={b('powered-card-title')}>Powered by NVIDIA</div>
-                <div className={b('powered-card-description')}>
-                    Get the latest and greatest GPU platforms from NVIDIA first
-                </div>
+                <div className={b('powered-card-title')}>{title}</div>
+                <div className={b('powered-card-description')}>{description}</div>
             </div>
             <Image
                 className={b('powered-card-image')}
                 containerClassName={b('powered-card-container-image')}
-                src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xNy44MDUyIDUuNTY0MTdDOC43MjUzOCAxMC40NDk5IDIuNDUxNTQgMTkuODc2OSAyLjAyMzUxIDMwLjgwNTJIMTcuODA1MlY1LjU2NDE3Wk0yLjAxMDc0IDMyLjgwNTJDMi4zMDMwNCA0My44OTg4IDguNjE3NjQgNTMuNDkyMSAxNy44MDUyIDU4LjQzNThWMzIuODA1MkgyLjAxMDc0Wk0xOS44MDUyIDU5LjQxNzdDMjMuNTMxMiA2MS4wNzc1IDI3LjY1NzkgNjIgMzIuMDAwMSA2MkM0OC4yOTk1IDYyIDYxLjU2MjggNDkuMDAxNSA2MS45ODk1IDMyLjgwNTJIMTkuODA1MlY1OS40MTc3Wk02MS45NzY4IDMwLjgwNTJDNjEuMzQ5NSAxNC43OTA1IDQ4LjE2ODUgMiAzMi4wMDAxIDJDMjcuNjU3OSAyIDIzLjUzMTIgMi45MjI1MyAxOS44MDUyIDQuNTgyMjhWMzAuODA1Mkg2MS45NzY4WiIgZmlsbD0iIzg0ODg5NCIvPgo8L3N2Zz4K"
+                src={image}
             />
         </div>
     );
 };
 
-const RunCard = ({border}: {border?: boolean}) => {
+const RunCard = ({title, description, image, border}: RunCardData) => {
     return (
         <div className={b('run-card', {border: border})}>
-            <Image
-                className={b('run-card-image')}
-                src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xNy44MDUyIDUuNTY0MTdDOC43MjUzOCAxMC40NDk5IDIuNDUxNTQgMTkuODc2OSAyLjAyMzUxIDMwLjgwNTJIMTcuODA1MlY1LjU2NDE3Wk0yLjAxMDc0IDMyLjgwNTJDMi4zMDMwNCA0My44OTg4IDguNjE3NjQgNTMuNDkyMSAxNy44MDUyIDU4LjQzNThWMzIuODA1MkgyLjAxMDc0Wk0xOS44MDUyIDU5LjQxNzdDMjMuNTMxMiA2MS4wNzc1IDI3LjY1NzkgNjIgMzIuMDAwMSA2MkM0OC4yOTk1IDYyIDYxLjU2MjggNDkuMDAxNSA2MS45ODk1IDMyLjgwNTJIMTkuODA1MlY1OS40MTc3Wk02MS45NzY4IDMwLjgwNTJDNjEuMzQ5NSAxNC43OTA1IDQ4LjE2ODUgMiAzMi4wMDAxIDJDMjcuNjU3OSAyIDIzLjUzMTIgMi45MjI1MyAxOS44MDUyIDQuNTgyMjhWMzAuODA1Mkg2MS45NzY4WiIgZmlsbD0iIzg0ODg5NCIvPgo8L3N2Zz4K"
-            />
+            <Image className={b('run-card-image')} src={image} />
             <div className={b('run-card-wrap')}>
-                <div className={b('run-card-title')}>Agentic Search</div>
-                <div className={b('run-card-description')}>Web search API for LLMs and agents</div>
+                <div className={b('run-card-title')}>{title}</div>
+                <div className={b('run-card-description')}>{description}</div>
             </div>
         </div>
     );
 };
 
-export const ProductsPopup = (props: ProductsPopupData) => (
+export const ProductsPopup = ({sections, poweredCard}: ProductsPopupData) => (
     <Grid className={b()} containerClass={b('container')}>
-        <Row>
-            <Col className={b('title')}>Run</Col>
-            <Col className={b('wrap')}>
-                <Row>
-                    <Col className={b('subtitle')}>Serve and fine-tune models in production</Col>
-                </Row>
-                <Row>
+        {sections.map((section, index) => {
+            const isScaleSection = index === 2; // "Scale" section is usually the 3rd one
+            const isRunSection = section.runCards && section.runCards.length > 0;
+
+            let content;
+
+            if (isRunSection) {
+                content = (
                     <Col>
                         <Row>
-                            <Col
-                                sizes={{
-                                    [GridColumnSize.Md]: 3,
-                                    [GridColumnSize.All]: 12,
-                                }}
-                            >
-                                <RunCard />
-                            </Col>
-                            <Col
-                                sizes={{
-                                    [GridColumnSize.Md]: 3,
-                                    [GridColumnSize.All]: 12,
-                                }}
-                            >
-                                <RunCard border />
-                            </Col>
-                            <Col
-                                sizes={{
-                                    [GridColumnSize.Md]: 3,
-                                    [GridColumnSize.All]: 12,
-                                }}
-                            >
-                                <RunCard border />
-                            </Col>
-                            <Col
-                                sizes={{
-                                    [GridColumnSize.Md]: 3,
-                                    [GridColumnSize.All]: 12,
-                                }}
-                            >
-                                <RunCard border />
-                            </Col>
+                            {section.runCards?.map((card, cardIndex) => (
+                                <Col
+                                    key={`${card.title}-${cardIndex}`}
+                                    sizes={{
+                                        [GridColumnSize.Md]: 3,
+                                        [GridColumnSize.All]: 12,
+                                    }}
+                                >
+                                    <RunCard {...card} />
+                                </Col>
+                            ))}
                         </Row>
                     </Col>
-                </Row>
-            </Col>
-        </Row>
-        <Row>
-            <Col className={b('title')}>Build</Col>
-            <Col className={b('wrap')}>
-                <Row>
-                    <Col className={b('subtitle')}>Train, improve and serve custom models</Col>
-                </Row>
-                <Row>
+                );
+            } else if (isScaleSection) {
+                content = (
+                    <React.Fragment>
+                        <Col
+                            sizes={{
+                                [GridColumnSize.Md]: 8,
+                                [GridColumnSize.All]: 12,
+                            }}
+                        >
+                            <Row>
+                                {section.items?.map((item, itemIndex) => (
+                                    <PopupItem
+                                        key={`${item.title}-${itemIndex}`}
+                                        {...item}
+                                        hover
+                                        sizes={{
+                                            [GridColumnSize.Md]: 6,
+                                            [GridColumnSize.All]: 12,
+                                        }}
+                                    />
+                                ))}
+                            </Row>
+                        </Col>
+                        <Col
+                            sizes={{
+                                [GridColumnSize.Md]: 4,
+                                [GridColumnSize.All]: 12,
+                            }}
+                        >
+                            {poweredCard && <PoweredCard {...poweredCard} />}
+                        </Col>
+                    </React.Fragment>
+                );
+            } else {
+                content = section.items?.map((item, itemIndex) => (
                     <PopupItem
-                        title="AI Orchestration"
-                        url=""
-                        description="Schedule job using Soperator, Skypilot, Ray or your own solution"
-                        image="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xNy44MDUyIDUuNTY0MTdDOC43MjUzOCAxMC40NDk5IDIuNDUxNTQgMTkuODc2OSAyLjAyMzUxIDMwLjgwNTJIMTcuODA1MlY1LjU2NDE3Wk0yLjAxMDc0IDMyLjgwNTJDMi4zMDMwNCA0My44OTg4IDguNjE3NjQgNTMuNDkyMSAxNy44MDUyIDU4LjQzNThWMzIuODA1MkgyLjAxMDc0Wk0xOS44MDUyIDU5LjQxNzdDMjMuNTMxMiA2MS4wNzc1IDI3LjY1NzkgNjIgMzIuMDAwMSA2MkM0OC4yOTk1IDYyIDYxLjU2MjggNDkuMDAxNSA2MS45ODk1IDMyLjgwNTJIMTkuODA1MlY1OS40MTc3Wk02MS45NzY4IDMwLjgwNTJDNjEuMzQ5NSAxNC43OTA1IDQ4LjE2ODUgMiAzMi4wMDAxIDJDMjcuNjU3OSAyIDIzLjUzMTIgMi45MjI1MyAxOS44MDUyIDQuNTgyMjhWMzAuODA1Mkg2MS45NzY4WiIgZmlsbD0iIzg0ODg5NCIvPgo8L3N2Zz4K"
+                        key={`${item.title}-${itemIndex}`}
+                        {...item}
                         hover
                         sizes={{
                             [GridColumnSize.Md]: 4,
                             [GridColumnSize.All]: 12,
                         }}
                     />
-                    <PopupItem
-                        title="AI Orchestration"
-                        url=""
-                        description="Schedule job using Soperator, Skypilot, Ray or your own solution"
-                        image="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xNy44MDUyIDUuNTY0MTdDOC43MjUzOCAxMC40NDk5IDIuNDUxNTQgMTkuODc2OSAyLjAyMzUxIDMwLjgwNTJIMTcuODA1MlY1LjU2NDE3Wk0yLjAxMDc0IDMyLjgwNTJDMi4zMDMwNCA0My44OTg4IDguNjE3NjQgNTMuNDkyMSAxNy44MDUyIDU4LjQzNThWMzIuODA1MkgyLjAxMDc0Wk0xOS44MDUyIDU5LjQxNzdDMjMuNTMxMiA2MS4wNzc1IDI3LjY1NzkgNjIgMzIuMDAwMSA2MkM0OC4yOTk1IDYyIDYxLjU2MjggNDkuMDAxNSA2MS45ODk1IDMyLjgwNTJIMTkuODA1MlY1OS40MTc3Wk02MS45NzY4IDMwLjgwNTJDNjEuMzQ5NSAxNC43OTA1IDQ4LjE2ODUgMiAzMi4wMDAxIDJDMjcuNjU3OSAyIDIzLjUzMTIgMi45MjI1MyAxOS44MDUyIDQuNTgyMjhWMzAuODA1Mkg2MS45NzY4WiIgZmlsbD0iIzg0ODg5NCIvPgo8L3N2Zz4K"
-                        hover
-                        sizes={{
-                            [GridColumnSize.Md]: 4,
-                            [GridColumnSize.All]: 12,
-                        }}
-                    />
-                    <PopupItem
-                        title="AI Orchestration"
-                        url=""
-                        description="Schedule job using Soperator, Skypilot, Ray or your own solution"
-                        image="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xNy44MDUyIDUuNTY0MTdDOC43MjUzOCAxMC40NDk5IDIuNDUxNTQgMTkuODc2OSAyLjAyMzUxIDMwLjgwNTJIMTcuODA1MlY1LjU2NDE3Wk0yLjAxMDc0IDMyLjgwNTJDMi4zMDMwNCA0My44OTg4IDguNjE3NjQgNTMuNDkyMSAxNy44MDUyIDU4LjQzNThWMzIuODA1MkgyLjAxMDc0Wk0xOS44MDUyIDU5LjQxNzdDMjMuNTMxMiA2MS4wNzc1IDI3LjY1NzkgNjIgMzIuMDAwMSA2MkM0OC4yOTk1IDYyIDYxLjU2MjggNDkuMDAxNSA2MS45ODk1IDMyLjgwNTJIMTkuODA1MlY1OS40MTc3Wk02MS45NzY4IDMwLjgwNTJDNjEuMzQ5NSAxNC43OTA1IDQ4LjE2ODUgMiAzMi4wMDAxIDJDMjcuNjU3OSAyIDIzLjUzMTIgMi45MjI1MyAxOS44MDUyIDQuNTgyMjhWMzAuODA1Mkg2MS45NzY4WiIgZmlsbD0iIzg0ODg5NCIvPgo8L3N2Zz4K"
-                        hover
-                        sizes={{
-                            [GridColumnSize.Md]: 4,
-                            [GridColumnSize.All]: 12,
-                        }}
-                    />
-                    <PopupItem
-                        title="AI Orchestration"
-                        url=""
-                        description="Schedule job using Soperator, Skypilot, Ray or your own solution"
-                        image="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xNy44MDUyIDUuNTY0MTdDOC43MjUzOCAxMC40NDk5IDIuNDUxNTQgMTkuODc2OSAyLjAyMzUxIDMwLjgwNTJIMTcuODA1MlY1LjU2NDE3Wk0yLjAxMDc0IDMyLjgwNTJDMi4zMDMwNCA0My44OTg4IDguNjE3NjQgNTMuNDkyMSAxNy44MDUyIDU4LjQzNThWMzIuODA1MkgyLjAxMDc0Wk0xOS44MDUyIDU5LjQxNzdDMjMuNTMxMiA2MS4wNzc1IDI3LjY1NzkgNjIgMzIuMDAwMSA2MkM0OC4yOTk1IDYyIDYxLjU2MjggNDkuMDAxNSA2MS45ODk1IDMyLjgwNTJIMTkuODA1MlY1OS40MTc3Wk02MS45NzY4IDMwLjgwNTJDNjEuMzQ5NSAxNC43OTA1IDQ4LjE2ODUgMiAzMi4wMDAxIDJDMjcuNjU3OSAyIDIzLjUzMTIgMi45MjI1MyAxOS44MDUyIDQuNTgyMjhWMzAuODA1Mkg2MS45NzY4WiIgZmlsbD0iIzg0ODg5NCIvPgo8L3N2Zz4K"
-                        hover
-                        sizes={{
-                            [GridColumnSize.Md]: 4,
-                            [GridColumnSize.All]: 12,
-                        }}
-                    />
-                    <PopupItem
-                        title="AI Orchestration"
-                        url=""
-                        description="Schedule job using Soperator, Skypilot, Ray or your own solution"
-                        image="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xNy44MDUyIDUuNTY0MTdDOC43MjUzOCAxMC40NDk5IDIuNDUxNTQgMTkuODc2OSAyLjAyMzUxIDMwLjgwNTJIMTcuODA1MlY1LjU2NDE3Wk0yLjAxMDc0IDMyLjgwNTJDMi4zMDMwNCA0My44OTg4IDguNjE3NjQgNTMuNDkyMSAxNy44MDUyIDU4LjQzNThWMzIuODA1MkgyLjAxMDc0Wk0xOS44MDUyIDU5LjQxNzdDMjMuNTMxMiA2MS4wNzc1IDI3LjY1NzkgNjIgMzIuMDAwMSA2MkM0OC4yOTk1IDYyIDYxLjU2MjggNDkuMDAxNSA2MS45ODk1IDMyLjgwNTJIMTkuODA1MlY1OS40MTc3Wk02MS45NzY4IDMwLjgwNTJDNjEuMzQ5NSAxNC43OTA1IDQ4LjE2ODUgMiAzMi4wMDAxIDJDMjcuNjU3OSAyIDIzLjUzMTIgMi45MjI1MyAxOS44MDUyIDQuNTgyMjhWMzAuODA1Mkg2MS45NzY4WiIgZmlsbD0iIzg0ODg5NCIvPgo8L3N2Zz4K"
-                        hover
-                        sizes={{
-                            [GridColumnSize.Md]: 4,
-                            [GridColumnSize.All]: 12,
-                        }}
-                    />
-                </Row>
-            </Col>
-        </Row>
-        <Row>
-            <Col className={b('title')}>Scale</Col>
-            <Col className={b('wrap')}>
-                <Row>
-                    <Col className={b('subtitle')}>
-                        Scale AI workloads on high-performance GPU clusters
-                    </Col>
-                </Row>
-                <Row>
-                    <Col
-                        sizes={{
-                            [GridColumnSize.Md]: 8,
-                            [GridColumnSize.All]: 12,
-                        }}
-                    >
+                ));
+            }
+
+            return (
+                <Row key={section.title}>
+                    <Col className={b('title')}>{section.title}</Col>
+                    <Col className={b('wrap')}>
                         <Row>
-                            <PopupItem
-                                title="Compute"
-                                url=""
-                                description="Managed Kubernetes, VMs and block volumes"
-                                image="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xNy44MDUyIDUuNTY0MTdDOC43MjUzOCAxMC40NDk5IDIuNDUxNTQgMTkuODc2OSAyLjAyMzUxIDMwLjgwNTJIMTcuODA1MlY1LjU2NDE3Wk0yLjAxMDc0IDMyLjgwNTJDMi4zMDMwNCA0My44OTg4IDguNjE3NjQgNTMuNDkyMSAxNy44MDUyIDU4LjQzNThWMzIuODA1MkgyLjAxMDc0Wk0xOS44MDUyIDU5LjQxNzdDMjMuNTMxMiA2MS4wNzc1IDI3LjY1NzkgNjIgMzIuMDAwMSA2MkM0OC4yOTk1IDYyIDYxLjU2MjggNDkuMDAxNSA2MS45ODk1IDMyLjgwNTJIMTkuODA1MlY1OS40MTc3Wk02MS45NzY4IDMwLjgwNTJDNjEuMzQ5NSAxNC43OTA1IDQ4LjE2ODUgMiAzMi4wMDAxIDJDMjcuNjU3OSAyIDIzLjUzMTIgMi45MjI1MyAxOS44MDUyIDQuNTgyMjhWMzAuODA1Mkg2MS45NzY4WiIgZmlsbD0iIzg0ODg5NCIvPgo8L3N2Zz4K"
-                                hover
-                                sizes={{
-                                    [GridColumnSize.Md]: 6,
-                                    [GridColumnSize.All]: 12,
-                                }}
-                            />
-                            <PopupItem
-                                title="AI Orchestration"
-                                url=""
-                                description="Schedule job using Soperator, Skypilot, Ray or your own solution"
-                                image="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xNy44MDUyIDUuNTY0MTdDOC43MjUzOCAxMC40NDk5IDIuNDUxNTQgMTkuODc2OSAyLjAyMzUxIDMwLjgwNTJIMTcuODA1MlY1LjU2NDE3Wk0yLjAxMDc0IDMyLjgwNTJDMi4zMDMwNCA0My44OTg4IDguNjE3NjQgNTMuNDkyMSAxNy44MDUyIDU4LjQzNThWMzIuODA1MkgyLjAxMDc0Wk0xOS44MDUyIDU5LjQxNzdDMjMuNTMxMiA2MS4wNzc1IDI3LjY1NzkgNjIgMzIuMDAwMSA2MkM0OC4yOTk1IDYyIDYxLjU2MjggNDkuMDAxNSA2MS45ODk1IDMyLjgwNTJIMTkuODA1MlY1OS40MTc3Wk02MS45NzY4IDMwLjgwNTJDNjEuMzQ5NSAxNC43OTA1IDQ4LjE2ODUgMiAzMi4wMDAxIDJDMjcuNjU3OSAyIDIzLjUzMTIgMi45MjI1MyAxOS44MDUyIDQuNTgyMjhWMzAuODA1Mkg2MS45NzY4WiIgZmlsbD0iIzg0ODg5NCIvPgo8L3N2Zz4K"
-                                hover
-                                sizes={{
-                                    [GridColumnSize.Md]: 6,
-                                    [GridColumnSize.All]: 12,
-                                }}
-                            />
-                            <PopupItem
-                                title="AI Orchestration"
-                                url=""
-                                description="Schedule job using Soperator, Skypilot, Ray or your own solution"
-                                image="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xNy44MDUyIDUuNTY0MTdDOC43MjUzOCAxMC40NDk5IDIuNDUxNTQgMTkuODc2OSAyLjAyMzUxIDMwLjgwNTJIMTcuODA1MlY1LjU2NDE3Wk0yLjAxMDc0IDMyLjgwNTJDMi4zMDMwNCA0My44OTg4IDguNjE3NjQgNTMuNDkyMSAxNy44MDUyIDU4LjQzNThWMzIuODA1MkgyLjAxMDc0Wk0xOS44MDUyIDU5LjQxNzdDMjMuNTMxMiA2MS4wNzc1IDI3LjY1NzkgNjIgMzIuMDAwMSA2MkM0OC4yOTk1IDYyIDYxLjU2MjggNDkuMDAxNSA2MS45ODk1IDMyLjgwNTJIMTkuODA1MlY1OS40MTc3Wk02MS45NzY4IDMwLjgwNTJDNjEuMzQ5NSAxNC43OTA1IDQ4LjE2ODUgMiAzMi4wMDAxIDJDMjcuNjU3OSAyIDIzLjUzMTIgMi45MjI1MyAxOS44MDUyIDQuNTgyMjhWMzAuODA1Mkg2MS45NzY4WiIgZmlsbD0iIzg0ODg5NCIvPgo8L3N2Zz4K"
-                                hover
-                                sizes={{
-                                    [GridColumnSize.Md]: 6,
-                                    [GridColumnSize.All]: 12,
-                                }}
-                            />
-                            <PopupItem
-                                title="AI Orchestration"
-                                url=""
-                                description="Schedule job using Soperator, Skypilot, Ray or your own solution"
-                                image="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xNy44MDUyIDUuNTY0MTdDOC43MjUzOCAxMC40NDk5IDIuNDUxNTQgMTkuODc2OSAyLjAyMzUxIDMwLjgwNTJIMTcuODA1MlY1LjU2NDE3Wk0yLjAxMDc0IDMyLjgwNTJDMi4zMDMwNCA0My44OTg4IDguNjE3NjQgNTMuNDkyMSAxNy44MDUyIDU4LjQzNThWMzIuODA1MkgyLjAxMDc0Wk0xOS44MDUyIDU5LjQxNzdDMjMuNTMxMiA2MS4wNzc1IDI3LjY1NzkgNjIgMzIuMDAwMSA2MkM0OC4yOTk1IDYyIDYxLjU2MjggNDkuMDAxNSA2MS45ODk1IDMyLjgwNTJIMTkuODA1MlY1OS40MTc3Wk02MS45NzY4IDMwLjgwNTJDNjEuMzQ5NSAxNC43OTA1IDQ4LjE2ODUgMiAzMi4wMDAxIDJDMjcuNjU3OSAyIDIzLjUzMTIgMi45MjI1MyAxOS44MDUyIDQuNTgyMjhWMzAuODA1Mkg2MS45NzY4WiIgZmlsbD0iIzg0ODg5NCIvPgo8L3N2Zz4K"
-                                hover
-                                sizes={{
-                                    [GridColumnSize.Md]: 6,
-                                    [GridColumnSize.All]: 12,
-                                }}
-                            />
+                            <Col className={b('subtitle')}>{section.subtitle}</Col>
                         </Row>
-                    </Col>
-                    <Col
-                        sizes={{
-                            [GridColumnSize.Md]: 4,
-                            [GridColumnSize.All]: 12,
-                        }}
-                    >
-                        <PoveredCard />
+                        <Row>{content}</Row>
                     </Col>
                 </Row>
-            </Col>
-        </Row>
+            );
+        })}
     </Grid>
 );

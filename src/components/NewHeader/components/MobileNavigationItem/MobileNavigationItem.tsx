@@ -1,6 +1,6 @@
 import React, {Fragment, useCallback, useState} from 'react';
 
-import {Foldable, ToggleArrow} from '@doyourjob/gravity-ui-page-constructor';
+import {Foldable, ToggleArrow, getLinkProps} from '@doyourjob/gravity-ui-page-constructor';
 
 import {block} from '../../../../utils/cn';
 import {MobileNavigationItemData} from '../../models';
@@ -17,7 +17,11 @@ export const MobileNavigationItem = (props: MobileNavigationItemData) => {
 
     if ('link' in props) {
         return (
-            <a target={props.link.target} href={props.link.url} className={b({type: 'link'})}>
+            <a
+                href={props.link.url}
+                className={b({type: 'link'})}
+                {...getLinkProps(props.link.url || '', undefined, props.link.target)}
+            >
                 {props.title}
             </a>
         );
@@ -45,7 +49,11 @@ export const MobileNavigationItem = (props: MobileNavigationItemData) => {
                             <ul className={b('list-items')}>
                                 {items.map((linkItem) => (
                                     <li className={b('li')} key={linkItem.title}>
-                                        <a href={linkItem.url} className={b('list-item')}>
+                                        <a
+                                            href={linkItem.url}
+                                            className={b('list-item')}
+                                            {...getLinkProps(linkItem.url || '')}
+                                        >
                                             {linkItem.title}
                                         </a>
                                     </li>

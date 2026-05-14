@@ -1,6 +1,10 @@
 import React, {ReactNode, useCallback, useEffect, useRef, useState} from 'react';
 
-import {ClassNameProps, Button as PCButton} from '@doyourjob/gravity-ui-page-constructor';
+import {
+    ClassNameProps,
+    Button as PCButton,
+    getLinkProps,
+} from '@doyourjob/gravity-ui-page-constructor';
 
 import {block} from '../../utils/cn';
 
@@ -113,7 +117,11 @@ export const NewHeader = ({
                 >
                     <div className={b('left')}>
                         {logo && (
-                            <a href={logo.href} className={b('logo')}>
+                            <a
+                                href={logo.href}
+                                className={b('logo')}
+                                {...getLinkProps(logo.href || '')}
+                            >
                                 {logo.src && (
                                     <img className={b('logo-img')} alt={logo.alt} src={logo.src} />
                                 )}

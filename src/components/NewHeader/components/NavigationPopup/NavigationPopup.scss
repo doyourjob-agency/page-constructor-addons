@@ -7,7 +7,7 @@ $block: '.#{$ns}navigation-popup';
     margin: 0 $indentM;
     width: calc(100% - 64px);
     z-index: 10;
-    
+
     &:focus {
         outline: 0; // to hide the outline when focustrap enabled
     }

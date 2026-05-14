@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Grid} from '@doyourjob/gravity-ui-page-constructor';
+import {Grid, getLinkProps} from '@doyourjob/gravity-ui-page-constructor';
 
 import {block} from '../../../../utils/cn';
 import {LoginPopupData} from '../../models';
@@ -9,15 +9,18 @@ import './LoginPopup.scss';
 
 const b = block('login-popup');
 
-export const LoginPopup = (props: LoginPopupData) => (
+export const LoginPopup = ({items}: LoginPopupData) => (
     <Grid className={b()} containerClass={b('container')}>
-        <div className={b('item')}>
-            <div className={b('title')}>Login to Token Factory</div>
-            <div className={b('subtitle')}>Run and integrate AI into real-world products</div>
-        </div>
-        <div className={b('item')}>
-            <div className={b('title')}>Login to AI cloud</div>
-            <div className={b('subtitle')}>Power AI with high-performance compute.</div>
-        </div>
+        {items.map((item) => (
+            <a
+                href={item.url}
+                className={b('item')}
+                key={item.title}
+                {...getLinkProps(item.url || '')}
+            >
+                <div className={b('title')}>{item.title}</div>
+                <div className={b('subtitle')}>{item.subtitle}</div>
+            </a>
+        ))}
     </Grid>
 );
