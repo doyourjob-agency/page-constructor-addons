@@ -25,6 +25,7 @@ export const NHInvestorPopup = ({title, subtitle, url, items, stock}: NHInvestor
                 {items.map((item: NHPopupItemData) => (
                     <NHPopupItem
                         key={item.title}
+                        hover
                         {...item}
                         sizes={{[GridColumnSize.All]: 12, [GridColumnSize.Md]: 6}}
                     />

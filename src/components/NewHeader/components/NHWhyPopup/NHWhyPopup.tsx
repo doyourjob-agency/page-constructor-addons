@@ -25,6 +25,7 @@ export const NHWhyPopup = ({groups, card}: NHWhyPopupData) => (
                             <NHPopupItem
                                 key={item.title}
                                 {...item}
+                                hover
                                 sizes={{[GridColumnSize.All]: 12}}
                             />
                         ))}

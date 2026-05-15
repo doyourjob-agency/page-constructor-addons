@@ -32,6 +32,12 @@ $block: '.#{$ns}nh-login-popup';
         flex-direction: column;
         gap: $indent4XS;
         width: 100%;
+        border-radius: $indentXXXS;
+        cursor: pointer;
+
+        &:hover {
+            background: var(--g-color-private-black-50);
+        }
     }
 
     &__title {

@@ -31,6 +31,7 @@ export const NHCompanyPopup = ({sections}: NHCompanyPopupData) => (
                         {section.items.map((item: NHPopupItemData) => (
                             <NHPopupItem
                                 key={item.title}
+                                hover
                                 {...item}
                                 sizes={
                                     index === 0

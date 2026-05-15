@@ -43,9 +43,13 @@ $block: '.#{$ns}nh-resources-popup';
 
     &__title {
         @include text-size(header-1);
-
+        @include reset-link-style();
+        display: flex;
         font-weight: 600;
         margin-bottom: $indentXXXS;
+        &:hover {
+            color: var(--g-color-text-link-hover);
+        }
     }
 
     &__subtitle {
@@ -72,6 +76,7 @@ $block: '.#{$ns}nh-resources-popup';
     }
 
     &__banner {
+        @include reset-link-style();
         background-color: #f2f6f9;
         border-radius: 16px;
         display: flex;
@@ -123,9 +128,14 @@ $block: '.#{$ns}nh-resources-popup';
             font-weight: 500;
             color: #9fb1bd;
         }
+
+        &:hover {
+            background-color: var(--g-color-base-simple-hover);
+        }
     }
 
     &__event-card {
+        @include reset-link-style();
         position: relative;
         display: flex;
         flex-direction: column;
@@ -184,6 +194,10 @@ $block: '.#{$ns}nh-resources-popup';
             @include text-size(body-2);
             font-weight: 500;
             color: #9fb1bd;
+        }
+
+        &:hover {
+            background-color: var(--g-color-base-simple-hover);
         }
     }
 }

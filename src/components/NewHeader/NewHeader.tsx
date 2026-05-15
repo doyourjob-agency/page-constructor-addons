@@ -139,25 +139,27 @@ export const NewHeader = ({
                                 <NHNavigation data={right} headerRef={headerRef} />
                             </div>
                         ) : null}
-                        <div className={b('icons-container')}>
-                            {renderSearch && renderSearch({onActiveToggle: toggleSearch})}
+                        <div className={b('wrap')}>
+                            <div className={b('icons-container')}>
+                                {renderSearch && renderSearch({onActiveToggle: toggleSearch})}
+                            </div>
+                            {showButtonsContainer &&
+                                buttons?.map((button) => (
+                                    <PCButton {...button} size="l" key={button.text} />
+                                ))}
+                            {login && <NHLoginButton data={login} headerRef={headerRef} />}
+                            {mobile ? (
+                                <NHMobileNavigation
+                                    toogleOpen={toggleMobileNavigationPopup}
+                                    isOpened={isMobileNavigationOpen}
+                                    isSearchOpen={isSearchMode}
+                                    data={mobile}
+                                    buttons={buttons}
+                                    onMenuScroll={onMenuScroll}
+                                    popupClassName={b('user-popup')}
+                                />
+                            ) : null}
                         </div>
-                        {showButtonsContainer &&
-                            buttons?.map((button) => (
-                                <PCButton {...button} size="l" key={button.text} />
-                            ))}
-                        {login && <NHLoginButton data={login} headerRef={headerRef} />}
-                        {mobile ? (
-                            <NHMobileNavigation
-                                toogleOpen={toggleMobileNavigationPopup}
-                                isOpened={isMobileNavigationOpen}
-                                isSearchOpen={isSearchMode}
-                                data={mobile}
-                                buttons={buttons}
-                                onMenuScroll={onMenuScroll}
-                                popupClassName={b('user-popup')}
-                            />
-                        ) : null}
                     </div>
                 </div>
             </header>

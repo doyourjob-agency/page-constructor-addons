@@ -51,6 +51,7 @@ $block: '.#{$ns}nh-products-popup';
     }
 
     &__powered-card {
+        @include reset-link-style();
         @include text-size(body-2);
 
         font-weight: 500;
@@ -81,9 +82,14 @@ $block: '.#{$ns}nh-products-popup';
             width: 100%;
             aspect-ratio: 1;
         }
+
+        &:hover {
+            background-color: var(--g-color-base-simple-hover);
+        }
     }
 
     &__run-card {
+        @include reset-link-style();
         @include text-size(body-2);
 
         font-weight: 500;
@@ -113,6 +119,10 @@ $block: '.#{$ns}nh-products-popup';
 
         &-image {
             height: 40px;
+        }
+
+        &:hover {
+            background-color: var(--g-color-base-simple-hover);
         }
     }
 }

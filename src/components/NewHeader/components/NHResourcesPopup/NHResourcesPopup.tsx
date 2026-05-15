@@ -22,9 +22,9 @@ import './NHResourcesPopup.scss';
 
 const b = block('nh-resources-popup');
 
-const EventCard = ({tag, image, date, title, location}: NHEventCardData) => {
+const EventCard = ({url, tag, image, date, title, location}: NHEventCardData) => {
     return (
-        <div className={b('event-card')}>
+        <a href={url} className={b('event-card')} {...getLinkProps(url)}>
             <div className={b('event-card-tag')}>{tag}</div>
             <Image
                 className={b('event-card-image')}
@@ -38,7 +38,7 @@ const EventCard = ({tag, image, date, title, location}: NHEventCardData) => {
                 </div>
                 <div className={b('event-card-location')}>{location}</div>
             </div>
-        </div>
+        </a>
     );
 };
 
@@ -58,7 +58,7 @@ export const NHResourcesPopup = ({groups, banner, events}: NHResourcesPopupData)
                     </Row>
                     <Row>
                         {group.items.map((item: NHPopupItemData) => (
-                            <NHPopupItem key={item.title} {...item} />
+                            <NHPopupItem key={item.title} hover {...item} />
                         ))}
                     </Row>
                 </div>

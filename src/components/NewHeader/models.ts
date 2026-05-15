@@ -55,6 +55,7 @@ export interface NHSpecialCardData {
     title: string;
     description: string;
     image: string;
+    url: string;
 }
 
 export interface NHRunCardData {
@@ -62,6 +63,7 @@ export interface NHRunCardData {
     description: string;
     image: string;
     border?: boolean;
+    url: string;
 }
 
 export interface NHProductsPopupSection {
@@ -105,6 +107,7 @@ export interface NHBannerData {
 }
 
 export interface NHEventCardData {
+    url: string;
     tag: string;
     title: string;
     date: string;

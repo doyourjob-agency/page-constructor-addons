@@ -2,6 +2,8 @@ import type {FC, ReactNode} from 'react';
 import React, {useCallback, useContext, useEffect} from 'react';
 
 import {getLinkProps} from '@doyourjob/gravity-ui-page-constructor';
+import {ChevronDown, ChevronUp} from '@gravity-ui/icons';
+import {Icon} from '@gravity-ui/uikit';
 
 import {block} from '../../../../utils/cn';
 import {NO_MENU_TAB_SELECTED} from '../../constants';
@@ -80,6 +82,7 @@ export const NHNavigationItem: FC<NavigationItemOwnProps> = ({
                 aria-controls={tooltipId}
             >
                 {item.title}
+                <Icon data={isActive ? ChevronUp : ChevronDown} size={14} />
             </button>
             {children}
         </li>

@@ -1,0 +1,19 @@
+@import '../../../../../styles/mixins.scss';
+@import '../../../../../styles/variables.scss';
+
+$block: '.#{$ns}nh-login-button';
+
+#{$block} {
+    display: flex;
+    align-items: center;
+    height: 36px;
+    gap: $indent4XS;
+    padding: 0 $indentXXXS 0 $indentXXS;
+    border-radius: $indentXXXS;
+    background: var(--g-color-base-brand);
+    color: var(--g-color-text-brand-contrast);
+
+    &:hover {
+        background: var(--g-color-base-brand-hover);
+    }
+}

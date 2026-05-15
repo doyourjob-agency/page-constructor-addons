@@ -32,11 +32,6 @@ $block: '.#{$ns}nh-navigation-popup-item';
             }
         }
 
-        &:hover,
-        &:active {
-            color: var(--g-color-base-brand);
-        }
-
         &_hover {
             &:hover,
             &:active {

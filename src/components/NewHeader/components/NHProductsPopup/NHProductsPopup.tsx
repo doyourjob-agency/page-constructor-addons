@@ -1,6 +1,13 @@
 import React from 'react';
 
-import {Col, Grid, GridColumnSize, Image, Row} from '@doyourjob/gravity-ui-page-constructor';
+import {
+    Col,
+    Grid,
+    GridColumnSize,
+    Image,
+    Row,
+    getLinkProps,
+} from '@doyourjob/gravity-ui-page-constructor';
 
 import {block} from '../../../../utils/cn';
 import {
@@ -16,9 +23,9 @@ import './NHProductsPopup.scss';
 
 const b = block('nh-products-popup');
 
-const PoweredCard = ({title, description, image}: NHSpecialCardData) => {
+const PoweredCard = ({title, description, image, url}: NHSpecialCardData) => {
     return (
-        <div className={b('powered-card')}>
+        <a href={url} className={b('powered-card')} {...getLinkProps(url)}>
             <div className={b('powered-card-wrap')}>
                 <div className={b('powered-card-title')}>{title}</div>
                 <div className={b('powered-card-description')}>{description}</div>
@@ -28,19 +35,19 @@ const PoweredCard = ({title, description, image}: NHSpecialCardData) => {
                 containerClassName={b('powered-card-container-image')}
                 src={image}
             />
-        </div>
+        </a>
     );
 };
 
-const RunCard = ({title, description, image, border}: NHRunCardData) => {
+const RunCard = ({title, description, image, border, url}: NHRunCardData) => {
     return (
-        <div className={b('run-card', {border: border})}>
+        <a href={url} className={b('run-card', {border: border})} {...getLinkProps(url)}>
             <Image className={b('run-card-image')} src={image} />
             <div className={b('run-card-wrap')}>
                 <div className={b('run-card-title')}>{title}</div>
                 <div className={b('run-card-description')}>{description}</div>
             </div>
-        </div>
+        </a>
     );
 };
 

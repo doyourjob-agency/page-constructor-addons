@@ -1,10 +1,18 @@
 import type {RefObject} from 'react';
 import React, {useCallback, useEffect, useState} from 'react';
 
+import {ChevronDown, ChevronUp} from '@gravity-ui/icons';
+import {Icon} from '@gravity-ui/uikit';
+
+import {block} from '../../../../utils/cn';
 import {SWITCH_MENU_TAB_TIMEOUT} from '../../constants';
 import {NHLoginPopupData, SetupRouteChangeHandler} from '../../models';
 import {NHLoginPopup} from '../NHLoginPopup/NHLoginPopup';
 import {NHNavigationPopup} from '../NHNavigationPopup/NHNavigationPopup';
+
+import './NHLoginButton.scss';
+
+const b = block('nh-login-button');
 
 interface LoginButtonProps {
     data: NHLoginPopupData;
@@ -64,8 +72,9 @@ export const NHLoginButton = ({data, headerRef, setupRouteChangeHandler}: LoginB
     );
 
     return (
-        <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+        <div className={b()} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
             {data.text}
+            <Icon data={isActive ? ChevronUp : ChevronDown} size={14} />
             {isActive && (
                 <NHNavigationPopup headerRef={headerRef}>
                     <NHLoginPopup {...data} />
