@@ -1,0 +1,14 @@
+@import '../../../../../styles/variables.scss';
+
+$block: '.#{$ns}nh-navigation-popup';
+
+#{$block} {
+    position: absolute;
+    margin: 0 $indentM;
+    width: calc(100% - 64px);
+    z-index: 10;
+
+    &:focus {
+        outline: 0; // to hide the outline when focustrap enabled
+    }
+}

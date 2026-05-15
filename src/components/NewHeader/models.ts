@@ -1,102 +1,102 @@
 import type {ButtonProps, LinkProps} from '@doyourjob/gravity-ui-page-constructor';
 
-export enum NavigationItemType {
-    MediumPopup = 'medium-popup',
-    ProductsPopup = 'products-popup',
-    SolutionsPopup = 'solutions-popup',
-    WhyPopup = 'why-popup',
-    ResourcesPopup = 'resources-popup',
-    CompanyPopup = 'company-popup',
-    InvestorPopup = 'investor-popup',
+export enum NHNavigationItemType {
+    NHMediumPopup = 'medium-popup',
+    NHProductsPopup = 'products-popup',
+    NHSolutionsPopup = 'solutions-popup',
+    NHWhyPopup = 'why-popup',
+    NHResourcesPopup = 'resources-popup',
+    NHCompanyPopup = 'company-popup',
+    NHInvestorPopup = 'investor-popup',
     Link = 'link',
 }
 
-export enum NavigationTagColor {
+export enum NHNavigationTagColor {
     Green = 'green',
     Yellow = 'yellow',
     Blue = 'blue',
 }
 
-export interface LogoData {
+export interface NHLogoData {
     href?: string;
     src?: string;
     alt?: string;
 }
 
-export interface NavigationTag {
+export interface NHNavigationTag {
     text: string;
     color?: string;
     textColor?: string;
     size?: 's' | 'm';
 }
 
-export interface PopupItemData {
+export interface NHPopupItemData {
     title: string;
     url: string;
     slug?: string;
     description?: string;
     icon?: string;
     image?: string | null;
-    tag?: NavigationTag;
+    tag?: NHNavigationTag;
 }
 
-export interface CategoryGroupData {
+export interface NHCategoryGroupData {
     title?: string;
-    items: PopupItemData[];
+    items: NHPopupItemData[];
     imageSize?: 's' | 'xm' | 'm';
     url?: string;
 }
 
-export interface MediumPopupData {
-    groups: CategoryGroupData[];
+export interface NHMediumPopupData {
+    groups: NHCategoryGroupData[];
 }
 
-export interface SpecialCardData {
+export interface NHSpecialCardData {
     title: string;
     description: string;
     image: string;
 }
 
-export interface RunCardData {
+export interface NHRunCardData {
     title: string;
     description: string;
     image: string;
     border?: boolean;
 }
 
-export interface ProductsPopupSection {
+export interface NHProductsPopupSection {
     title: string;
     subtitle: string;
-    items?: PopupItemData[];
-    runCards?: RunCardData[];
+    items?: NHPopupItemData[];
+    runCards?: NHRunCardData[];
 }
 
-export interface ProductsPopupData {
-    sections: ProductsPopupSection[];
-    poweredCard: SpecialCardData;
+export interface NHProductsPopupData {
+    sections: NHProductsPopupSection[];
+    poweredCard: NHSpecialCardData;
 }
 
-export interface SolutionsPopupSection {
+export interface NHSolutionsPopupSection {
     title: string;
     subtitle: string;
-    items: PopupItemData[];
+    items: NHPopupItemData[];
 }
 
-export interface SolutionsPopupData {
-    sections: SolutionsPopupSection[];
+export interface NHSolutionsPopupData {
+    sections: NHSolutionsPopupSection[];
 }
 
-export interface WhyPopupGroup {
+export interface NHWhyPopupGroup {
     title: string;
-    items: PopupItemData[];
+    items: NHPopupItemData[];
 }
 
-export interface WhyPopupData {
-    groups: WhyPopupGroup[];
-    card: SpecialCardData;
+export interface NHWhyPopupData {
+    groups: NHWhyPopupGroup[];
+    card: NHSpecialCardData;
 }
 
-export interface BannerData {
+export interface NHBannerData {
     title: string;
     description: string;
     image: string;
@@ -104,7 +104,7 @@ export interface BannerData {
     url: string;
 }
 
-export interface EventCardData {
+export interface NHEventCardData {
     tag: string;
     title: string;
     date: string;
@@ -112,119 +112,119 @@ export interface EventCardData {
     location: string;
 }
 
-export interface ResourcesPopupGroup {
+export interface NHResourcesPopupGroup {
     title: string;
     subtitle: string;
     url: string;
-    items: PopupItemData[];
+    items: NHPopupItemData[];
 }
 
-export interface ResourcesPopupData {
-    groups: ResourcesPopupGroup[];
-    banner: BannerData;
+export interface NHResourcesPopupData {
+    groups: NHResourcesPopupGroup[];
+    banner: NHBannerData;
     events: {
         title: string;
-        items: EventCardData[];
+        items: NHEventCardData[];
     };
 }
 
-export interface CompanyPopupSection {
+export interface NHCompanyPopupSection {
     title: string;
-    items: PopupItemData[];
+    items: NHPopupItemData[];
 }
 
-export interface CompanyPopupData {
-    sections: CompanyPopupSection[];
+export interface NHCompanyPopupData {
+    sections: NHCompanyPopupSection[];
 }
 
-export interface StockData {
+export interface NHStockData {
     title: string;
     price: string;
     date: string;
 }
 
-export interface InvestorPopupData {
+export interface NHInvestorPopupData {
     title: string;
     subtitle: string;
     url: string;
-    items: PopupItemData[];
-    stock: StockData;
+    items: NHPopupItemData[];
+    stock: NHStockData;
 }
 
-export interface LoginItemData {
+export interface NHLoginItemData {
     title: string;
     subtitle: string;
     url?: string;
 }
 
-export interface LoginPopupData {
+export interface NHLoginPopupData {
     text: string;
-    items: LoginItemData[];
+    items: NHLoginItemData[];
 }
 
-export interface NavigationDefaultData {
+export interface NHNavigationDefaultData {
     title: string;
 }
 
-export interface NavigationLinkData extends NavigationDefaultData {
-    type: NavigationItemType.Link;
+export interface NHNavigationLinkData extends NHNavigationDefaultData {
+    type: NHNavigationItemType.Link;
     data: LinkProps;
 }
 
-export interface NavigationMediumPopupData extends NavigationDefaultData {
-    type: NavigationItemType.MediumPopup;
-    data: MediumPopupData;
+export interface NHNavigationMediumPopupData extends NHNavigationDefaultData {
+    type: NHNavigationItemType.NHMediumPopup;
+    data: NHMediumPopupData;
 }
 
-export interface NavigationProductsPopupData extends NavigationDefaultData {
-    type: NavigationItemType.ProductsPopup;
-    data: ProductsPopupData;
+export interface NHNavigationProductsPopupData extends NHNavigationDefaultData {
+    type: NHNavigationItemType.NHProductsPopup;
+    data: NHProductsPopupData;
 }
 
-export interface NavigationSolutionsPopupData extends NavigationDefaultData {
-    type: NavigationItemType.SolutionsPopup;
-    data: SolutionsPopupData;
+export interface NHNavigationSolutionsPopupData extends NHNavigationDefaultData {
+    type: NHNavigationItemType.NHSolutionsPopup;
+    data: NHSolutionsPopupData;
 }
 
-export interface NavigationWhyPopupData extends NavigationDefaultData {
-    type: NavigationItemType.WhyPopup;
-    data: WhyPopupData;
+export interface NHNavigationWhyPopupData extends NHNavigationDefaultData {
+    type: NHNavigationItemType.NHWhyPopup;
+    data: NHWhyPopupData;
 }
 
-export interface NavigationResourcesPopupData extends NavigationDefaultData {
-    type: NavigationItemType.ResourcesPopup;
-    data: ResourcesPopupData;
+export interface NHNavigationResourcesPopupData extends NHNavigationDefaultData {
+    type: NHNavigationItemType.NHResourcesPopup;
+    data: NHResourcesPopupData;
 }
 
-export interface NavigationCompanyPopupData extends NavigationDefaultData {
-    type: NavigationItemType.CompanyPopup;
-    data: CompanyPopupData;
+export interface NHNavigationCompanyPopupData extends NHNavigationDefaultData {
+    type: NHNavigationItemType.NHCompanyPopup;
+    data: NHCompanyPopupData;
 }
 
-export interface NavigationInvestorPopupData extends NavigationDefaultData {
-    type: NavigationItemType.InvestorPopup;
-    data: InvestorPopupData;
+export interface NHNavigationInvestorPopupData extends NHNavigationDefaultData {
+    type: NHNavigationItemType.NHInvestorPopup;
+    data: NHInvestorPopupData;
 }
 
-export type NavigationItemData =
-    | NavigationLinkData
-    | NavigationMediumPopupData
-    | NavigationProductsPopupData
-    | NavigationSolutionsPopupData
-    | NavigationWhyPopupData
-    | NavigationResourcesPopupData
-    | NavigationCompanyPopupData
-    | NavigationInvestorPopupData;
+export type NHNavigationItemData =
+    | NHNavigationLinkData
+    | NHNavigationMediumPopupData
+    | NHNavigationProductsPopupData
+    | NHNavigationSolutionsPopupData
+    | NHNavigationWhyPopupData
+    | NHNavigationResourcesPopupData
+    | NHNavigationCompanyPopupData
+    | NHNavigationInvestorPopupData;
 
-export interface MobileNavigationDefaultData {
+export interface NHMobileNavigationDefaultData {
     title: string;
 }
 
-export interface MobileNavigationLinkData extends MobileNavigationDefaultData {
+export interface NHMobileNavigationLinkData extends NHMobileNavigationDefaultData {
     link: LinkProps;
 }
 
-export interface MobileNavigationGroupData extends MobileNavigationDefaultData {
+export interface NHMobileNavigationGroupData extends NHMobileNavigationDefaultData {
     data: {
         title?: string;
         items: {
@@ -234,14 +234,14 @@ export interface MobileNavigationGroupData extends MobileNavigationDefaultData {
     }[];
 }
 
-export type MobileNavigationItemData = MobileNavigationLinkData | MobileNavigationGroupData;
+export type NHMobileNavigationItemData = NHMobileNavigationLinkData | NHMobileNavigationGroupData;
 
-export interface NavigationData {
-    left: NavigationItemData[];
-    right: NavigationItemData[];
-    mobile: MobileNavigationItemData[];
-    login: LoginPopupData;
-    logo: LogoData;
+export interface NHNavigationData {
+    left: NHNavigationItemData[];
+    right: NHNavigationItemData[];
+    mobile: NHMobileNavigationItemData[];
+    login: NHLoginPopupData;
+    logo: NHLogoData;
     buttons: ButtonProps[];
 }
 

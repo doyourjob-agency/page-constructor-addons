@@ -8,11 +8,11 @@ import {
 
 import {block} from '../../utils/cn';
 
-import {LoginButton} from './components/LoginButton/LoginButton';
-import {MobileNavigation} from './components/MobileNavigation/MobileNavigation';
-import {Navigation} from './components/Navigation/Navigation';
+import {NHLoginButton} from './components/NHLoginButton/NHLoginButton';
+import {NHMobileNavigation} from './components/NHMobileNavigation/NHMobileNavigation';
+import {NHNavigation} from './components/NHNavigation/NHNavigation';
 import {RouteChangeHandlerContext} from './contexts/route-change';
-import {NavigationData, SetupRouteChangeHandler} from './models';
+import {NHNavigationData, SetupRouteChangeHandler} from './models';
 
 import './NewHeader.scss';
 
@@ -21,7 +21,7 @@ const b = block('new-header');
 export const MOBILE_ICON_SIZE = 24;
 
 export interface NewHeaderProps extends ClassNameProps {
-    data: NavigationData;
+    data: NHNavigationData;
     // TODO: remove when search suggest will be opensourced
     renderSearch?: (props: {onActiveToggle: (isActive: boolean) => void}) => ReactNode;
     setupRouteChangeHandler?: SetupRouteChangeHandler;
@@ -129,14 +129,14 @@ export const NewHeader = ({
                         )}
                         {left ? (
                             <div className={b('navigation')}>
-                                <Navigation data={left} headerRef={headerRef} />
+                                <NHNavigation data={left} headerRef={headerRef} />
                             </div>
                         ) : null}
                     </div>
                     <div className={b('right')}>
                         {right ? (
                             <div className={b('navigation')}>
-                                <Navigation data={right} headerRef={headerRef} />
+                                <NHNavigation data={right} headerRef={headerRef} />
                             </div>
                         ) : null}
                         <div className={b('icons-container')}>
@@ -146,9 +146,9 @@ export const NewHeader = ({
                             buttons?.map((button) => (
                                 <PCButton {...button} size="l" key={button.text} />
                             ))}
-                        {login && <LoginButton data={login} headerRef={headerRef} />}
+                        {login && <NHLoginButton data={login} headerRef={headerRef} />}
                         {mobile ? (
-                            <MobileNavigation
+                            <NHMobileNavigation
                                 toogleOpen={toggleMobileNavigationPopup}
                                 isOpened={isMobileNavigationOpen}
                                 isSearchOpen={isSearchMode}

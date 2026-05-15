@@ -1,0 +1,189 @@
+@import '../../../../../styles/mixins';
+@import '../../../../../styles/variables';
+@import '../../styles/mixins.scss';
+
+$block: '.#{$ns}nh-resources-popup';
+
+#{$block} {
+    background: var(--g-color-base-float);
+    box-shadow: 0 4px 24px var(--g-color-base-generic), 0 2px 8px var(--g-color-base-generic);
+
+    @include navigation-overflow-popup($indentXL);
+    max-width: 1200px;
+    width: 100%;
+    border-radius: var(--pc-border-radius, 24px);
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    &__container {
+        padding: 0;
+        display: flex;
+    }
+
+    &__wrap {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+
+        & > div + div {
+            border-top: 1px solid #e4ebf0;
+        }
+    }
+
+    &__group {
+        padding: $indentM $indentS;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: $indentSM;
+    }
+
+    &__title {
+        @include text-size(header-1);
+
+        font-weight: 600;
+        margin-bottom: $indentXXXS;
+    }
+
+    &__subtitle {
+        @include text-size(body-2);
+
+        font-weight: 500;
+        color: #9fb1bd;
+    }
+
+    &__events {
+        width: 300px;
+        flex-shrink: 0;
+        padding: $indentM;
+        display: flex;
+        flex-direction: column;
+        background-color: #f2f6f9;
+        gap: $indentXXXS;
+
+        &-title {
+            @include text-size(body-3);
+            font-weight: 500;
+            color: #9fb1bd;
+        }
+    }
+
+    &__banner {
+        background-color: #f2f6f9;
+        border-radius: 16px;
+        display: flex;
+        padding: $indentXS;
+        gap: $indentSM;
+
+        &-container-image {
+            width: 263px;
+            height: 148px;
+        }
+
+        &-image {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        &-container-icon {
+            height: 20px;
+        }
+
+        &-icon {
+            display: block;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        &-wrap {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        &-content {
+            display: flex;
+            flex-direction: column;
+            gap: $indentXXXS;
+        }
+
+        &-title {
+            @include text-size(body-2);
+            font-weight: 500;
+        }
+
+        &-description {
+            @include text-size(body-2);
+            font-weight: 500;
+            color: #9fb1bd;
+        }
+    }
+
+    &__event-card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        border-radius: $indentXS;
+        border: 1px solid #e4ebf0;
+
+        &-tag {
+            @include text-size(body-2);
+
+            position: absolute;
+            top: $indentXXS;
+            left: $indentXXS;
+            padding: $indentXXXS $indentXXS;
+            border-radius: $indentXXXS;
+            background-color: #ffffff;
+        }
+
+        &-container-image {
+            width: 100%;
+            height: 150px;
+        }
+
+        &-image {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        &-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: $indent4XS;
+        }
+
+        &-content {
+            padding: $indentXS;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: $indentXS;
+        }
+
+        &-title {
+            @include text-size(body-2);
+            font-weight: 500;
+        }
+
+        &-date {
+            @include text-size(body-2);
+            font-weight: 500;
+            color: #9fb1bd;
+        }
+
+        &-location {
+            @include text-size(body-2);
+            font-weight: 500;
+            color: #9fb1bd;
+        }
+    }
+}
