@@ -26,8 +26,8 @@ const tooltipPrefixId = 'navigation-item-key';
 interface NavigationProps {
     data: NavigationSectionData[];
     withBackground: boolean;
-    handleOpenPopup: () => void;
-    handleClosePopup: () => void;
+    handleOpenPopup?: () => void;
+    handleClosePopup?: () => void;
     headerRef?: RefObject<HTMLDivElement>;
     setupRouteChangeHandler?: SetupRouteChangeHandler;
 }

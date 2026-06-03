@@ -1,0 +1,54 @@
+@import '../../../../../styles/mixins';
+@import '../../../../../styles/variables';
+@import '../../styles/mixins.scss';
+
+$block: '.#{$ns}nh-solutions-popup';
+
+#{$block} {
+    background: var(--g-color-base-float);
+    box-shadow: 0 4px 24px var(--g-color-base-generic), 0 2px 8px var(--g-color-base-generic);
+
+    @include navigation-overflow-popup($indentXL);
+    max-width: 1200px;
+    width: 100%;
+    border-radius: var(--pc-border-radius, 24px);
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    &__container {
+        padding: 0;
+    }
+
+    & > div + div {
+        border-top: 1px solid #e4ebf0;
+    }
+
+    &__wrap {
+        padding: 24px;
+
+        gap: 24px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__head {
+        display: flex;
+        gap: 24px;
+    }
+
+    &__title {
+        @include text-size(header-1);
+
+        font-weight: 600;
+    }
+
+    &__subtitle {
+        @include text-size(header-1);
+
+        font-weight: 700;
+        color: #e0e0e0;
+    }
+}

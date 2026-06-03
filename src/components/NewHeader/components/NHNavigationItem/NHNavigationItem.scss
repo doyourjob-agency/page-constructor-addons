@@ -1,0 +1,64 @@
+@import '../../../../../styles/mixins';
+@import '../../../../../styles/variables';
+@import '../../styles/mixins.scss';
+
+$block: '.#{$ns}nh-navigation-item';
+
+#{$block} {
+    white-space: nowrap;
+
+    color: var(--g-color-text-primary);
+
+    &:hover {
+        #{$block}__text {
+            color: var(--g-color-text-link);
+        }
+    }
+
+    &_disable {
+        pointer-events: none;
+    }
+
+    &__popup {
+        @include popup-styles(var(--pc-border-radius, 24px));
+
+        --yc-popover-max-width: #{calc($newContentWidth + ($indentM * 2))};
+        --yc-popover-padding: #{$indentS};
+
+        width: var(--yc-popover-max-width);
+        left: 0;
+        box-shadow: 0 4px 24px var(--g-color-base-generic-hover),
+            0 2px 8px var(--g-color-base-generic-hover);
+    }
+
+    &__text {
+        @include reset-button-style();
+        @include reset-link-style();
+
+        display: flex;
+        align-items: center;
+        gap: $indent4XS;
+        color: var(--g-color-text-primary);
+        position: relative;
+
+        &_active {
+            color: var(--g-color-text-link);
+        }
+
+        &_cursor_default {
+            cursor: default;
+        }
+    }
+
+    &:first-child {
+        #{$block}__text {
+            margin-left: 0;
+        }
+    }
+
+    @media (max-width: #{calc($newContentWidth + ($indentM * 2))}) {
+        &__popup {
+            --yc-popover-max-width: #{calc(100% - ($indentXS * 2))};
+        }
+    }
+}
