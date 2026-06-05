@@ -8,6 +8,10 @@ $block: '.#{$ns}nh-mobile-navigation';
     @include reset-list-style();
     @include text-size(body-2);
 
+    @media (min-width: map-get($gridBreakpoints, 'lg')) {
+        display: none;
+    }
+
     &__icon {
         @include reset-button-hover($block);
         display: none;
@@ -30,7 +34,7 @@ $block: '.#{$ns}nh-mobile-navigation';
         margin-top: $indentXXXS;
     }
 
-    @media (max-width: map-get($gridBreakpoints, 'md')) {
+    @media (max-width: map-get($gridBreakpoints, 'lg')) {
         &__icon {
             display: block;
 

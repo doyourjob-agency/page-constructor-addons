@@ -4,7 +4,7 @@
 
 $desktopContainerHeight: 64px;
 $mobileContainerHeight: 64px;
-$logoImageHeight: 30px;
+$logoImageHeight: 36px;
 
 $block: '.#{$ns}new-header';
 
@@ -13,26 +13,28 @@ $block: '.#{$ns}new-header';
     --g-color-scroll-handle: var(--g-color-base-generic);
     --g-color-scroll-handle-hover: var(--g-color-line-generic);
 
-    position: relative;
-    max-width: $contentWidth;
-    margin: 0 auto;
     width: 100%;
-
     z-index: 100;
+    background: var(--pc-transparent);
+
+    &_with-background {
+        background: var(--g-color-base-background);
+    }
 
     &__container {
+        position: relative;
         width: 100%;
-        padding: 0 $indentM;
+        max-width: $contentWidth;
+        padding: 0 $gridContainerPadding;
+        margin: 0 auto;
         display: flex;
         align-items: center;
         justify-content: space-between;
         height: $desktopContainerHeight;
-        background: var(--pc-transparent);
         border-radius: var(--pc-border-radius, 24px);
 
-        &_with-background {
-            background: var(--g-color-base-background);
-            box-shadow: 0 4px 24px var(--g-color-base-generic);
+        @media (max-width: map-get($gridBreakpoints, 'xxl')) {
+            padding: 0 $indentXS;
         }
     }
 
@@ -40,16 +42,21 @@ $block: '.#{$ns}new-header';
     &__right {
         display: flex;
         align-items: center;
-        gap: 40px;
     }
 
     &__left {
         margin-right: $indentM;
+        gap: $indentS;
+
+        @media (max-width: map-get($gridBreakpoints, 'xxl')) {
+            gap: $indentXXS;
+        }
     }
 
     &__right {
         justify-content: flex-end;
         width: 100%;
+        gap: $indentXXXS;
     }
 
     &__wrap {
@@ -123,21 +130,36 @@ $block: '.#{$ns}new-header';
         @include popup-styles(var(--g-border-radius-m));
     }
 
+    &__logo-img {
+        display: block;
+        height: $logoImageHeight;
+    }
+
+    &__buttons {
+        display: flex;
+        gap: $indentXXXS;
+
+        @media (max-width: map-get($gridBreakpoints, 'sm')) {
+            display: none;
+        }
+    }
+
+    &__button {
+        display: flex;
+        align-items: center;
+        padding: 0 $indentXXS;
+        @include text-size(body-2);
+        font-weight: 500;
+    }
+
     @media (max-width: map-get($gridBreakpoints, 'lg')) {
         &__left {
             margin-right: 0;
         }
     }
 
-    @media (min-width: map-get($gridBreakpoints, 'md')) {
-        &__logo-img {
-            height: $logoImageHeight;
-        }
-    }
-
-    @media (max-width: map-get($gridBreakpoints, 'md') - 1) {
+    @media (max-width: map-get($gridBreakpoints, 'md')) {
         max-width: 100%;
-        padding: $indentXS calc($indentL - $indentXXXS) $indentXS $indentL;
         border-top-left-radius: 0;
         border-top-right-radius: 0;
 
@@ -154,17 +176,10 @@ $block: '.#{$ns}new-header';
             #{$block}__logo {
                 display: none;
             }
-
-            #{$block}__back {
-                display: block;
-            }
         }
     }
 
-    @media (max-width: map-get($gridBreakpoints, 'sm') - 1) {
-        padding-left: $indentSM;
-        padding-right: $indentXS;
-
+    @media (max-width: map-get($gridBreakpoints, 'sm')) {
         &__container {
             height: $mobileContainerHeight;
         }

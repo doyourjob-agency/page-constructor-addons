@@ -11,7 +11,7 @@ $block: '.#{$ns}nh-navigation-item';
 
     &:hover {
         #{$block}__text {
-            color: var(--g-color-text-link);
+            background-color: rgba(245, 246, 247, 1);
         }
     }
 
@@ -31,19 +31,23 @@ $block: '.#{$ns}nh-navigation-item';
             0 2px 8px var(--g-color-base-generic-hover);
     }
 
+    &__icon {
+        @media (max-width: map-get($gridBreakpoints, 'xxl')) {
+            display: none;
+        }
+    }
+
     &__text {
         @include reset-button-style();
         @include reset-link-style();
 
+        padding: $indentXXXS;
+        border-radius: $indentXXXS;
+        font-weight: 500;
         display: flex;
         align-items: center;
-        gap: $indent4XS;
         color: var(--g-color-text-primary);
         position: relative;
-
-        &_active {
-            color: var(--g-color-text-link);
-        }
 
         &_cursor_default {
             cursor: default;

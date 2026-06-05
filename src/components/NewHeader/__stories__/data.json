@@ -235,20 +235,12 @@
           }
         },
         {
-          "title": "Customers",
-          "type": "link",
-          "data": {
-            "url": "http://example.com",
-            "target": "_self"
-          }
-        },
-        {
-          "title": "Why Nebius?",
+          "title": "Why Nebius",
           "type": "why-popup",
           "data": {
             "groups": [
               {
-                "title": "Why Nebius?",
+                "title": "Why Nebius",
                 "items": [
                   {
                     "title": "Performance at scale",
@@ -536,7 +528,7 @@
         }
       ],
       "login": {
-        "text": "Login",
+        "text": "Log in",
         "items": [
           {
             "title": "Login to Token Factory",

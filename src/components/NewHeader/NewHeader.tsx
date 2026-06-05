@@ -38,7 +38,6 @@ export const NewHeader = ({
     const {logo, buttons, left, right, mobile, login} = data;
     const headerRef = useRef<HTMLDivElement>(null);
     const [withBackground, setWithBackground] = useState(false);
-    const [withShadow, setWithShadow] = useState(true);
     const [isSearchMode, setIsSearchMode] = useState(false);
     const [isMobileNavigationOpen, setIsMobileNavigationOpen] = useState(false);
     const [pageHasScroll, setPageHasScroll] = useState(false);
@@ -47,23 +46,12 @@ export const NewHeader = ({
 
     const toggleSearch = useCallback((isActive: boolean) => setIsSearchMode(isActive), []);
 
-    const toggleMobileNavigationPopup = useCallback(
-        (isOpened: boolean) => {
-            setIsMobileNavigationOpen(isOpened);
-
-            // disable header's shadow on mobile with opened menu and if page was scrolled
-            if (isOpened && pageHasScroll) {
-                setWithShadow(false);
-            }
-        },
-        [pageHasScroll],
-    );
+    const toggleMobileNavigationPopup = useCallback((isOpened: boolean) => {
+        setIsMobileNavigationOpen(isOpened);
+    }, []);
 
     const onMenuScroll = useCallback(
         (scrollTop: number) => {
-            // enable header's shadow on mobile if mobile menu started to scroll
-            setWithShadow(scrollTop > 0);
-
             if (!pageHasScroll) {
                 setWithBackground(scrollTop > 0);
             }
@@ -104,17 +92,13 @@ export const NewHeader = ({
                 className={b(
                     {
                         search: isSearchMode,
+                        'with-background': withBackground,
                     },
                     className,
                 )}
                 ref={headerRef}
             >
-                <div
-                    className={b('container', {
-                        'with-background': withBackground,
-                        'with-shadow': withShadow,
-                    })}
-                >
+                <div className={b('container')}>
                     <div className={b('left')}>
                         {logo && (
                             <a
@@ -140,14 +124,23 @@ export const NewHeader = ({
                             </div>
                         ) : null}
                         <div className={b('wrap')}>
-                            <div className={b('icons-container')}>
-                                {renderSearch && renderSearch({onActiveToggle: toggleSearch})}
+                            {renderSearch && (
+                                <div className={b('icons-container')}>
+                                    {renderSearch({onActiveToggle: toggleSearch})}
+                                </div>
+                            )}
+                            <div className={b('buttons')}>
+                                {showButtonsContainer &&
+                                    buttons?.map((button) => (
+                                        <PCButton
+                                            {...button}
+                                            className={b('button')}
+                                            size="l"
+                                            key={button.text}
+                                        />
+                                    ))}
+                                {login && <NHLoginButton data={login} headerRef={headerRef} />}
                             </div>
-                            {showButtonsContainer &&
-                                buttons?.map((button) => (
-                                    <PCButton {...button} size="l" key={button.text} />
-                                ))}
-                            {login && <NHLoginButton data={login} headerRef={headerRef} />}
                             {mobile ? (
                                 <NHMobileNavigation
                                     toogleOpen={toggleMobileNavigationPopup}

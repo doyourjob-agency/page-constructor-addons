@@ -9,9 +9,9 @@ $block: '.#{$ns}nh-navigation';
     @include desktop-only();
     display: flex;
     align-items: center;
-    gap: $indentS;
+    gap: $indent4XS;
 
-    @media (max-width: map-get($gridBreakpoints, 'md')) {
+    @media (max-width: map-get($gridBreakpoints, 'lg')) {
         display: none;
     }
 }
