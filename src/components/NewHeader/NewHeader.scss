@@ -137,7 +137,8 @@ $block: '.#{$ns}new-header';
 
     &_search {
         #{$block}__left,
-        #{$block}__right > div:not(#{$block}__icons-container) {
+        #{$block}__navigation,
+        #{$block}__wrap > div:not(#{$block}__icons-container) {
             display: none;
         }
     }
