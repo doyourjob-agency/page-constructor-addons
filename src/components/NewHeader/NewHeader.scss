@@ -141,6 +141,11 @@ $block: '.#{$ns}new-header';
         #{$block}__wrap > div:not(#{$block}__icons-container) {
             display: none;
         }
+
+        #{$block}__wrap,
+        #{$block}__icons-container {
+            flex: 1;
+        }
     }
 
     &__buttons {
