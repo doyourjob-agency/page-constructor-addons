@@ -135,6 +135,13 @@ $block: '.#{$ns}new-header';
         height: $logoImageHeight;
     }
 
+    &_search {
+        #{$block}__left,
+        #{$block}__right > div:not(#{$block}__icons-container) {
+            display: none;
+        }
+    }
+
     &__buttons {
         display: flex;
         gap: $indentXXXS;
@@ -170,12 +177,6 @@ $block: '.#{$ns}new-header';
         &__icons-container {
             flex-direction: row-reverse;
             justify-content: flex-start;
-        }
-
-        &_search {
-            #{$block}__logo {
-                display: none;
-            }
         }
     }
 
