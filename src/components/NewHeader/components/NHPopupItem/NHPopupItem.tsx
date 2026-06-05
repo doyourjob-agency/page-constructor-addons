@@ -1,13 +1,12 @@
-import React from 'react';
+import React, {useMemo} from 'react';
 
-import type {GridColumnSizesType} from '@doyourjob/gravity-ui-page-constructor';
-import {Col, HTML, Image, getLinkProps} from '@doyourjob/gravity-ui-page-constructor';
+import {HTML, Image, getLinkProps} from '@doyourjob/gravity-ui-page-constructor';
 import {Icon} from '@gravity-ui/uikit';
 
 import {block} from '../../../../utils/cn';
-import {DefaultCategorizedItemSizes} from '../../constants';
 import {NHPopupItemData} from '../../models';
-import {NHNavigationTag} from '../NHTag/NHTag';
+
+import {ArrowRight} from './ArrowRight';
 
 import './NHPopupItem.scss';
 
@@ -15,57 +14,43 @@ const b = block('nh-navigation-popup-item');
 
 export interface NHPopupItemProps extends Partial<NHPopupItemData> {
     hover?: boolean;
-    sizes?: GridColumnSizesType;
-    className?: string;
-    padding?: 'default' | 's';
-    imageSize?: 's' | 'xm' | 'm';
+    column?: boolean;
     target?: string;
 }
 
 export const NHPopupItem = (props: NHPopupItemProps) => {
-    const {
-        icon,
-        url,
-        target,
-        title,
-        tag,
-        description,
-        image,
-        imageSize = 'm',
-        hover,
-        className,
-        sizes = DefaultCategorizedItemSizes,
-        padding = 'default',
-    } = props;
+    const {url, target, title, description, image, imageColor, imageColorHover, column} = props;
 
-    const navigationTag = tag && <NHNavigationTag className={b('tag')} size="s" {...tag} />;
+    const styleImageContainer = useMemo(
+        () =>
+            ({
+                ...(imageColor ? {'--nh-popup-item-color': imageColor} : {}),
+                ...(imageColorHover ? {'--nh-popup-item-color-hover': imageColorHover} : {}),
+            } as unknown as React.CSSProperties),
+        [imageColor, imageColorHover],
+    );
 
     return (
-        <Col className={b(null, className)} sizes={sizes}>
-            <a
-                className={b('content', {hover, padding, disable: !url})}
-                href={url}
-                {...getLinkProps(url || '', undefined, target)}
-            >
-                {icon && (
-                    <div className={b('icon-container')}>
-                        <Icon className={b('icon')} data={icon} size={16} />
-                    </div>
-                )}
-                {image && (
-                    <div className={b('image-container')}>
-                        <Image className={b('image', {size: imageSize})} src={image} />
-                    </div>
-                )}
-                <div className={b('container', {'with-margin': Boolean(icon)})}>
-                    <div className={b('title-tag-wrapper')}>
-                        <span className={b('title')}>{title}</span>
-                        &nbsp;
-                        {navigationTag}
-                    </div>
-                    {description && <HTML className={b('description')}>{description}</HTML>}
+        <a
+            className={b({disable: !url, column})}
+            href={url}
+            {...getLinkProps(url || '', undefined, target)}
+        >
+            {image && (
+                <div
+                    className={b('image-container', {'no-bg': !imageColor})}
+                    style={styleImageContainer}
+                >
+                    <Image className={b('image')} src={image} />
                 </div>
-            </a>
-        </Col>
+            )}
+            <div className={b('container')}>
+                <div className={b('title')}>
+                    {title}
+                    <Icon data={ArrowRight} size={16} />
+                </div>
+                {description && <HTML className={b('description')}>{description}</HTML>}
+            </div>
+        </a>
     );
 };

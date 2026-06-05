@@ -35,9 +35,9 @@ export interface NHPopupItemData {
     url: string;
     slug?: string;
     description?: string;
-    icon?: string;
     image?: string | null;
-    tag?: NHNavigationTag;
+    imageColor?: string;
+    imageColorHover?: string;
 }
 
 export interface NHCategoryGroupData {
@@ -51,31 +51,46 @@ export interface NHMediumPopupData {
     groups: NHCategoryGroupData[];
 }
 
-export interface NHSpecialCardData {
+export interface NHBannerData {
     title: string;
     description: string;
     image: string;
     url: string;
 }
 
-export interface NHRunCardData {
+export interface NHProductBannerData {
     title: string;
     description: string;
     image: string;
+    url: string;
+    background?: string;
+    color?: string;
     border?: boolean;
-    url: string;
 }
 
-export interface NHProductsPopupSection {
+export interface NHProductsPopupSectionBase {
     title: string;
     subtitle: string;
     items?: NHPopupItemData[];
-    runCards?: NHRunCardData[];
+}
+
+export interface NHProductsPopupSectionRun extends NHProductsPopupSectionBase {
+    mode: 'run';
+}
+
+export interface NHProductsPopupSectionScale extends NHProductsPopupSectionBase {
+    mode: 'scale';
+    banner?: NHProductBannerData;
 }
 
 export interface NHProductsPopupData {
-    sections: NHProductsPopupSection[];
-    poweredCard: NHSpecialCardData;
+    primaryColor?: string;
+    primaryColorHover?: string;
+    sections: (
+        | NHProductsPopupSectionRun
+        | NHProductsPopupSectionBase
+        | NHProductsPopupSectionScale
+    )[];
 }
 
 export interface NHSolutionsPopupSection {
@@ -95,7 +110,7 @@ export interface NHWhyPopupGroup {
 
 export interface NHWhyPopupData {
     groups: NHWhyPopupGroup[];
-    card: NHSpecialCardData;
+    card: NHBannerData;
 }
 
 export interface NHBannerData {

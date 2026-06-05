@@ -29,16 +29,7 @@ export const NHCompanyPopup = ({sections}: NHCompanyPopupData) => (
                     </Row>
                     <Row>
                         {section.items.map((item: NHPopupItemData) => (
-                            <NHPopupItem
-                                key={item.title}
-                                hover
-                                {...item}
-                                sizes={
-                                    index === 0
-                                        ? {[GridColumnSize.All]: 12}
-                                        : {[GridColumnSize.All]: 12, [GridColumnSize.Md]: 6}
-                                }
-                            />
+                            <NHPopupItem key={item.title} hover {...item} />
                         ))}
                     </Row>
                 </Col>

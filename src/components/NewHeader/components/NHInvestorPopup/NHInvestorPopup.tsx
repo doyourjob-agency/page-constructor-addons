@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Col, Grid, GridColumnSize, Row, getLinkProps} from '@doyourjob/gravity-ui-page-constructor';
+import {Col, Grid, Row, getLinkProps} from '@doyourjob/gravity-ui-page-constructor';
 
 import {block} from '../../../../utils/cn';
 import {NHInvestorPopupData, NHPopupItemData} from '../../models';
@@ -23,12 +23,7 @@ export const NHInvestorPopup = ({title, subtitle, url, items, stock}: NHInvestor
             </Row>
             <Row>
                 {items.map((item: NHPopupItemData) => (
-                    <NHPopupItem
-                        key={item.title}
-                        hover
-                        {...item}
-                        sizes={{[GridColumnSize.All]: 12, [GridColumnSize.Md]: 6}}
-                    />
+                    <NHPopupItem key={item.title} hover {...item} />
                 ))}
             </Row>
         </div>

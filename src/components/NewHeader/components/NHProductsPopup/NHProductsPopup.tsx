@@ -1,140 +1,121 @@
-import React from 'react';
+import React, {useMemo} from 'react';
 
-import {
-    Col,
-    Grid,
-    GridColumnSize,
-    Image,
-    Row,
-    getLinkProps,
-} from '@doyourjob/gravity-ui-page-constructor';
+import {Image, getLinkProps} from '@doyourjob/gravity-ui-page-constructor';
 
 import {block} from '../../../../utils/cn';
-import {
-    NHPopupItemData,
-    NHProductsPopupData,
-    NHProductsPopupSection,
-    NHRunCardData,
-    NHSpecialCardData,
-} from '../../models';
+import {NHPopupItemData, NHProductBannerData, NHProductsPopupData} from '../../models';
 import {NHPopupItem} from '../NHPopupItem/NHPopupItem';
 
 import './NHProductsPopup.scss';
 
 const b = block('nh-products-popup');
 
-const PoweredCard = ({title, description, image, url}: NHSpecialCardData) => {
+const NHBanner = ({
+    title,
+    description,
+    image,
+    url,
+    background,
+    color,
+    border,
+}: NHProductBannerData) => {
+    const styles = useMemo(
+        () =>
+            ({
+                ...(background ? {'--nh-products-banner-background': background} : {}),
+                ...(color ? {'--nh-products-banner-color': color} : {}),
+            } as unknown as React.CSSProperties),
+        [background, color],
+    );
     return (
-        <a href={url} className={b('powered-card')} {...getLinkProps(url)}>
-            <div className={b('powered-card-wrap')}>
-                <div className={b('powered-card-title')}>{title}</div>
-                <div className={b('powered-card-description')}>{description}</div>
+        <a href={url} className={b('banner', {border})} style={styles} {...getLinkProps(url)}>
+            <Image className={b('banner-image')} src={image} />
+            <div className={b('banner-wrap')}>
+                <div className={b('banner-title')}>{title}</div>
+                <div className={b('banner-description')}>{description}</div>
             </div>
-            <Image
-                className={b('powered-card-image')}
-                containerClassName={b('powered-card-container-image')}
-                src={image}
-            />
         </a>
     );
 };
 
-const RunCard = ({title, description, image, border, url}: NHRunCardData) => {
-    return (
-        <a href={url} className={b('run-card', {border: border})} {...getLinkProps(url)}>
-            <Image className={b('run-card-image')} src={image} />
-            <div className={b('run-card-wrap')}>
-                <div className={b('run-card-title')}>{title}</div>
-                <div className={b('run-card-description')}>{description}</div>
-            </div>
-        </a>
-    );
-};
-
-export const NHProductsPopup = ({sections, poweredCard}: NHProductsPopupData) => (
-    <Grid className={b()} containerClass={b('container')}>
-        {sections.map((section: NHProductsPopupSection, index: number) => {
-            const isScaleSection = index === 2; // "Scale" section is usually the 3rd one
-            const isRunSection = section.runCards && section.runCards.length > 0;
-
+export const NHProductsPopup = ({
+    sections,
+    primaryColor,
+    primaryColorHover,
+}: NHProductsPopupData) => (
+    <div className={b()}>
+        {sections.map((section) => {
             let content;
-
-            if (isRunSection) {
+            if ('mode' in section && section.mode === 'run') {
                 content = (
-                    <Col>
-                        <Row>
-                            {section.runCards?.map((card: NHRunCardData, cardIndex: number) => (
-                                <Col
-                                    key={`${card.title}-${cardIndex}`}
-                                    sizes={{
-                                        [GridColumnSize.Md]: 3,
-                                        [GridColumnSize.All]: 12,
-                                    }}
-                                >
-                                    <RunCard {...card} />
-                                </Col>
-                            ))}
-                        </Row>
-                    </Col>
-                );
-            } else if (isScaleSection) {
-                content = (
-                    <React.Fragment>
-                        <Col
-                            sizes={{
-                                [GridColumnSize.Md]: 8,
-                                [GridColumnSize.All]: 12,
-                            }}
-                        >
-                            <Row>
-                                {section.items?.map((item: NHPopupItemData, itemIndex: number) => (
+                    <div className={b('wrap-scale')}>
+                        {section.items?.[0] && <NHPopupItem {...section.items[0]} hover column />}
+                        <div className={b('wrap')}>
+                            {section.items
+                                ?.slice(1, 4)
+                                .map((item: NHPopupItemData, cardIndex: number) => (
                                     <NHPopupItem
-                                        key={`${item.title}-${itemIndex}`}
+                                        key={`${item.title}-${cardIndex + 1}`}
                                         {...item}
                                         hover
-                                        sizes={{
-                                            [GridColumnSize.Md]: 6,
-                                            [GridColumnSize.All]: 12,
-                                        }}
+                                        column
                                     />
                                 ))}
-                            </Row>
-                        </Col>
-                        <Col
-                            sizes={{
-                                [GridColumnSize.Md]: 4,
-                                [GridColumnSize.All]: 12,
-                            }}
-                        >
-                            {poweredCard && <PoweredCard {...poweredCard} />}
-                        </Col>
-                    </React.Fragment>
+                        </div>
+                        <div className={b('wrap')}>
+                            {section.items
+                                ?.slice(4)
+                                .map((item: NHPopupItemData, cardIndex: number) => (
+                                    <NHPopupItem
+                                        key={`${item.title}-${cardIndex + 4}`}
+                                        {...item}
+                                        hover
+                                        column
+                                    />
+                                ))}
+                        </div>
+                    </div>
+                );
+            } else if ('mode' in section && section.mode === 'scale') {
+                content = (
+                    <div className={b('wrap')}>
+                        {section.items?.map((item: NHPopupItemData, itemIndex: number) => (
+                            <NHPopupItem
+                                key={`${item.title}-${itemIndex}`}
+                                imageColor={primaryColor}
+                                imageColorHover={primaryColorHover}
+                                {...item}
+                                hover
+                            />
+                        ))}
+                        {section.banner && <NHBanner {...section.banner} />}
+                    </div>
                 );
             } else {
-                content = section.items?.map((item: NHPopupItemData, itemIndex: number) => (
-                    <NHPopupItem
-                        key={`${item.title}-${itemIndex}`}
-                        {...item}
-                        hover
-                        sizes={{
-                            [GridColumnSize.Md]: 4,
-                            [GridColumnSize.All]: 12,
-                        }}
-                    />
-                ));
+                content = (
+                    <div className={b('wrap')}>
+                        {section.items?.map((item: NHPopupItemData, itemIndex: number) => (
+                            <NHPopupItem
+                                key={`${item.title}-${itemIndex}`}
+                                imageColor={primaryColor}
+                                imageColorHover={primaryColorHover}
+                                {...item}
+                                hover
+                            />
+                        ))}{' '}
+                    </div>
+                );
             }
 
             return (
-                <Row key={section.title}>
-                    <Col className={b('title')}>{section.title}</Col>
-                    <Col className={b('wrap')}>
-                        <Row>
-                            <Col className={b('subtitle')}>{section.subtitle}</Col>
-                        </Row>
-                        <Row>{content}</Row>
-                    </Col>
-                </Row>
+                <div className={b('section')} key={section.title}>
+                    <div className={b('section-head')}>
+                        <div className={b('title')}>{section.title}</div>
+                        <div className={b('subtitle')}>{section.subtitle}</div>
+                    </div>
+                    {content}
+                </div>
             );
         })}
-    </Grid>
+    </div>
 );

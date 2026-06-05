@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Col, Grid, GridColumnSize, Row} from '@doyourjob/gravity-ui-page-constructor';
+import {Col, Grid, Row} from '@doyourjob/gravity-ui-page-constructor';
 
 import {block} from '../../../../utils/cn';
 import {NHPopupItemData, NHSolutionsPopupData, NHSolutionsPopupSection} from '../../models';
@@ -23,15 +23,7 @@ export const NHSolutionsPopup = ({sections}: NHSolutionsPopupData) => (
                     </Row>
                     <Row>
                         {section.items.map((item: NHPopupItemData) => (
-                            <NHPopupItem
-                                key={item.title}
-                                {...item}
-                                hover
-                                sizes={{
-                                    [GridColumnSize.Md]: 4,
-                                    [GridColumnSize.All]: 12,
-                                }}
-                            />
+                            <NHPopupItem key={item.title} {...item} hover />
                         ))}
                     </Row>
                 </Col>

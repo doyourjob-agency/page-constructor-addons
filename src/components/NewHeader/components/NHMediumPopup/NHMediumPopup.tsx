@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Col, Grid, GridColumnSize, Row} from '@doyourjob/gravity-ui-page-constructor';
+import {Col, Grid, Row} from '@doyourjob/gravity-ui-page-constructor';
 
 import {block} from '../../../../utils/cn';
 import {NHCategoryGroupData, NHMediumPopupData, NHPopupItemData} from '../../models';
@@ -16,17 +16,7 @@ export const NHMediumPopup = ({groups}: NHMediumPopupData) => (
             <Col className={b()}>
                 {groups.map((dataItem: NHCategoryGroupData) =>
                     dataItem.items.map((item: NHPopupItemData) => (
-                        <NHPopupItem
-                            {...item}
-                            key={item.title}
-                            hover
-                            imageSize={dataItem.imageSize}
-                            sizes={{
-                                [GridColumnSize.Xl]: 3,
-                                [GridColumnSize.Md]: 4,
-                                [GridColumnSize.All]: 12,
-                            }}
-                        />
+                        <NHPopupItem {...item} key={item.title} hover />
                     )),
                 )}
             </Col>
