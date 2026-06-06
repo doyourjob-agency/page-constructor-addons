@@ -9,54 +9,34 @@ $block: '.#{$ns}nh-mobile-navigation-popup';
     $transitionTime: 0.4s;
     width: 100%;
     position: fixed;
-    top: 0;
-    z-index: 99;
-    //TODO: remove $indentXS from padding-top after redesign header-block
-    padding: calc(64px - $indentXS) 0 $indentM;
+    top: 64px;
+    left: 0;
+    z-index: 1000;
+    height: calc(100vh - 64px);
     background-color: var(--g-color-base-background);
-    border-radius: 0 0 var(--pc-border-radius, 24px) var(--pc-border-radius, 24px);
-    box-shadow: 0 3px 10px var(--g-color-base-generic);
+    box-shadow: none;
 
     &__transition-enter {
-        transform: translateY(-30px);
-        opacity: 0;
+        transform: translateY(-100%);
     }
 
     &__transition-enter-active {
         transform: translateY(0);
-        opacity: 1;
-        transition: transform $transitionTime, opacity $transitionTime;
+        transition: transform $transitionTime ease-out;
     }
 
     &__transition-exit {
         transform: translateY(0);
-        opacity: 1;
-
-        #{$block}__container {
-            opacity: 0;
-        }
     }
 
     &__transition-exit-active {
-        transform: translateY(-30px);
-        opacity: 0;
-        transition: transform $transitionTime, opacity $transitionTime;
-    }
-
-    &__no-scroll {
-        overflow: hidden;
+        transform: translateY(-100%);
+        transition: transform $transitionTime ease-in;
     }
 
     &__container {
-        padding: calc($indentXXXS / 2) $indentL 0;
-        overflow: scroll;
+        padding: 0;
+        overflow-y: auto;
         height: 100%;
-    }
-
-    @media (max-width: map-get($gridBreakpoints, 'sm') - 1) {
-        &__container {
-            padding-left: $indentSM;
-            padding-right: $indentSM;
-        }
     }
 }

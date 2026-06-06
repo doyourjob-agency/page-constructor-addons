@@ -12,8 +12,6 @@ import './NHMobileNavigationPopup.scss';
 const b = block('nh-mobile-navigation-popup');
 
 const TRANSITION_TIME = 400;
-const POPUP_MARGIN = 80;
-const HEADER_HEIGHT = 68;
 
 interface MobileNavigationPopupProps {
     isOpened: boolean;
@@ -30,7 +28,6 @@ export const NHMobileNavigationPopup = ({
 }: MobileNavigationPopupProps) => {
     const [body, setBody] = useState<HTMLElement>();
     const ref = useRef<HTMLDivElement>(null);
-    const [containerHeight, setContainerHeight] = useState(0);
 
     const handleScroll = useCallback(() => {
         const containerScrollTop = ref?.current?.scrollTop;
@@ -44,7 +41,6 @@ export const NHMobileNavigationPopup = ({
 
     useEffect(() => {
         setBody(document.body);
-        setContainerHeight(window?.innerHeight - POPUP_MARGIN - HEADER_HEIGHT);
 
         const element = ref.current;
 
@@ -71,11 +67,7 @@ export const NHMobileNavigationPopup = ({
             timeout={TRANSITION_TIME}
         >
             <OutsideClick className={b()} onOutsideClick={onClose}>
-                <div
-                    ref={ref}
-                    className={b('container')}
-                    style={{maxHeight: `${containerHeight}px`}}
-                >
+                <div ref={ref} className={b('container')}>
                     {children}
                 </div>
             </OutsideClick>

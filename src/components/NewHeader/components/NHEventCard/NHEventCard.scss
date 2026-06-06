@@ -1,0 +1,48 @@
+@import '../../../../../styles/mixins.scss';
+@import '../../../../../styles/variables.scss';
+
+$block: '.#{$ns}nh-event-card';
+
+#{$block} {
+    @include reset-link-style();
+
+    display: flex;
+    flex-direction: column;
+    gap: $indentXXS;
+    cursor: pointer;
+    transition: opacity 0.2s;
+
+    &:hover {
+        opacity: 0.8;
+    }
+
+    &__wrap {
+        display: flex;
+        flex-direction: column;
+        gap: $indent4XS;
+    }
+
+    &__caption {
+        @include text-size(body-1);
+        color: var(--g-color-text-secondary);
+    }
+
+    &__title {
+        @include text-size(body-2);
+        color: var(--g-color-text-primary);
+        font-weight: 600;
+    }
+
+    &__description {
+        @include text-size(body-1);
+        color: var(--g-color-text-secondary);
+    }
+
+    &__image {
+        display: block;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        object-fit: cover;
+        border-radius: $indentXS;
+    }
+}

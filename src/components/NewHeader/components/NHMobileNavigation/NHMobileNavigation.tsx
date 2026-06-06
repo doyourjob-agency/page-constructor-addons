@@ -6,9 +6,10 @@ import {Bars, Xmark} from '@gravity-ui/icons';
 import {Button, Icon} from '@gravity-ui/uikit';
 
 import {block} from '../../../../utils/cn';
-import {NHMobileNavigationItemData} from '../../models';
+import {NHLoginPopupData, NHNavigationData} from '../../models';
 import {NHMobileNavigationItem} from '../NHMobileNavigationItem/NHMobileNavigationItem';
 import {NHMobileNavigationPopup} from '../NHMobileNavigationPopup/NHMobileNavigationPopup';
+import {NHPopupItem} from '../NHPopupItem/NHPopupItem';
 
 import './NHMobileNavigation.scss';
 
@@ -18,10 +19,11 @@ interface MobileNavigationProps {
     isOpened: boolean;
     toogleOpen: (isOpened: boolean) => void;
     isSearchOpen: boolean;
-    data: NHMobileNavigationItemData[];
+    data?: NHNavigationData;
     onMenuScroll: (scrollTop: number) => void;
     popupClassName?: string;
     buttons?: ButtonProps[];
+    login?: NHLoginPopupData;
 }
 
 export const NHMobileNavigation = ({
@@ -29,7 +31,6 @@ export const NHMobileNavigation = ({
     toogleOpen,
     isSearchOpen,
     data,
-    buttons,
     onMenuScroll,
 }: MobileNavigationProps) => (
     <div className={b()}>
@@ -49,16 +50,37 @@ export const NHMobileNavigation = ({
             onClose={() => toogleOpen(false)}
             onMenuScroll={onMenuScroll}
         >
-            <nav>
-                <ul className={b()}>
-                    {data.map((item) => (
-                        <li className={b()} key={item.title}>
-                            <NHMobileNavigationItem {...item} />
+            <nav className={b('nav')}>
+                <ul className={b('list')}>
+                    {data?.left?.map((item, index) => (
+                        <li className={b('item')} key={index}>
+                            <NHMobileNavigationItem item={item} />
                         </li>
                     ))}
                 </ul>
-                {buttons &&
-                    buttons?.map((button) => <PCButton {...button} size="l" key={button.text} />)}
+                <ul className={b('list')}>
+                    {data?.right?.map((item, index) => (
+                        <li className={b('item')} key={index}>
+                            <NHMobileNavigationItem item={item} />
+                        </li>
+                    ))}
+                </ul>
+                {data?.buttons && (
+                    <div className={b('buttons')}>
+                        {data.buttons.map((button, index) => (
+                            <PCButton {...button} size="l" key={index} className={b('button')} />
+                        ))}
+                    </div>
+                )}
+                {data?.login && (
+                    <div className={b('login-items')}>
+                        {data.login.items.map((item, index) => (
+                            <div key={index} className={b('login-item')}>
+                                <NHPopupItem {...item} />
+                            </div>
+                        ))}
+                    </div>
+                )}
             </nav>
         </NHMobileNavigationPopup>
     </div>

@@ -5,67 +5,70 @@
 $block: '.#{$ns}nh-mobile-navigation-item';
 
 #{$block} {
-    $itemTopPadding: calc($indentS / 2);
-
+    padding: $indentXS $indentXXXS $indentXS 0;
+    cursor: pointer;
     display: flex;
     justify-content: space-between;
-    position: relative;
-    padding: $indentXXS 0;
+    align-items: center;
 
     &_type_link {
         @include reset-link-style();
 
         display: block;
         color: var(--g-color-text-primary);
-    }
-
-    &__arrow {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 20px;
-        height: 20px;
-        min-width: 20px;
+        font-weight: 500;
+        @include text-size(body-2);
     }
 
     &__text {
-        padding-right: $indentS;
+        font-weight: 500;
+        @include text-size(body-2);
+        color: var(--g-color-text-primary);
     }
 
-    &__list {
-        padding: $itemTopPadding $indentS;
-        background-color: var(--g-color-base-generic);
-        border-radius: var(--g-border-radius-l);
+    &__arrow {
+        color: var(--g-color-text-secondary);
+    }
 
-        &:not(:first-child) {
-            margin-top: $indentXXS;
-        }
+    &__content {
+        padding: $indentM 0 40px;
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        background: var(--g-color-base-background);
+    }
 
-        &-items {
-            @include reset-list-style();
-        }
+    &__section {
+        display: flex;
+        flex-direction: column;
+        gap: $indentS;
 
         &-title {
             @include text-size(body-2);
-
-            margin: 0;
-            padding: $itemTopPadding 0;
-        }
-
-        &-item {
-            @include reset-link-style();
-            @include reset-link-hover();
-
-            display: block;
             color: var(--g-color-text-primary);
-            padding: $itemTopPadding 0;
+            font-weight: 500;
         }
 
-        &-link {
-            @include navigation-link();
+        &-items {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: $indentS;
 
-            display: block;
-            padding: $itemTopPadding 0;
+            @media (min-width: map-get($gridBreakpoints, 'sm')) {
+                gap: $indentSM 40px;
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    }
+
+    &__list-link {
+        @include reset-link-style();
+        @include text-size(body-2);
+        color: var(--g-color-text-primary);
+        padding: $indentXXS 0;
+
+        &:hover {
+            color: var(--g-color-text-link);
         }
     }
 }

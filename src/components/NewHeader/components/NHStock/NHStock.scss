@@ -1,0 +1,48 @@
+@import '../../../../../styles/mixins.scss';
+@import '../../../../../styles/variables.scss';
+
+$block: '.#{$ns}nh-stock';
+
+#{$block} {
+    position: relative;
+    padding: $indentS;
+    display: flex;
+    flex-direction: column;
+    border-radius: $indentXXXS;
+    overflow: hidden;
+    min-height: 240px;
+
+    &__background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    &__title {
+        @include text-size(body-2);
+        color: var(--g-color-text-primary);
+        font-weight: 600;
+        z-index: 1;
+        margin-bottom: $indent4XS;
+    }
+
+    &__value {
+        color: var(--g-color-text-primary);
+        font-size: 36px;
+        line-height: 48px;
+        font-weight: 600;
+        z-index: 1;
+        margin-top: auto;
+    }
+
+    &__date {
+        @include text-size(body-1);
+        color: var(--g-color-text-secondary);
+        z-index: 1;
+        margin-top: $indent4XS;
+    }
+}

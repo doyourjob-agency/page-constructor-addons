@@ -83,7 +83,7 @@ export const NHNavigation = ({data, headerRef, setupRouteChangeHandler}: Navigat
             <ul className={b()}>
                 {data.map((item: NHNavigationItemData, i: number) => (
                     <NHNavigationItem
-                        key={item.title}
+                        key={i}
                         item={item}
                         handleActiveTab={handleActiveTab}
                         index={i}

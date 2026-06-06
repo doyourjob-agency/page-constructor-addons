@@ -16,22 +16,54 @@ $block: '.#{$ns}nh-mobile-navigation';
         @include reset-button-hover($block);
         display: none;
 
-        &-icon {
-            position: relative;
-            top: 3px;
-        }
-
         &_hidden {
             display: none;
         }
     }
 
-    &__user {
-        margin-top: $indentSM;
+    &__nav {
+        display: flex;
+        flex-direction: column;
+        padding: $indentXXS $indentXS;
+    }
+
+    &__list {
+        @include reset-list-style();
+        display: flex;
+        flex-direction: column;
+        border-bottom: 1px solid var(--g-color-line-generic);
+
+        & > li + li {
+            border-top: 1px solid var(--g-color-line-generic);
+        }
+
+        & + & {
+            margin-top: 150px;
+        }
     }
 
     &__buttons {
-        margin-top: $indentXXXS;
+        display: flex;
+        flex-direction: column;
+        gap: $indentXS;
+        margin-top: $indentM;
+    }
+
+    &__button {
+        width: 100%;
+    }
+
+    &__login-items {
+        display: flex;
+        flex-direction: column;
+        margin-top: $indentM;
+    }
+
+    &__login-item {
+        padding: $indentXXXS 0;
+        & + & {
+            border-top: 1px solid var(--g-color-line-generic);
+        }
     }
 
     @media (max-width: map-get($gridBreakpoints, 'lg')) {

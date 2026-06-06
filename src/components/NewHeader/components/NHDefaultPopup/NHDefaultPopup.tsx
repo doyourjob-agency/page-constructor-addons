@@ -1,61 +1,15 @@
-import React, {useContext, useMemo} from 'react';
-
-import {HeaderStockContext, Image, getLinkProps} from '@doyourjob/gravity-ui-page-constructor';
+import React, {useMemo} from 'react';
 
 import {block} from '../../../../utils/cn';
-import {
-    NHDefaultPopupData,
-    NHDefaultPopupSection,
-    NHEventCardData,
-    NHPopupItemData,
-    NHStockData,
-    NHStoryCardData,
-} from '../../models';
+import {NHDefaultPopupData, NHDefaultPopupSection, NHPopupItemData} from '../../models';
+import {NHEventCard} from '../NHEventCard/NHEventCard';
 import {NHPopupItem} from '../NHPopupItem/NHPopupItem';
+import {NHStock} from '../NHStock/NHStock';
+import {NHStoryCard} from '../NHStoryCard/NHStoryCard';
 
 import './NHDefaultPopup.scss';
 
 const b = block('nh-default-popup');
-
-const NHStoryCard = ({title, description, image, url}: NHStoryCardData) => (
-    <a href={url} className={b('card')} {...getLinkProps(url)}>
-        <Image className={b('card-image')} src={image} />
-        <div className={b('card-wrap')}>
-            <div className={b('card-title')}>{title}</div>
-            <div className={b('card-description')}>{description}</div>
-        </div>
-    </a>
-);
-
-const NHEventCard = ({title, caption, description, image, url}: NHEventCardData) => (
-    <a href={url} className={b('card')} {...getLinkProps(url)}>
-        <Image className={b('card-image')} src={image} />
-        <div className={b('card-wrap')}>
-            <div className={b('card-caption')}>{caption}</div>
-            <div className={b('card-title')}>{title}</div>
-            <div className={b('card-description')}>{description}</div>
-        </div>
-    </a>
-);
-
-const NHStock = ({title, delayed, image}: NHStockData) => {
-    const data = useContext(HeaderStockContext);
-
-    if (!data.price) return null;
-
-    return (
-        <div className={b('stock')}>
-            {image ? (
-                <img className={b('stock-background')} src={image} alt="Stock background" />
-            ) : null}
-            <div className={b('stock-title')}>{title}</div>
-            <div className={b('stock-title')}>{data.price.percent}</div>
-            <div className={b('stock-value')}>{data.price.price}</div>
-            <div className={b('stock-date')}>{data.price.update}</div>
-            <div className={b('stock-date')}>{delayed}</div>
-        </div>
-    );
-};
 
 export const NHDefaultPopup = ({
     sections,
@@ -102,9 +56,9 @@ export const NHDefaultPopup = ({
                             </div>
                         ) : null}
                         <div className={b('wrap')} style={wrapsStyle[index]}>
-                            {section.items.map((item: NHPopupItemData) => (
+                            {section.items.map((item: NHPopupItemData, idx: number) => (
                                 <NHPopupItem
-                                    key={item.title}
+                                    key={idx}
                                     {...item}
                                     imageColor={primaryColor}
                                     imageColorHover={primaryColorHover}

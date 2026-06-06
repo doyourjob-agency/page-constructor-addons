@@ -3,36 +3,57 @@ import React, {Fragment, useCallback, useState} from 'react';
 import {Foldable, ToggleArrow, getLinkProps} from '@doyourjob/gravity-ui-page-constructor';
 
 import {block} from '../../../../utils/cn';
-import {NHMobileNavigationItemData} from '../../models';
+import {NHNavigationItemData, NHNavigationItemType} from '../../models';
+
+import {NHDefaultPopupContent} from './components/NHDefaultPopupContent/NHDefaultPopupContent';
+import {NHProductsContent} from './components/NHProductsContent/NHProductsContent';
 
 import './NHMobileNavigationItem.scss';
 
 const b = block('nh-mobile-navigation-item');
 
-export const NHMobileNavigationItem = (props: NHMobileNavigationItemData) => {
+interface NHMobileNavigationItemProps {
+    item?: NHNavigationItemData;
+}
+
+export const NHMobileNavigationItem = ({item}: NHMobileNavigationItemProps) => {
     const [isOpened, setIsOpened] = useState<boolean>(false);
     const toggleOpen = useCallback(() => {
         setIsOpened(!isOpened);
     }, [isOpened]);
 
-    if ('link' in props) {
-        return (
-            <a
-                href={props.link.url}
-                className={b({type: 'link'})}
-                {...getLinkProps(props.link.url || '', undefined, props.link.target)}
-            >
-                {props.title}
-            </a>
-        );
-    }
+    const handleKeyDown = useCallback(
+        (e: React.KeyboardEvent) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                toggleOpen();
+            }
+        },
+        [toggleOpen],
+    );
 
-    if ('data' in props) {
+    if (item) {
+        if (item.type === NHNavigationItemType.Link) {
+            return (
+                <a
+                    href={item.data.url}
+                    className={b({type: 'link'})}
+                    {...getLinkProps(item.data.url || '', undefined, item.data.target)}
+                >
+                    {item.title}
+                </a>
+            );
+        }
+
         return (
             <Fragment>
-                {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */}
-                <div className={b({opened: isOpened})} onClick={toggleOpen}>
-                    <div className={b('text')}>{props.title}</div>
+                <div
+                    className={b()}
+                    onClick={toggleOpen}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={handleKeyDown}
+                >
+                    <div className={b('text')}>{item.title}</div>
                     <div className={b('arrow')}>
                         <ToggleArrow
                             size={12}
@@ -43,31 +64,11 @@ export const NHMobileNavigationItem = (props: NHMobileNavigationItemData) => {
                     </div>
                 </div>
                 <Foldable isOpened={isOpened}>
-                    {props.data.map(
-                        ({
-                            title: itemTitle,
-                            items,
-                        }: {
-                            title?: string;
-                            items: {title: string; url: string}[];
-                        }) => (
-                            <div className={b('list')} key={items[0].title}>
-                                {itemTitle && <h5 className={b('list-title')}>{itemTitle}</h5>}
-                                <ul className={b('list-items')}>
-                                    {items.map((linkItem: {title: string; url: string}) => (
-                                        <li className={b('li')} key={linkItem.title}>
-                                            <a
-                                                href={linkItem.url}
-                                                className={b('list-item')}
-                                                {...getLinkProps(linkItem.url || '')}
-                                            >
-                                                {linkItem.title}
-                                            </a>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        ),
+                    {item.type === NHNavigationItemType.NHProductsPopup && (
+                        <NHProductsContent data={item.data} />
+                    )}
+                    {item.type === NHNavigationItemType.NHDefaultPopup && (
+                        <NHDefaultPopupContent data={item.data} />
                     )}
                 </Foldable>
             </Fragment>

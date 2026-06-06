@@ -1,14 +1,11 @@
 import React, {ReactNode, useCallback, useEffect, useRef, useState} from 'react';
 
-import {
-    ClassNameProps,
-    Button as PCButton,
-    getLinkProps,
-} from '@doyourjob/gravity-ui-page-constructor';
+import {ClassNameProps, Button as PCButton} from '@doyourjob/gravity-ui-page-constructor';
 
 import {block} from '../../utils/cn';
 
 import {NHLoginButton} from './components/NHLoginButton/NHLoginButton';
+import {NHLogo} from './components/NHLogo/NHLogo';
 import {NHMobileNavigation} from './components/NHMobileNavigation/NHMobileNavigation';
 import {NHNavigation} from './components/NHNavigation/NHNavigation';
 import {RouteChangeHandlerContext} from './contexts/route-change';
@@ -35,7 +32,7 @@ export const NewHeader = ({
     className,
     scrollOffset = 0,
 }: NewHeaderProps) => {
-    const {logo, buttons, left, right, mobile, login} = data;
+    const {logo, buttons, left, right, login} = data;
     const headerRef = useRef<HTMLDivElement>(null);
     const [withBackground, setWithBackground] = useState(false);
     const [isSearchMode, setIsSearchMode] = useState(false);
@@ -92,7 +89,7 @@ export const NewHeader = ({
                 className={b(
                     {
                         search: isSearchMode,
-                        'with-background': withBackground,
+                        'with-background': withBackground || isMobileNavigationOpen,
                     },
                     className,
                 )}
@@ -100,17 +97,7 @@ export const NewHeader = ({
             >
                 <div className={b('container')}>
                     <div className={b('left')}>
-                        {logo && (
-                            <a
-                                href={logo.href}
-                                className={b('logo')}
-                                {...getLinkProps(logo.href || '')}
-                            >
-                                {logo.src && (
-                                    <img className={b('logo-img')} alt={logo.alt} src={logo.src} />
-                                )}
-                            </a>
-                        )}
+                        {logo && <NHLogo data={logo} />}
                         {left ? (
                             <div className={b('navigation')}>
                                 <NHNavigation data={left} headerRef={headerRef} />
@@ -131,27 +118,24 @@ export const NewHeader = ({
                             )}
                             <div className={b('buttons')}>
                                 {showButtonsContainer &&
-                                    buttons?.map((button) => (
+                                    buttons?.map((button, index) => (
                                         <PCButton
                                             {...button}
                                             className={b('button')}
                                             size="l"
-                                            key={button.text}
+                                            key={index}
                                         />
                                     ))}
                                 {login && <NHLoginButton data={login} headerRef={headerRef} />}
                             </div>
-                            {mobile ? (
-                                <NHMobileNavigation
-                                    toogleOpen={toggleMobileNavigationPopup}
-                                    isOpened={isMobileNavigationOpen}
-                                    isSearchOpen={isSearchMode}
-                                    data={mobile}
-                                    buttons={buttons}
-                                    onMenuScroll={onMenuScroll}
-                                    popupClassName={b('user-popup')}
-                                />
-                            ) : null}
+                            <NHMobileNavigation
+                                toogleOpen={toggleMobileNavigationPopup}
+                                isOpened={isMobileNavigationOpen}
+                                isSearchOpen={isSearchMode}
+                                data={data}
+                                onMenuScroll={onMenuScroll}
+                                popupClassName={b('user-popup')}
+                            />
                         </div>
                     </div>
                 </div>

@@ -35,6 +35,21 @@ $block: '.#{$ns}nh-navigation-popup-item';
         #{$block}__container {
             align-self: initial;
         }
+
+        @media (max-width: map-get($gridBreakpoints, 'md')) {
+            flex-direction: row;
+
+            #{$block}__image {
+                width: 30px;
+                height: 30px;
+
+                &-container {
+                    padding: 5px;
+                    border-radius: 0;
+                    border: none;
+                }
+            }
+        }
     }
 
     &:hover,
@@ -64,7 +79,7 @@ $block: '.#{$ns}nh-navigation-popup-item';
     &__title {
         position: relative;
         @include text-size(body-2);
-        font-weight: 600;
+        font-weight: 500;
         color: var(--g-color-text-primary);
         & > svg {
             display: inline-block;

@@ -1,0 +1,51 @@
+@import '../../../../../../../styles/mixins.scss';
+@import '../../../../../../../styles/variables.scss';
+
+$block: '.#{$ns}nh-default-popup-content';
+
+#{$block} {
+    padding: $indentM 0 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    background: var(--g-color-base-background);
+
+    &__section {
+        display: flex;
+        flex-direction: column;
+        gap: $indentS;
+    }
+
+    &__section-title {
+        @include text-size(body-2);
+        color: var(--g-color-text-primary);
+        font-weight: 500;
+    }
+
+    &__section-items {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: $indentS;
+
+        @media (min-width: map-get($gridBreakpoints, 'sm')) {
+            gap: $indentSM 40px;
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    &__right-section {
+        display: flex;
+        flex-direction: column;
+        gap: $indentS;
+    }
+
+    &__right-items {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: $indentS;
+
+        @media (min-width: map-get($gridBreakpoints, 'sm')) {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+}

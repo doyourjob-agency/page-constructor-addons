@@ -136,30 +136,9 @@ export type NHNavigationItemData =
     | NHNavigationProductsPopupData
     | NHNavigationDefaultPopupData;
 
-export interface NHMobileNavigationDefaultData {
-    title: string;
-}
-
-export interface NHMobileNavigationLinkData extends NHMobileNavigationDefaultData {
-    link: LinkProps;
-}
-
-export interface NHMobileNavigationGroupData extends NHMobileNavigationDefaultData {
-    data: {
-        title?: string;
-        items: {
-            title: string;
-            url: string;
-        }[];
-    }[];
-}
-
-export type NHMobileNavigationItemData = NHMobileNavigationLinkData | NHMobileNavigationGroupData;
-
 export interface NHNavigationData {
     left?: NHNavigationItemData[];
     right?: NHNavigationItemData[];
-    mobile?: NHMobileNavigationItemData[];
     login?: NHLoginPopupData;
     logo?: NHLogoData;
     buttons?: ButtonProps[];

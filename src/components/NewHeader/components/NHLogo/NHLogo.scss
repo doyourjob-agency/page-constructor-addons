@@ -1,0 +1,12 @@
+@import '../../../../../styles/variables.scss';
+
+$logoImageHeight: 36px;
+
+$block: '.#{$ns}nh-logo';
+
+#{$block} {
+    &__img {
+        display: block;
+        height: $logoImageHeight;
+    }
+}

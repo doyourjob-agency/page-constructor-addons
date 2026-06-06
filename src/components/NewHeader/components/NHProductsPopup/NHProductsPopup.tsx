@@ -1,42 +1,13 @@
-import React, {useMemo} from 'react';
-
-import {Image, getLinkProps} from '@doyourjob/gravity-ui-page-constructor';
+import React from 'react';
 
 import {block} from '../../../../utils/cn';
-import {NHPopupItemData, NHProductBannerData, NHProductsPopupData} from '../../models';
+import {NHPopupItemData, NHProductsPopupData} from '../../models';
+import {NHBanner} from '../NHBanner/NHBanner';
 import {NHPopupItem} from '../NHPopupItem/NHPopupItem';
 
 import './NHProductsPopup.scss';
 
 const b = block('nh-products-popup');
-
-const NHBanner = ({
-    title,
-    description,
-    image,
-    url,
-    background,
-    color,
-    border,
-}: NHProductBannerData) => {
-    const styles = useMemo(
-        () =>
-            ({
-                ...(background ? {'--nh-products-banner-background': background} : {}),
-                ...(color ? {'--nh-products-banner-color': color} : {}),
-            } as unknown as React.CSSProperties),
-        [background, color],
-    );
-    return (
-        <a href={url} className={b('banner', {border})} style={styles} {...getLinkProps(url)}>
-            <Image className={b('banner-image')} src={image} />
-            <div className={b('banner-wrap')}>
-                <div className={b('banner-title')}>{title}</div>
-                <div className={b('banner-description')}>{description}</div>
-            </div>
-        </a>
-    );
-};
 
 export const NHProductsPopup = ({
     sections,
@@ -44,7 +15,7 @@ export const NHProductsPopup = ({
     primaryColorHover,
 }: NHProductsPopupData) => (
     <div className={b()}>
-        {sections.map((section) => {
+        {sections.map((section, index) => {
             let content;
             if ('mode' in section && section.mode === 'run') {
                 content = (
@@ -54,22 +25,14 @@ export const NHProductsPopup = ({
                             {section.items
                                 ?.slice(1, 4)
                                 .map((item: NHPopupItemData, cardIndex: number) => (
-                                    <NHPopupItem
-                                        key={`${item.title}-${cardIndex + 1}`}
-                                        {...item}
-                                        column
-                                    />
+                                    <NHPopupItem key={cardIndex} {...item} column />
                                 ))}
                         </div>
                         <div className={b('wrap')}>
                             {section.items
                                 ?.slice(4)
                                 .map((item: NHPopupItemData, cardIndex: number) => (
-                                    <NHPopupItem
-                                        key={`${item.title}-${cardIndex + 4}`}
-                                        {...item}
-                                        column
-                                    />
+                                    <NHPopupItem key={cardIndex} {...item} column />
                                 ))}
                         </div>
                     </div>
@@ -79,7 +42,7 @@ export const NHProductsPopup = ({
                     <div className={b('wrap')}>
                         {section.items?.map((item: NHPopupItemData, itemIndex: number) => (
                             <NHPopupItem
-                                key={`${item.title}-${itemIndex}`}
+                                key={itemIndex}
                                 imageColor={primaryColor}
                                 imageColorHover={primaryColorHover}
                                 {...item}
@@ -93,7 +56,7 @@ export const NHProductsPopup = ({
                     <div className={b('wrap')}>
                         {section.items?.map((item: NHPopupItemData, itemIndex: number) => (
                             <NHPopupItem
-                                key={`${item.title}-${itemIndex}`}
+                                key={itemIndex}
                                 imageColor={primaryColor}
                                 imageColorHover={primaryColorHover}
                                 {...item}
@@ -104,7 +67,7 @@ export const NHProductsPopup = ({
             }
 
             return (
-                <div className={b('section')} key={section.title}>
+                <div className={b('section')} key={index}>
                     <div className={b('section-head')}>
                         <div className={b('title')}>{section.title}</div>
                         <div className={b('subtitle')}>{section.subtitle}</div>

@@ -52,7 +52,6 @@ export const NHNavigationItem: FC<NavigationItemOwnProps> = ({
     if (item.type === NHNavigationItemType.Link) {
         return (
             <li
-                key={item.title}
                 className={b({disable: !item.data?.url})}
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
@@ -70,12 +69,7 @@ export const NHNavigationItem: FC<NavigationItemOwnProps> = ({
     }
 
     return (
-        <li
-            key={item.title}
-            className={b({})}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-        >
+        <li className={b({})} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
             <button
                 className={b('text', {active: isActive, cursor: 'default'})}
                 onClick={handleMouseEnter}

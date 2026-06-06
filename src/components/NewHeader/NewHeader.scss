@@ -4,7 +4,6 @@
 
 $desktopContainerHeight: 64px;
 $mobileContainerHeight: 64px;
-$logoImageHeight: 36px;
 
 $block: '.#{$ns}new-header';
 
@@ -14,7 +13,9 @@ $block: '.#{$ns}new-header';
     --g-color-scroll-handle-hover: var(--g-color-line-generic);
 
     width: 100%;
-    z-index: 100;
+    position: sticky;
+    top: 0;
+    z-index: 1001;
     background: var(--pc-transparent);
 
     &_with-background {
@@ -128,11 +129,6 @@ $block: '.#{$ns}new-header';
 
     &__user-popup {
         @include popup-styles(var(--g-border-radius-m));
-    }
-
-    &__logo-img {
-        display: block;
-        height: $logoImageHeight;
     }
 
     &_search {
