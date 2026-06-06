@@ -32,8 +32,7 @@ export const NHDefaultPopup = ({
     const wrapsStyle = useMemo(
         () =>
             sections.map((section) => ({
-                gridTemplateColumns:
-                    section.mode === 'run' ? undefined : `repeat(${section.columns || 3}, 1fr)`,
+                gridTemplateColumns: `repeat(${section.columns || 3}, 1fr)`,
             })) as React.CSSProperties[],
         [sections],
     );
@@ -51,20 +50,10 @@ export const NHDefaultPopup = ({
     const renderSectionContent = (section: NHDefaultPopupSection, index: number) => {
         if (section.mode === 'run') {
             return (
-                <div className={b('wrap', {mode: 'run'})}>
-                    {section.items?.[0] && <NHPopupItem {...section.items[0]} column />}
-                    <div className={b('inner-wrap')}>
-                        {section.items
-                            ?.slice(1, 4)
-                            .map((item: NHPopupItemData, cardIndex: number) => (
-                                <NHPopupItem key={cardIndex} {...item} column />
-                            ))}
-                    </div>
-                    <div className={b('inner-wrap')}>
-                        {section.items?.slice(4).map((item: NHPopupItemData, cardIndex: number) => (
-                            <NHPopupItem key={cardIndex} {...item} column />
-                        ))}
-                    </div>
+                <div className={b('wrap')} style={wrapsStyle[index]}>
+                    {section.items?.map((item: NHPopupItemData, cardIndex: number) => (
+                        <NHPopupItem key={cardIndex} {...item} column />
+                    ))}
                 </div>
             );
         }

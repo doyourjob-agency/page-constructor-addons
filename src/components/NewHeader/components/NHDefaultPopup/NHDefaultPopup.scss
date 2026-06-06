@@ -69,34 +69,7 @@ $block: '.#{$ns}nh-default-popup';
         display: grid;
         gap: $indentSM 40px;
         align-items: flex-start;
-
-        &_mode_run {
-            grid-template-columns: repeat(12, 1fr);
-
-            & > a {
-                grid-column: span 4;
-                grid-row: 1;
-            }
-
-            & > .#{$ns}nh-default-popup__inner-wrap:empty {
-                display: none;
-            }
-
-            & > a + .#{$ns}nh-default-popup__inner-wrap {
-                grid-column: span 8;
-            }
-
-            & > .#{$ns}nh-default-popup__inner-wrap:last-child {
-                grid-column: span 12;
-            }
-        }
-    }
-
-    &__inner-wrap {
-        display: grid;
-        gap: $indentSM 40px;
-        align-items: flex-start;
-        grid-template-columns: 1fr 1fr 1fr;
+        flex: 1;
     }
 
     &__right {
