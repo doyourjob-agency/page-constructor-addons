@@ -9,10 +9,10 @@ $block: '.#{$ns}nh-mobile-navigation-popup';
     $transitionTime: 0.4s;
     width: 100%;
     position: fixed;
-    top: 64px;
+    top: 0;
     left: 0;
     z-index: 1000;
-    height: calc(100vh - 64px);
+    height: 100vh;
     background-color: var(--g-color-base-background);
     box-shadow: none;
 

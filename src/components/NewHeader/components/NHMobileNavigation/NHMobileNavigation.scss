@@ -3,6 +3,7 @@
 @import '../../styles/mixins.scss';
 
 $block: '.#{$ns}nh-mobile-navigation';
+$mobileContainerHeight: 64px;
 
 #{$block} {
     @include reset-list-style();
@@ -19,6 +20,30 @@ $block: '.#{$ns}nh-mobile-navigation';
         &_hidden {
             display: none;
         }
+    }
+
+    &__header {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: $mobileContainerHeight;
+        padding: 0 $indentXS;
+        background-color: var(--g-color-base-background);
+        border-bottom: 1px solid var(--g-color-line-generic);
+
+        &-right {
+            display: flex;
+            align-items: center;
+            gap: $indentXXXS;
+        }
+    }
+
+    &__search-container {
+        display: flex;
+        align-items: center;
     }
 
     &__nav {

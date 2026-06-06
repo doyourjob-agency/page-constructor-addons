@@ -7,6 +7,7 @@ import {Button, Icon} from '@gravity-ui/uikit';
 
 import {block} from '../../../../utils/cn';
 import {NHLoginPopupData, NHNavigationData} from '../../models';
+import {NHLogo} from '../NHLogo/NHLogo';
 import {NHMobileNavigationItem} from '../NHMobileNavigationItem/NHMobileNavigationItem';
 import {NHMobileNavigationPopup} from '../NHMobileNavigationPopup/NHMobileNavigationPopup';
 import {NHPopupItem} from '../NHPopupItem/NHPopupItem';
@@ -24,6 +25,7 @@ interface MobileNavigationProps {
     popupClassName?: string;
     buttons?: ButtonProps[];
     login?: NHLoginPopupData;
+    renderSearch?: (props: {onActiveToggle: (isActive: boolean) => void}) => React.ReactNode;
 }
 
 export const NHMobileNavigation = ({
@@ -32,6 +34,7 @@ export const NHMobileNavigation = ({
     isSearchOpen,
     data,
     onMenuScroll,
+    renderSearch,
 }: MobileNavigationProps) => (
     <div className={b()}>
         <Button
@@ -50,6 +53,24 @@ export const NHMobileNavigation = ({
             onClose={() => toogleOpen(false)}
             onMenuScroll={onMenuScroll}
         >
+            <div className={b('header')}>
+                {data?.logo && <NHLogo data={data.logo} />}
+                <div className={b('header-right')}>
+                    {renderSearch && (
+                        <div className={b('search-container')}>
+                            {renderSearch({onActiveToggle: () => {}})}
+                        </div>
+                    )}
+                    <Button
+                        view="flat"
+                        size="l"
+                        className={b('close-button')}
+                        onClick={() => toogleOpen(false)}
+                    >
+                        <Icon data={Xmark} size={24} />
+                    </Button>
+                </div>
+            </div>
             <nav className={b('nav')}>
                 <ul className={b('list')}>
                     {data?.left?.map((item, index) => (
