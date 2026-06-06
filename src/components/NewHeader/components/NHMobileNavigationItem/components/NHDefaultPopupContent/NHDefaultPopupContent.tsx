@@ -2,7 +2,7 @@ import React from 'react';
 
 import {block} from '../../../../../../utils/cn';
 import {NHDefaultPopupData, NHDefaultPopupSection} from '../../../../models';
-import {NHBanner} from '../../../NHBanner/NHBanner';
+// import {NHBanner} from '../../../NHBanner/NHBanner';
 import {NHEventCard} from '../../../NHEventCard/NHEventCard';
 import {NHPopupItem} from '../../../NHPopupItem/NHPopupItem';
 import {NHStock} from '../../../NHStock/NHStock';
@@ -16,7 +16,6 @@ export const NHDefaultPopupContent = ({data}: {data: NHDefaultPopupData}) => (
     <div className={b()}>
         {data.sections.map((section: NHDefaultPopupSection, idx: number) => {
             const isRun = section.mode === 'run';
-            const hasSideHead = Boolean(section.mode);
             return (
                 <div key={idx} className={b('section')}>
                     {section.title && <div className={b('section-title')}>{section.title}</div>}
@@ -24,20 +23,18 @@ export const NHDefaultPopupContent = ({data}: {data: NHDefaultPopupData}) => (
                         {section.items.map((item, index) => (
                             <NHPopupItem
                                 key={index}
-                                imageColor={hasSideHead && !isRun ? data.primaryColor : undefined}
-                                imageColorHover={
-                                    hasSideHead && !isRun ? data.primaryColorHover : undefined
-                                }
+                                imageColor={isRun ? undefined : data.primaryColor}
+                                imageColorHover={isRun ? undefined : data.primaryColorHover}
                                 {...item}
                                 column={isRun}
                             />
                         ))}
                     </div>
-                    {section.banner && (
+                    {/* {section.banner && (
                         <div className={b('banner-container')}>
                             <NHBanner {...section.banner} />
                         </div>
-                    )}
+                    )} */}
                 </div>
             );
         })}

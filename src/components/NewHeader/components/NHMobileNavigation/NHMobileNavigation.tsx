@@ -25,7 +25,6 @@ interface MobileNavigationProps {
     popupClassName?: string;
     buttons?: ButtonProps[];
     login?: NHLoginPopupData;
-    renderSearch?: (props: {onActiveToggle: (isActive: boolean) => void}) => React.ReactNode;
 }
 
 export const NHMobileNavigation = ({
@@ -34,7 +33,6 @@ export const NHMobileNavigation = ({
     isSearchOpen,
     data,
     onMenuScroll,
-    renderSearch,
 }: MobileNavigationProps) => (
     <div className={b()}>
         <Button
@@ -56,11 +54,6 @@ export const NHMobileNavigation = ({
             <div className={b('header')}>
                 {data?.logo && <NHLogo data={data.logo} />}
                 <div className={b('header-right')}>
-                    {renderSearch && (
-                        <div className={b('search-container')}>
-                            {renderSearch({onActiveToggle: () => {}})}
-                        </div>
-                    )}
                     <Button
                         view="flat"
                         size="l"

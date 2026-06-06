@@ -136,7 +136,6 @@ export const NewHeader = ({
                                 data={data}
                                 onMenuScroll={onMenuScroll}
                                 popupClassName={b('user-popup')}
-                                renderSearch={renderSearch}
                             />
                         </div>
                     </div>
