@@ -3,27 +3,11 @@ import React, {useCallback, useEffect, useState} from 'react';
 
 import {block} from '../../../../utils/cn';
 import {NO_MENU_TAB_SELECTED, SWITCH_MENU_TAB_TIMEOUT} from '../../constants';
-import {
-    NHCompanyPopupData,
-    NHInvestorPopupData,
-    NHMediumPopupData,
-    NHNavigationItemData,
-    NHNavigationItemType,
-    NHProductsPopupData,
-    NHResourcesPopupData,
-    NHSolutionsPopupData,
-    NHWhyPopupData,
-    SetupRouteChangeHandler,
-} from '../../models';
-import {NHCompanyPopup} from '../NHCompanyPopup/NHCompanyPopup';
-import {NHInvestorPopup} from '../NHInvestorPopup/NHInvestorPopup';
-import {NHMediumPopup} from '../NHMediumPopup/NHMediumPopup';
+import {NHNavigationItemData, NHNavigationItemType, SetupRouteChangeHandler} from '../../models';
+import {NHDefaultPopup} from '../NHDefaultPopup/NHDefaultPopup';
 import {NHNavigationItem} from '../NHNavigationItem/NHNavigationItem';
 import {NHNavigationPopup} from '../NHNavigationPopup/NHNavigationPopup';
 import {NHProductsPopup} from '../NHProductsPopup/NHProductsPopup';
-import {NHResourcesPopup} from '../NHResourcesPopup/NHResourcesPopup';
-import {NHSolutionsPopup} from '../NHSolutionsPopup/NHSolutionsPopup';
-import {NHWhyPopup} from '../NHWhyPopup/NHWhyPopup';
 
 import './NHNavigation.scss';
 
@@ -37,23 +21,11 @@ interface NavigationProps {
 }
 
 const getPopupContent = (sectionData: NHNavigationItemData) => {
-    const {type, data} = sectionData;
-
-    switch (type) {
-        case NHNavigationItemType.NHMediumPopup:
-            return <NHMediumPopup {...(data as NHMediumPopupData)} />;
+    switch (sectionData.type) {
         case NHNavigationItemType.NHProductsPopup:
-            return <NHProductsPopup {...(data as NHProductsPopupData)} />;
-        case NHNavigationItemType.NHSolutionsPopup:
-            return <NHSolutionsPopup {...(data as NHSolutionsPopupData)} />;
-        case NHNavigationItemType.NHWhyPopup:
-            return <NHWhyPopup {...(data as NHWhyPopupData)} />;
-        case NHNavigationItemType.NHResourcesPopup:
-            return <NHResourcesPopup {...(data as NHResourcesPopupData)} />;
-        case NHNavigationItemType.NHCompanyPopup:
-            return <NHCompanyPopup {...(data as NHCompanyPopupData)} />;
-        case NHNavigationItemType.NHInvestorPopup:
-            return <NHInvestorPopup {...(data as NHInvestorPopupData)} />;
+            return <NHProductsPopup {...sectionData.data} />;
+        case NHNavigationItemType.NHDefaultPopup:
+            return <NHDefaultPopup {...sectionData.data} />;
         default:
             return null;
     }

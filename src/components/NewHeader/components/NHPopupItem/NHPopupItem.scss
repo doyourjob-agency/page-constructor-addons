@@ -31,6 +31,10 @@ $block: '.#{$ns}nh-navigation-popup-item';
                 border: none;
             }
         }
+
+        #{$block}__container {
+            align-self: initial;
+        }
     }
 
     &:hover,
@@ -44,7 +48,8 @@ $block: '.#{$ns}nh-navigation-popup-item';
         }
 
         #{$block}__title > svg {
-            display: inline-block;
+            pointer-events: initial;
+            opacity: 1;
         }
     }
 
@@ -52,19 +57,28 @@ $block: '.#{$ns}nh-navigation-popup-item';
         pointer-events: none;
     }
 
+    &__container {
+        align-self: center;
+    }
+
     &__title {
+        position: relative;
         @include text-size(body-2);
         font-weight: 600;
         color: var(--g-color-text-primary);
         & > svg {
-            display: none;
-            vertical-align: sub;
+            display: inline-block;
+            position: absolute;
+            margin-top: 3px;
+            transition: opacity 0.2s;
+            opacity: 0;
+            pointer-events: none;
         }
     }
 
     &__description {
         @include text-size(body-1);
-
+        transition: color 0.2s;
         display: block;
         margin-top: 1px;
         color: var(--g-color-text-secondary);
@@ -84,6 +98,7 @@ $block: '.#{$ns}nh-navigation-popup-item';
             padding: $indentXXXS;
             border-radius: $indentXXXS;
             background: var(--nh-popup-item-color);
+            transition: background 0.2s;
 
             &_no-bg {
                 border: 1px solid var(--g-color-line-generic-solid);

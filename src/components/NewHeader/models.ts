@@ -1,33 +1,15 @@
 import type {ButtonProps, LinkProps} from '@doyourjob/gravity-ui-page-constructor';
 
 export enum NHNavigationItemType {
-    NHMediumPopup = 'medium-popup',
     NHProductsPopup = 'products-popup',
-    NHSolutionsPopup = 'solutions-popup',
-    NHWhyPopup = 'why-popup',
-    NHResourcesPopup = 'resources-popup',
-    NHCompanyPopup = 'company-popup',
-    NHInvestorPopup = 'investor-popup',
+    NHDefaultPopup = 'default-popup',
     Link = 'link',
-}
-
-export enum NHNavigationTagColor {
-    Green = 'green',
-    Yellow = 'yellow',
-    Blue = 'blue',
 }
 
 export interface NHLogoData {
     href?: string;
     src?: string;
     alt?: string;
-}
-
-export interface NHNavigationTag {
-    text: string;
-    color?: string;
-    textColor?: string;
-    size?: 's' | 'm';
 }
 
 export interface NHPopupItemData {
@@ -38,24 +20,7 @@ export interface NHPopupItemData {
     image?: string | null;
     imageColor?: string;
     imageColorHover?: string;
-}
-
-export interface NHCategoryGroupData {
-    title?: string;
-    items: NHPopupItemData[];
-    imageSize?: 's' | 'xm' | 'm';
-    url?: string;
-}
-
-export interface NHMediumPopupData {
-    groups: NHCategoryGroupData[];
-}
-
-export interface NHBannerData {
-    title: string;
-    description: string;
-    image: string;
-    url: string;
+    target?: string;
 }
 
 export interface NHProductBannerData {
@@ -83,90 +48,55 @@ export interface NHProductsPopupSectionScale extends NHProductsPopupSectionBase 
     banner?: NHProductBannerData;
 }
 
+export type NHProductsPopupSection =
+    | NHProductsPopupSectionRun
+    | NHProductsPopupSectionScale
+    | NHProductsPopupSectionBase;
+
 export interface NHProductsPopupData {
     primaryColor?: string;
     primaryColorHover?: string;
-    sections: (
-        | NHProductsPopupSectionRun
-        | NHProductsPopupSectionBase
-        | NHProductsPopupSectionScale
-    )[];
+    sections: NHProductsPopupSection[];
 }
 
-export interface NHSolutionsPopupSection {
+export interface NHDefaultPopupSection {
     title: string;
     subtitle: string;
     items: NHPopupItemData[];
+    columns?: number;
 }
 
-export interface NHSolutionsPopupData {
-    sections: NHSolutionsPopupSection[];
-}
-
-export interface NHWhyPopupGroup {
-    title: string;
-    items: NHPopupItemData[];
-}
-
-export interface NHWhyPopupData {
-    groups: NHWhyPopupGroup[];
-    card: NHBannerData;
-}
-
-export interface NHBannerData {
+export interface NHStoryCardData {
     title: string;
     description: string;
     image: string;
-    icon: string;
     url: string;
 }
 
 export interface NHEventCardData {
-    url: string;
-    tag: string;
     title: string;
-    date: string;
+    caption: string;
+    description: string;
     image: string;
-    location: string;
-}
-
-export interface NHResourcesPopupGroup {
-    title: string;
-    subtitle: string;
     url: string;
-    items: NHPopupItemData[];
-}
-
-export interface NHResourcesPopupData {
-    groups: NHResourcesPopupGroup[];
-    banner: NHBannerData;
-    events: {
-        title: string;
-        items: NHEventCardData[];
-    };
-}
-
-export interface NHCompanyPopupSection {
-    title: string;
-    items: NHPopupItemData[];
-}
-
-export interface NHCompanyPopupData {
-    sections: NHCompanyPopupSection[];
 }
 
 export interface NHStockData {
     title: string;
-    price: string;
+    value: string;
     date: string;
+    background?: string;
 }
 
-export interface NHInvestorPopupData {
-    title: string;
-    subtitle: string;
-    url: string;
-    items: NHPopupItemData[];
-    stock: NHStockData;
+export interface NHDefaultPopupData {
+    sections: NHDefaultPopupSection[];
+    maxWidth?: number;
+    right?: {
+        title: string;
+        stories?: NHStoryCardData[];
+        events?: NHEventCardData[];
+        stock?: NHStockData;
+    };
 }
 
 export interface NHLoginItemData {
@@ -177,7 +107,7 @@ export interface NHLoginItemData {
 
 export interface NHLoginPopupData {
     text: string;
-    items: NHLoginItemData[];
+    items: NHPopupItemData[];
 }
 
 export interface NHNavigationDefaultData {
@@ -189,50 +119,20 @@ export interface NHNavigationLinkData extends NHNavigationDefaultData {
     data: LinkProps;
 }
 
-export interface NHNavigationMediumPopupData extends NHNavigationDefaultData {
-    type: NHNavigationItemType.NHMediumPopup;
-    data: NHMediumPopupData;
-}
-
 export interface NHNavigationProductsPopupData extends NHNavigationDefaultData {
     type: NHNavigationItemType.NHProductsPopup;
     data: NHProductsPopupData;
 }
 
-export interface NHNavigationSolutionsPopupData extends NHNavigationDefaultData {
-    type: NHNavigationItemType.NHSolutionsPopup;
-    data: NHSolutionsPopupData;
-}
-
-export interface NHNavigationWhyPopupData extends NHNavigationDefaultData {
-    type: NHNavigationItemType.NHWhyPopup;
-    data: NHWhyPopupData;
-}
-
-export interface NHNavigationResourcesPopupData extends NHNavigationDefaultData {
-    type: NHNavigationItemType.NHResourcesPopup;
-    data: NHResourcesPopupData;
-}
-
-export interface NHNavigationCompanyPopupData extends NHNavigationDefaultData {
-    type: NHNavigationItemType.NHCompanyPopup;
-    data: NHCompanyPopupData;
-}
-
-export interface NHNavigationInvestorPopupData extends NHNavigationDefaultData {
-    type: NHNavigationItemType.NHInvestorPopup;
-    data: NHInvestorPopupData;
+export interface NHNavigationDefaultPopupData extends NHNavigationDefaultData {
+    type: NHNavigationItemType.NHDefaultPopup;
+    data: NHDefaultPopupData;
 }
 
 export type NHNavigationItemData =
     | NHNavigationLinkData
-    | NHNavigationMediumPopupData
     | NHNavigationProductsPopupData
-    | NHNavigationSolutionsPopupData
-    | NHNavigationWhyPopupData
-    | NHNavigationResourcesPopupData
-    | NHNavigationCompanyPopupData
-    | NHNavigationInvestorPopupData;
+    | NHNavigationDefaultPopupData;
 
 export interface NHMobileNavigationDefaultData {
     title: string;
@@ -255,12 +155,12 @@ export interface NHMobileNavigationGroupData extends NHMobileNavigationDefaultDa
 export type NHMobileNavigationItemData = NHMobileNavigationLinkData | NHMobileNavigationGroupData;
 
 export interface NHNavigationData {
-    left: NHNavigationItemData[];
-    right: NHNavigationItemData[];
-    mobile: NHMobileNavigationItemData[];
-    login: NHLoginPopupData;
-    logo: NHLogoData;
-    buttons: ButtonProps[];
+    left?: NHNavigationItemData[];
+    right?: NHNavigationItemData[];
+    mobile?: NHMobileNavigationItemData[];
+    login?: NHLoginPopupData;
+    logo?: NHLogoData;
+    buttons?: ButtonProps[];
 }
 
 export type SetupRouteChangeHandler = (handler: () => void) => void;

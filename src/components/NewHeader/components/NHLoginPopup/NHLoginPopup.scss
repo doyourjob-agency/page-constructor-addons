@@ -8,48 +8,21 @@ $block: '.#{$ns}nh-login-popup';
     border-radius: $indentXS;
     background: var(--g-color-base-float);
     box-shadow: 0 4px 24px var(--g-color-base-generic), 0 2px 8px var(--g-color-base-generic);
-
     @include navigation-overflow-popup($indentXL);
-    max-width: 260px;
     margin-left: auto;
-    width: 100%;
+    width: max-content;
+    min-width: 212px;
     scrollbar-width: none;
 
     &::-webkit-scrollbar {
         display: none;
     }
 
-    &__container {
-        padding: $indentXXXS;
-        gap: $indentXXXS;
-        display: flex;
-        flex-direction: column;
+    & > div + div {
+        border-top: 1px solid var(--g-color-line-generic-solid);
     }
 
     &__item {
-        padding: $indentXXXS;
-        display: flex;
-        flex-direction: column;
-        gap: $indent4XS;
-        width: 100%;
-        border-radius: $indentXXXS;
-        cursor: pointer;
-
-        &:hover {
-            background: var(--g-color-private-black-50);
-        }
-    }
-
-    &__title {
-        @include text-size(body-2);
-
-        font-weight: 500;
-    }
-
-    &__subtitle {
-        @include text-size(body-2);
-
-        font-weight: 500;
-        color: #9fb1bd;
+        padding: $indentXS;
     }
 }

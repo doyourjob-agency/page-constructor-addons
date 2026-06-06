@@ -13,9 +13,7 @@ import './NHPopupItem.scss';
 const b = block('nh-navigation-popup-item');
 
 export interface NHPopupItemProps extends Partial<NHPopupItemData> {
-    hover?: boolean;
     column?: boolean;
-    target?: string;
 }
 
 export const NHPopupItem = (props: NHPopupItemProps) => {

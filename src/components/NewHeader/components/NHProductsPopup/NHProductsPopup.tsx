@@ -49,7 +49,7 @@ export const NHProductsPopup = ({
             if ('mode' in section && section.mode === 'run') {
                 content = (
                     <div className={b('wrap-scale')}>
-                        {section.items?.[0] && <NHPopupItem {...section.items[0]} hover column />}
+                        {section.items?.[0] && <NHPopupItem {...section.items[0]} column />}
                         <div className={b('wrap')}>
                             {section.items
                                 ?.slice(1, 4)
@@ -57,7 +57,6 @@ export const NHProductsPopup = ({
                                     <NHPopupItem
                                         key={`${item.title}-${cardIndex + 1}`}
                                         {...item}
-                                        hover
                                         column
                                     />
                                 ))}
@@ -69,7 +68,6 @@ export const NHProductsPopup = ({
                                     <NHPopupItem
                                         key={`${item.title}-${cardIndex + 4}`}
                                         {...item}
-                                        hover
                                         column
                                     />
                                 ))}
@@ -85,7 +83,6 @@ export const NHProductsPopup = ({
                                 imageColor={primaryColor}
                                 imageColorHover={primaryColorHover}
                                 {...item}
-                                hover
                             />
                         ))}
                         {section.banner && <NHBanner {...section.banner} />}
@@ -100,7 +97,6 @@ export const NHProductsPopup = ({
                                 imageColor={primaryColor}
                                 imageColorHover={primaryColorHover}
                                 {...item}
-                                hover
                             />
                         ))}{' '}
                     </div>
