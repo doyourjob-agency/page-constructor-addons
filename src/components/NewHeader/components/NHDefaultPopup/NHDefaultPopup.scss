@@ -140,8 +140,8 @@ $block: '.#{$ns}nh-default-popup';
             @include text-size(body-2);
             color: var(--g-color-text-primary);
             font-weight: 600;
-            margin-bottom: auto;
             z-index: 1;
+            margin-bottom: $indent4XS;
         }
 
         &-value {
@@ -149,14 +149,15 @@ $block: '.#{$ns}nh-default-popup';
             font-size: 36px;
             line-height: 48px;
             font-weight: 600;
-            margin-bottom: $indent4XS;
             z-index: 1;
+            margin-top: auto;
         }
 
         &-date {
             @include text-size(body-1);
             color: var(--g-color-text-secondary);
             z-index: 1;
+            margin-top: $indent4XS;
         }
     }
 }

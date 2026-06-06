@@ -18,6 +18,7 @@ export interface NHPopupItemData {
     slug?: string;
     description?: string;
     image?: string | null;
+    imageMobile?: string | null;
     imageColor?: string;
     imageColorHover?: string;
     target?: string;
@@ -81,21 +82,17 @@ export interface NHEventCardData {
     url: string;
 }
 
-export interface NHStockData {
-    title: string;
-    value: string;
-    date: string;
-    background?: string;
-}
-
 export interface NHDefaultPopupData {
     sections: NHDefaultPopupSection[];
     maxWidth?: number;
+    primaryColor?: string;
+    primaryColorHover?: string;
     right?: {
         title: string;
         stories?: NHStoryCardData[];
         events?: NHEventCardData[];
-        stock?: NHStockData;
+        stock?: boolean;
+        stockImage?: string;
     };
 }
 

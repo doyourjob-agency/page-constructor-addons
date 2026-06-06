@@ -17,7 +17,17 @@ export interface NHPopupItemProps extends Partial<NHPopupItemData> {
 }
 
 export const NHPopupItem = (props: NHPopupItemProps) => {
-    const {url, target, title, description, image, imageColor, imageColorHover, column} = props;
+    const {
+        url,
+        target,
+        title,
+        description,
+        image,
+        imageMobile,
+        imageColor,
+        imageColorHover,
+        column,
+    } = props;
 
     const styleImageContainer = useMemo(
         () =>
@@ -28,18 +38,28 @@ export const NHPopupItem = (props: NHPopupItemProps) => {
         [imageColor, imageColorHover],
     );
 
+    const hasImage = image || imageMobile;
+
     return (
         <a
             className={b({disable: !url, column})}
             href={url}
             {...getLinkProps(url || '', undefined, target)}
         >
-            {image && (
+            {hasImage && (
                 <div
                     className={b('image-container', {'no-bg': !imageColor})}
                     style={styleImageContainer}
                 >
-                    <Image className={b('image')} src={image} />
+                    {image && (
+                        <Image
+                            className={b('image', {desktop: Boolean(imageMobile)})}
+                            src={image}
+                        />
+                    )}
+                    {imageMobile && (
+                        <Image className={b('image', {mobile: true})} src={imageMobile} />
+                    )}
                 </div>
             )}
             <div className={b('container')}>

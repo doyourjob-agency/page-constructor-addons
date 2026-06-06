@@ -1,6 +1,6 @@
-import React, {useMemo} from 'react';
+import React, {useContext, useMemo} from 'react';
 
-import {Image, getLinkProps} from '@doyourjob/gravity-ui-page-constructor';
+import {HeaderStockContext, Image, getLinkProps} from '@doyourjob/gravity-ui-page-constructor';
 
 import {block} from '../../../../utils/cn';
 import {
@@ -37,7 +37,32 @@ const NHEventCard = ({title, caption, description, image, url}: NHEventCardData)
     </a>
 );
 
-export const NHDefaultPopup = ({sections, right, maxWidth}: NHDefaultPopupData) => {
+const NHStock = ({background}: {background?: string}) => {
+    const data = useContext(HeaderStockContext);
+
+    if (!data.price) return null;
+
+    return (
+        <div className={b('stock')}>
+            {background ? (
+                <img className={b('stock-background')} src={background} alt="Stock background" />
+            ) : null}
+            <div className={b('stock-title')}>{data.price.name}</div>
+            <div className={b('stock-title')}>{data.price.percent}</div>
+            <div className={b('stock-value')}>{data.price.price}</div>
+            <div className={b('stock-date')}>{data.price.update}</div>
+            <div className={b('stock-date')}>{data.price.delayed}</div>
+        </div>
+    );
+};
+
+export const NHDefaultPopup = ({
+    sections,
+    right,
+    maxWidth,
+    primaryColor,
+    primaryColorHover,
+}: NHDefaultPopupData) => {
     const rootStyle = useMemo(
         () =>
             maxWidth
@@ -77,7 +102,12 @@ export const NHDefaultPopup = ({sections, right, maxWidth}: NHDefaultPopupData) 
                         ) : null}
                         <div className={b('wrap')} style={wrapsStyle[index]}>
                             {section.items.map((item: NHPopupItemData) => (
-                                <NHPopupItem key={item.title} {...item} />
+                                <NHPopupItem
+                                    key={item.title}
+                                    {...item}
+                                    imageColor={primaryColor}
+                                    imageColorHover={primaryColorHover}
+                                />
                             ))}
                         </div>
                     </div>
@@ -87,20 +117,7 @@ export const NHDefaultPopup = ({sections, right, maxWidth}: NHDefaultPopupData) 
                 <div className={b('right')}>
                     <div className={b('title')}>{right.title}</div>
                     {cards && <div className={b('cards')}>{cards}</div>}
-                    {right.stock && (
-                        <div className={b('stock')}>
-                            {right.stock.background ? (
-                                <img
-                                    className={b('stock-background')}
-                                    src={right.stock.background}
-                                    alt="Stock background"
-                                />
-                            ) : null}
-                            <div className={b('stock-title')}>{right.stock.title}</div>
-                            <div className={b('stock-value')}>{right.stock.value}</div>
-                            <div className={b('stock-date')}>{right.stock.date}</div>
-                        </div>
-                    )}
+                    {right.stock && <NHStock background={right.stockImage} />}
                 </div>
             )}
         </div>

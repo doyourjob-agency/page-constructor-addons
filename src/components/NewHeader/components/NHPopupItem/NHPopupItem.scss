@@ -94,6 +94,18 @@ $block: '.#{$ns}nh-navigation-popup-item';
         width: 24px;
         height: 24px;
 
+        &_desktop {
+            @media (max-width: map-get($gridBreakpoints, 'md')) {
+                display: none;
+            }
+        }
+
+        &_mobile {
+            @media (min-width: map-get($gridBreakpoints, 'md') + 1) {
+                display: none;
+            }
+        }
+
         &-container {
             padding: $indentXXXS;
             border-radius: $indentXXXS;
