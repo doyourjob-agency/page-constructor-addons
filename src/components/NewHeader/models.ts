@@ -82,6 +82,12 @@ export interface NHEventCardData {
     url: string;
 }
 
+export interface NHStockData {
+    title?: string;
+    image?: string;
+    delayed?: string;
+}
+
 export interface NHDefaultPopupData {
     sections: NHDefaultPopupSection[];
     maxWidth?: number;
@@ -91,8 +97,7 @@ export interface NHDefaultPopupData {
         title: string;
         stories?: NHStoryCardData[];
         events?: NHEventCardData[];
-        stock?: boolean;
-        stockImage?: string;
+        stock?: NHStockData;
     };
 }
 

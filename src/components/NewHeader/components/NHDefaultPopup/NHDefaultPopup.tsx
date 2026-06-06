@@ -8,6 +8,7 @@ import {
     NHDefaultPopupSection,
     NHEventCardData,
     NHPopupItemData,
+    NHStockData,
     NHStoryCardData,
 } from '../../models';
 import {NHPopupItem} from '../NHPopupItem/NHPopupItem';
@@ -37,21 +38,21 @@ const NHEventCard = ({title, caption, description, image, url}: NHEventCardData)
     </a>
 );
 
-const NHStock = ({background}: {background?: string}) => {
+const NHStock = ({title, delayed, image}: NHStockData) => {
     const data = useContext(HeaderStockContext);
 
     if (!data.price) return null;
 
     return (
         <div className={b('stock')}>
-            {background ? (
-                <img className={b('stock-background')} src={background} alt="Stock background" />
+            {image ? (
+                <img className={b('stock-background')} src={image} alt="Stock background" />
             ) : null}
-            <div className={b('stock-title')}>{data.price.name}</div>
+            <div className={b('stock-title')}>{title}</div>
             <div className={b('stock-title')}>{data.price.percent}</div>
             <div className={b('stock-value')}>{data.price.price}</div>
             <div className={b('stock-date')}>{data.price.update}</div>
-            <div className={b('stock-date')}>{data.price.delayed}</div>
+            <div className={b('stock-date')}>{delayed}</div>
         </div>
     );
 };
@@ -117,7 +118,7 @@ export const NHDefaultPopup = ({
                 <div className={b('right')}>
                     <div className={b('title')}>{right.title}</div>
                     {cards && <div className={b('cards')}>{cards}</div>}
-                    {right.stock && <NHStock background={right.stockImage} />}
+                    {right.stock && <NHStock {...right.stock} />}
                 </div>
             )}
         </div>
