@@ -89,6 +89,7 @@ export const NewHeader = ({
                 className={b(
                     {
                         search: isSearchMode,
+                        'is-mobile-opened': isMobileNavigationOpen,
                         'with-background': withBackground || isMobileNavigationOpen,
                     },
                     className,
