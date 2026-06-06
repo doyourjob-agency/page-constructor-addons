@@ -19,11 +19,6 @@ $block: '.#{$ns}new-header';
         background: var(--g-color-base-background);
     }
 
-    &_is-mobile-opened {
-        position: fixed;
-        top: 0;
-    }
-
     &__container {
         position: relative;
         width: 100%;
