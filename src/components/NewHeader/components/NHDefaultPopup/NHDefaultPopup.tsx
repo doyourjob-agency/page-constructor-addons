@@ -2,6 +2,7 @@ import React, {useMemo} from 'react';
 
 import {block} from '../../../../utils/cn';
 import {NHDefaultPopupData, NHDefaultPopupSection, NHPopupItemData} from '../../models';
+import {NHBanner} from '../NHBanner/NHBanner';
 import {NHEventCard} from '../NHEventCard/NHEventCard';
 import {NHPopupItem} from '../NHPopupItem/NHPopupItem';
 import {NHStock} from '../NHStock/NHStock';
@@ -31,10 +32,12 @@ export const NHDefaultPopup = ({
     const wrapsStyle = useMemo(
         () =>
             sections.map((section) => ({
-                gridTemplateColumns: `repeat(${section.columns || 3}, 1fr)`,
+                gridTemplateColumns:
+                    section.mode === 'run' ? undefined : `repeat(${section.columns || 3}, 1fr)`,
             })) as React.CSSProperties[],
         [sections],
     );
+
     const cards = useMemo(() => {
         if (right?.stories) {
             return right.stories.map((card, index) => <NHStoryCard key={index} {...card} />);
@@ -44,29 +47,60 @@ export const NHDefaultPopup = ({
         }
         return null;
     }, [right]);
+
+    const renderSectionContent = (section: NHDefaultPopupSection, index: number) => {
+        if (section.mode === 'run') {
+            return (
+                <div className={b('wrap', {mode: 'run'})}>
+                    {section.items?.[0] && <NHPopupItem {...section.items[0]} column />}
+                    <div className={b('inner-wrap')}>
+                        {section.items
+                            ?.slice(1, 4)
+                            .map((item: NHPopupItemData, cardIndex: number) => (
+                                <NHPopupItem key={cardIndex} {...item} column />
+                            ))}
+                    </div>
+                    <div className={b('inner-wrap')}>
+                        {section.items?.slice(4).map((item: NHPopupItemData, cardIndex: number) => (
+                            <NHPopupItem key={cardIndex} {...item} column />
+                        ))}
+                    </div>
+                </div>
+            );
+        }
+
+        return (
+            <div className={b('wrap')} style={wrapsStyle[index]}>
+                {section.items.map((item: NHPopupItemData, idx: number) => (
+                    <NHPopupItem
+                        key={idx}
+                        {...item}
+                        imageColor={primaryColor}
+                        imageColorHover={primaryColorHover}
+                    />
+                ))}
+                {section.mode === 'scale' && section.banner && <NHBanner {...section.banner} />}
+            </div>
+        );
+    };
+
     return (
         <div className={b()} style={rootStyle}>
             <div className={b('left')}>
-                {sections.map((section: NHDefaultPopupSection, index: number) => (
-                    <div key={index} className={b('section')}>
-                        {section.title || section.subtitle ? (
-                            <div className={b('head')}>
-                                <div className={b('title')}>{section.title}</div>
-                                <div className={b('subtitle')}>{section.subtitle}</div>
-                            </div>
-                        ) : null}
-                        <div className={b('wrap')} style={wrapsStyle[index]}>
-                            {section.items.map((item: NHPopupItemData, idx: number) => (
-                                <NHPopupItem
-                                    key={idx}
-                                    {...item}
-                                    imageColor={primaryColor}
-                                    imageColorHover={primaryColorHover}
-                                />
-                            ))}
+                {sections.map((section: NHDefaultPopupSection, index: number) => {
+                    const hasSideHead = Boolean(section.mode);
+                    return (
+                        <div key={index} className={b('section', {'side-head': hasSideHead})}>
+                            {section.title || section.subtitle ? (
+                                <div className={b(hasSideHead ? 'section-head' : 'head')}>
+                                    <div className={b('title')}>{section.title}</div>
+                                    <div className={b('subtitle')}>{section.subtitle}</div>
+                                </div>
+                            ) : null}
+                            {renderSectionContent(section, index)}
                         </div>
-                    </div>
-                ))}
+                    );
+                })}
             </div>
             {right && (
                 <div className={b('right')}>

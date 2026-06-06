@@ -6,7 +6,6 @@ import {block} from '../../../../utils/cn';
 import {NHNavigationItemData, NHNavigationItemType} from '../../models';
 
 import {NHDefaultPopupContent} from './components/NHDefaultPopupContent/NHDefaultPopupContent';
-import {NHProductsContent} from './components/NHProductsContent/NHProductsContent';
 
 import './NHMobileNavigationItem.scss';
 
@@ -64,9 +63,6 @@ export const NHMobileNavigationItem = ({item}: NHMobileNavigationItemProps) => {
                     </div>
                 </div>
                 <Foldable isOpened={isOpened}>
-                    {item.type === NHNavigationItemType.NHProductsPopup && (
-                        <NHProductsContent data={item.data} />
-                    )}
                     {item.type === NHNavigationItemType.NHDefaultPopup && (
                         <NHDefaultPopupContent data={item.data} />
                     )}

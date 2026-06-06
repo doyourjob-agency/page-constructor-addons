@@ -10,10 +10,15 @@ $block: '.#{$ns}nh-default-popup-content';
     gap: 40px;
     background: var(--g-color-base-background);
 
-    &__section {
+    &__section,
+    &__section-items {
         display: flex;
         flex-direction: column;
         gap: $indentS;
+    }
+
+    &__banner-container {
+        margin-top: $indentXS;
     }
 
     &__section-title {

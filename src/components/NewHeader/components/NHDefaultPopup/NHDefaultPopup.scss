@@ -49,12 +49,54 @@ $block: '.#{$ns}nh-default-popup';
         padding: $indentSM $indentM;
         flex-direction: column;
         gap: $indentSM;
+
+        &_side-head {
+            flex-direction: row;
+            gap: 0;
+        }
+    }
+
+    &__section-head {
+        display: flex;
+        flex-direction: column;
+        width: 200px;
+        padding-right: $indentM;
+        flex-shrink: 0;
+        gap: 2px;
     }
 
     &__wrap {
         display: grid;
         gap: $indentSM 40px;
         align-items: flex-start;
+
+        &_mode_run {
+            grid-template-columns: repeat(12, 1fr);
+
+            & > a {
+                grid-column: span 4;
+                grid-row: 1;
+            }
+
+            & > .#{$ns}nh-default-popup__inner-wrap:empty {
+                display: none;
+            }
+
+            & > a + .#{$ns}nh-default-popup__inner-wrap {
+                grid-column: span 8;
+            }
+
+            & > .#{$ns}nh-default-popup__inner-wrap:last-child {
+                grid-column: span 12;
+            }
+        }
+    }
+
+    &__inner-wrap {
+        display: grid;
+        gap: $indentSM 40px;
+        align-items: flex-start;
+        grid-template-columns: 1fr 1fr 1fr;
     }
 
     &__right {

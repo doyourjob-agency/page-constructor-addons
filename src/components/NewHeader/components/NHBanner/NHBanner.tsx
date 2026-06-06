@@ -21,8 +21,8 @@ export const NHBanner = ({
     const styles = useMemo(
         () =>
             ({
-                ...(background ? {'--nh-products-banner-background': background} : {}),
-                ...(color ? {'--nh-products-banner-color': color} : {}),
+                ...(background ? {'--nh-banner-background': background} : {}),
+                ...(color ? {'--nh-banner-color': color} : {}),
             } as unknown as React.CSSProperties),
         [background, color],
     );

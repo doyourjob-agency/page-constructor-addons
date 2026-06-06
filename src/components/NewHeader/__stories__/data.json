@@ -16,7 +16,7 @@
       "left": [
         {
           "title": "Products",
-          "type": "products-popup",
+          "type": "default-popup",
           "data": {
             "primaryColor": "rgba(213, 236, 255, 1)",
             "primaryColorHover": "rgba(213, 236, 255, 0.5)",
@@ -55,6 +55,7 @@
               },
               {
                 "title": "Build",
+                "mode": "build",
                 "subtitle": "Train, improve and serve custom models",
                 "items": [
                   {

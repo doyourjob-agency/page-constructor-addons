@@ -1,7 +1,6 @@
 import type {ButtonProps, LinkProps} from '@doyourjob/gravity-ui-page-constructor';
 
 export enum NHNavigationItemType {
-    NHProductsPopup = 'products-popup',
     NHDefaultPopup = 'default-popup',
     Link = 'link',
 }
@@ -34,37 +33,13 @@ export interface NHProductBannerData {
     border?: boolean;
 }
 
-export interface NHProductsPopupSectionBase {
-    title: string;
-    subtitle: string;
-    items?: NHPopupItemData[];
-}
-
-export interface NHProductsPopupSectionRun extends NHProductsPopupSectionBase {
-    mode: 'run';
-}
-
-export interface NHProductsPopupSectionScale extends NHProductsPopupSectionBase {
-    mode: 'scale';
-    banner?: NHProductBannerData;
-}
-
-export type NHProductsPopupSection =
-    | NHProductsPopupSectionRun
-    | NHProductsPopupSectionScale
-    | NHProductsPopupSectionBase;
-
-export interface NHProductsPopupData {
-    primaryColor?: string;
-    primaryColorHover?: string;
-    sections: NHProductsPopupSection[];
-}
-
 export interface NHDefaultPopupSection {
     title: string;
     subtitle: string;
     items: NHPopupItemData[];
     columns?: number;
+    mode?: 'run' | 'scale' | 'build';
+    banner?: NHProductBannerData;
 }
 
 export interface NHStoryCardData {
@@ -121,20 +96,12 @@ export interface NHNavigationLinkData extends NHNavigationDefaultData {
     data: LinkProps;
 }
 
-export interface NHNavigationProductsPopupData extends NHNavigationDefaultData {
-    type: NHNavigationItemType.NHProductsPopup;
-    data: NHProductsPopupData;
-}
-
 export interface NHNavigationDefaultPopupData extends NHNavigationDefaultData {
     type: NHNavigationItemType.NHDefaultPopup;
     data: NHDefaultPopupData;
 }
 
-export type NHNavigationItemData =
-    | NHNavigationLinkData
-    | NHNavigationProductsPopupData
-    | NHNavigationDefaultPopupData;
+export type NHNavigationItemData = NHNavigationLinkData | NHNavigationDefaultPopupData;
 
 export interface NHNavigationData {
     left?: NHNavigationItemData[];

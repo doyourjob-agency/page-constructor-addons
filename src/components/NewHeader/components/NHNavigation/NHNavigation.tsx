@@ -7,7 +7,6 @@ import {NHNavigationItemData, NHNavigationItemType, SetupRouteChangeHandler} fro
 import {NHDefaultPopup} from '../NHDefaultPopup/NHDefaultPopup';
 import {NHNavigationItem} from '../NHNavigationItem/NHNavigationItem';
 import {NHNavigationPopup} from '../NHNavigationPopup/NHNavigationPopup';
-import {NHProductsPopup} from '../NHProductsPopup/NHProductsPopup';
 
 import './NHNavigation.scss';
 
@@ -22,8 +21,6 @@ interface NavigationProps {
 
 const getPopupContent = (sectionData: NHNavigationItemData) => {
     switch (sectionData.type) {
-        case NHNavigationItemType.NHProductsPopup:
-            return <NHProductsPopup {...sectionData.data} />;
         case NHNavigationItemType.NHDefaultPopup:
             return <NHDefaultPopup {...sectionData.data} />;
         default:
