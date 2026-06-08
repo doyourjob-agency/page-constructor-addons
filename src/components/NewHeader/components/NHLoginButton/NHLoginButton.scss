@@ -9,7 +9,7 @@ $block: '.#{$ns}nh-login-button';
     height: 36px;
     gap: $indent4XS;
     padding: 0 $indentXXS 0 $indentXS;
-    background: var(--g-color-base-brand);
+    background: #001a2b;
     color: var(--g-color-text-brand-contrast);
     border-radius: $indentXXXS;
     @include text-size(body-2);
