@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+### Bug Fixes
+
+* improve NewHeader keyboard navigation, menu-bar popup switching, and focus visibility
+
 ## [2.1.10] Add HeaderStripe block
 
 ## [2.0.0] Update @gravity-ui/page-constructor v5 and  @gravity-ui/uikit v6 (2024-08-26)

@@ -20,6 +20,11 @@ $mobileContainerHeight: 64px;
         &_hidden {
             display: none;
         }
+
+        &:focus-visible {
+            outline: 2px solid var(--g-color-line-focus);
+            outline-offset: 2px;
+        }
     }
 
     &__header {
@@ -39,6 +44,11 @@ $mobileContainerHeight: 64px;
             align-items: center;
             gap: $indentXXXS;
         }
+    }
+
+    &__close-button:focus-visible {
+        outline: 2px solid var(--g-color-line-focus);
+        outline-offset: 2px;
     }
 
     &__search-container {

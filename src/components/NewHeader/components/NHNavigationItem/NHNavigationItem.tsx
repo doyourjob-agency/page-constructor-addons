@@ -20,6 +20,9 @@ interface NavigationItemOwnProps {
     item: NHNavigationItemData;
     isActive: boolean;
     handleActiveTab: (currentIndex: number) => void;
+    handleFocusTab: (currentIndex: number) => void;
+    handleFocusTabPopup: (currentIndex: number) => void;
+    handleToggleTab: (currentIndex: number) => void;
     children?: ReactNode;
     tooltipId?: string;
 }
@@ -28,6 +31,9 @@ export const NHNavigationItem: FC<NavigationItemOwnProps> = ({
     item,
     isActive,
     handleActiveTab,
+    handleFocusTab,
+    handleFocusTabPopup,
+    handleToggleTab,
     index,
     children,
     tooltipId,
@@ -39,6 +45,21 @@ export const NHNavigationItem: FC<NavigationItemOwnProps> = ({
     const handleMouseLeave = useCallback(
         () => handleActiveTab(NO_MENU_TAB_SELECTED),
         [handleActiveTab],
+    );
+    const handleToggle = useCallback(() => handleToggleTab(index), [handleToggleTab, index]);
+    const handlePopupFocus = useCallback(() => handleFocusTab(index), [handleFocusTab, index]);
+    const handleLinkFocus = useCallback(
+        () => handleFocusTab(NO_MENU_TAB_SELECTED),
+        [handleFocusTab],
+    );
+    const handleKeyDown = useCallback(
+        (event: React.KeyboardEvent<HTMLButtonElement>) => {
+            if (event.key === 'ArrowDown') {
+                event.preventDefault();
+                handleFocusTabPopup(index);
+            }
+        },
+        [handleFocusTabPopup, index],
     );
 
     useEffect(
@@ -59,6 +80,7 @@ export const NHNavigationItem: FC<NavigationItemOwnProps> = ({
                 <a
                     className={b('text', {active: isActive})}
                     href={item.data?.url}
+                    onFocus={handleLinkFocus}
                     {...getLinkProps(item.data?.url || '', undefined, item.data?.target)}
                 >
                     {item.title}
@@ -72,7 +94,10 @@ export const NHNavigationItem: FC<NavigationItemOwnProps> = ({
         <li className={b({})} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
             <button
                 className={b('text', {active: isActive, cursor: 'default'})}
-                onClick={handleMouseEnter}
+                type="button"
+                onClick={handleToggle}
+                onFocus={handlePopupFocus}
+                onKeyDown={handleKeyDown}
                 aria-expanded={isActive}
                 aria-controls={tooltipId}
             >

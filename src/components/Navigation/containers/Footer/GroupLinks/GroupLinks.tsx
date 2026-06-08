@@ -22,8 +22,8 @@ const b = block('group-links');
 const GroupLinks = ({columnGroup: {title, items}, className}: GroupLinksProps) => {
     return (
         <div className={b(null, className)} key={title}>
-            <ul className={b('group')}>
-                {title && <h5 className={b('group-title')}>{title}</h5>}
+            {title && <h5 className={b('group-title')}>{title}</h5>}
+            <ul className={b('group')} aria-label={title}>
                 {items.map((item) => (
                     <li key={item.title} className={b('item-wrapper')}>
                         <EnrichedLink className={b('item')} {...item} />

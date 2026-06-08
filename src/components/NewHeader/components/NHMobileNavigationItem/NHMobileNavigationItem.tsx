@@ -24,6 +24,7 @@ export const NHMobileNavigationItem = ({item}: NHMobileNavigationItemProps) => {
     const handleKeyDown = useCallback(
         (e: React.KeyboardEvent) => {
             if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
                 toggleOpen();
             }
         },
@@ -50,6 +51,7 @@ export const NHMobileNavigationItem = ({item}: NHMobileNavigationItemProps) => {
                     onClick={toggleOpen}
                     role="button"
                     tabIndex={0}
+                    aria-expanded={isOpened}
                     onKeyDown={handleKeyDown}
                 >
                     <div className={b('text')}>{item.title}</div>

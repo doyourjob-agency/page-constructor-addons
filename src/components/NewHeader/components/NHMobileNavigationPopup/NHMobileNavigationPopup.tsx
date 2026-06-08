@@ -14,6 +14,7 @@ const b = block('nh-mobile-navigation-popup');
 const TRANSITION_TIME = 400;
 
 interface MobileNavigationPopupProps {
+    id?: string;
     isOpened: boolean;
     onClose: () => void;
     children: React.ReactNode;
@@ -21,6 +22,7 @@ interface MobileNavigationPopupProps {
 }
 
 export const NHMobileNavigationPopup = ({
+    id,
     isOpened,
     onClose,
     children,
@@ -67,7 +69,7 @@ export const NHMobileNavigationPopup = ({
             timeout={TRANSITION_TIME}
         >
             <OutsideClick className={b()} onOutsideClick={onClose}>
-                <div ref={ref} className={b('container')}>
+                <div ref={ref} className={b('container')} id={id}>
                     {children}
                 </div>
             </OutsideClick>

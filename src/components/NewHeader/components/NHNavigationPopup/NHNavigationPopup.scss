@@ -11,7 +11,16 @@ $block: '.#{$ns}nh-navigation-popup';
     width: 100%;
     z-index: 10;
 
-    &:focus {
-        outline: 0; // to hide the outline when focustrap enabled
+    a,
+    button,
+    input,
+    select,
+    textarea,
+    [tabindex]:not([tabindex='-1']) {
+        &:focus-visible,
+        &[data-keyboard-focus='true'] {
+            outline: 2px solid var(--g-color-line-focus);
+            outline-offset: 4px;
+        }
     }
 }

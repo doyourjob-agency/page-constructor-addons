@@ -3,7 +3,13 @@
 
 $block: '.#{$ns}nh-login-button';
 
+#{$block}__wrapper {
+    display: flex;
+}
+
 #{$block} {
+    @include reset-button-style();
+
     display: flex;
     align-items: center;
     height: 36px;
@@ -18,5 +24,10 @@ $block: '.#{$ns}nh-login-button';
 
     &:hover {
         background: var(--g-color-base-brand-hover);
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--g-color-line-focus);
+        outline-offset: 2px;
     }
 }

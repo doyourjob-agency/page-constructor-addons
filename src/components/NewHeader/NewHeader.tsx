@@ -38,6 +38,7 @@ export const NewHeader = ({
     const [isSearchMode, setIsSearchMode] = useState(false);
     const [isMobileNavigationOpen, setIsMobileNavigationOpen] = useState(false);
     const [pageHasScroll, setPageHasScroll] = useState(false);
+    const [activeNavigationId, setActiveNavigationId] = useState<string | null>(null);
 
     const showButtonsContainer = Boolean(buttons);
 
@@ -100,14 +101,26 @@ export const NewHeader = ({
                         {logo && <NHLogo data={logo} />}
                         {left ? (
                             <div className={b('navigation')}>
-                                <NHNavigation data={left} headerRef={headerRef} />
+                                <NHNavigation
+                                    activeNavigationId={activeNavigationId}
+                                    data={left}
+                                    headerRef={headerRef}
+                                    navigationId="left"
+                                    setActiveNavigationId={setActiveNavigationId}
+                                />
                             </div>
                         ) : null}
                     </div>
                     <div className={b('right')}>
                         {right ? (
                             <div className={b('navigation')}>
-                                <NHNavigation data={right} headerRef={headerRef} />
+                                <NHNavigation
+                                    activeNavigationId={activeNavigationId}
+                                    data={right}
+                                    headerRef={headerRef}
+                                    navigationId="right"
+                                    setActiveNavigationId={setActiveNavigationId}
+                                />
                             </div>
                         ) : null}
                         <div className={b('wrap')}>

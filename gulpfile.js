@@ -29,6 +29,7 @@ function compileTs(modules = false) {
         '!src/stories/**/*',
         '!src/**/__stories__/**/*',
         '!src/**/__tests__/**/*',
+        '!src/**/*.test.{ts,tsx}',
         '!src/configure.ts',
         '!test-utils/**/*',
     ])
@@ -56,6 +57,7 @@ task('copy-js-declarations', () => {
         '!src/stories/**/*.d.ts',
         '!src/**/__stories__/**/*.d.ts',
         '!src/**/__tests__/**/*.d.ts',
+        '!src/**/*.test.d.ts',
         '!test-utils/**/*.d.ts',
     ])
         .pipe(dest(path.resolve(BUILD_CLIENT_DIR, ESM_DIR)))
