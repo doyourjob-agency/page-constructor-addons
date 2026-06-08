@@ -42,6 +42,7 @@
     "*.scss"
   ],
   "scripts": {
+    "bump-patch-release": "node ./scripts/bump-patch.mjs",
     "deps:install": "npm ci",
     "deps:truncate": "npm prune --production",
     "lint:fix": "run-s lint:js:fix lint:styles:fix lint:prettier:fix typecheck",

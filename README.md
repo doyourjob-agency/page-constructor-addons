@@ -10,6 +10,18 @@
 npm install @gravity-ui/page-constructor-addons
 ```
 
+## Release patch
+
+Run from a clean branch with an upstream configured:
+
+```shell
+pnpm bump-patch-release
+```
+
+The script fetches the upstream remote, refuses to continue if upstream has commits missing
+locally, bumps the package patch version, commits `chore: release vX.Y.Z`, creates the
+`vX.Y.Z` tag, then pushes the commit and tag.
+
 ## Development
 
 ```bash
