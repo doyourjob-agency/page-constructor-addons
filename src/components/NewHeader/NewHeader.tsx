@@ -1,6 +1,6 @@
 import React, {ReactNode, useCallback, useEffect, useRef, useState} from 'react';
 
-import {ClassNameProps, Button as PCButton} from '@doyourjob/gravity-ui-page-constructor';
+import {ClassNameProps, getLinkProps} from '@doyourjob/gravity-ui-page-constructor';
 
 import {block} from '../../utils/cn';
 
@@ -119,12 +119,18 @@ export const NewHeader = ({
                             <div className={b('buttons')}>
                                 {showButtonsContainer &&
                                     buttons?.map((button, index) => (
-                                        <PCButton
-                                            {...button}
-                                            className={b('button')}
-                                            size="l"
+                                        <a
                                             key={index}
-                                        />
+                                            href={button.url}
+                                            className={b('button')}
+                                            {...getLinkProps(
+                                                button.url || '',
+                                                undefined,
+                                                button.target,
+                                            )}
+                                        >
+                                            {button.text}
+                                        </a>
                                     ))}
                                 {login && <NHLoginButton data={login} headerRef={headerRef} />}
                             </div>

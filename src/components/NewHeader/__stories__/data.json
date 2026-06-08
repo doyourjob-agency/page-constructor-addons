@@ -9,8 +9,7 @@
       "buttons": [
         {
           "text": "Contact sales",
-          "url": "#button-target",
-          "theme": "outlined"
+          "url": "#button-target"
         }
       ],
       "left": [

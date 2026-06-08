@@ -1,4 +1,4 @@
-import type {ButtonProps, LinkProps} from '@doyourjob/gravity-ui-page-constructor';
+import type {LinkProps} from '@doyourjob/gravity-ui-page-constructor';
 
 export enum NHNavigationItemType {
     NHDefaultPopup = 'default-popup',
@@ -108,7 +108,11 @@ export interface NHNavigationData {
     right?: NHNavigationItemData[];
     login?: NHLoginPopupData;
     logo?: NHLogoData;
-    buttons?: ButtonProps[];
+    buttons?: {
+        text: string;
+        url: string;
+        target?: string;
+    }[];
 }
 
 export type SetupRouteChangeHandler = (handler: () => void) => void;

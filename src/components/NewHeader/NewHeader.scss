@@ -68,11 +68,6 @@ $block: '.#{$ns}new-header';
         justify-content: flex-end;
     }
 
-    &__buttons {
-        display: flex;
-        margin-left: $indentXXXS;
-    }
-
     &__icon {
         color: var(--g-color-text-hint);
         transition: color 0.2s;
@@ -143,6 +138,8 @@ $block: '.#{$ns}new-header';
     &__buttons {
         display: flex;
         gap: $indentXXXS;
+        --g-button-border-radius: 8px;
+        --g-button-background-color-hover: ;
 
         @media (max-width: map-get($gridBreakpoints, 'sm')) {
             display: none;
@@ -150,11 +147,20 @@ $block: '.#{$ns}new-header';
     }
 
     &__button {
+        @include reset-link-style();
         display: flex;
         align-items: center;
-        padding: 0 $indentXXS;
+        height: 36px;
+        padding: 0 $indentXS;
         @include text-size(body-2);
         font-weight: 500;
+        border-radius: $indentXXXS;
+        border: 1px solid rgba(5, 43, 66, 0.1);
+        transition: border-color 0.2s;
+
+        &:hover {
+            border-color: rgba(5, 43, 66, 0.25);
+        }
     }
 
     @media (max-width: map-get($gridBreakpoints, 'lg')) {
