@@ -28,6 +28,7 @@ $block: '.#{$ns}nh-mobile-navigation-item';
 
     &__arrow {
         color: var(--g-color-text-secondary);
+        display: flex;
     }
 
     &__content {
