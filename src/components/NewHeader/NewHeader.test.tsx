@@ -168,6 +168,40 @@ describe('NewHeader accessibility', () => {
         expect(await screen.findByRole('link', {name: /New Arrivals/})).toBeInTheDocument();
     });
 
+    test('opens a desktop popup on hover', async () => {
+        const user = userEvent.setup();
+        renderHeader();
+
+        await user.hover(screen.getByRole('button', {name: 'Products'}));
+
+        expect(await screen.findByRole('link', {name: /New Arrivals/})).toBeInTheDocument();
+    });
+
+    test('does not toggle a desktop popup from a mouse click', async () => {
+        const user = userEvent.setup();
+        renderHeader();
+
+        await user.click(screen.getByRole('button', {name: 'Products'}));
+
+        expect(screen.queryByRole('link', {name: /New Arrivals/})).not.toBeInTheDocument();
+    });
+
+    test('does not switch an open desktop popup from a mouse click', async () => {
+        const user = userEvent.setup();
+        renderHeader();
+
+        const products = screen.getByRole('button', {name: 'Products'});
+
+        products.focus();
+        await user.keyboard('{Enter}');
+        expect(await screen.findByRole('link', {name: /New Arrivals/})).toBeInTheDocument();
+
+        await user.click(screen.getByRole('button', {name: 'Solutions'}));
+
+        expect(screen.getByRole('link', {name: /New Arrivals/})).toBeInTheDocument();
+        expect(screen.queryByRole('link', {name: /Solution Overview/})).not.toBeInTheDocument();
+    });
+
     test('moves focus from a desktop trigger into its popup with ArrowDown', async () => {
         const user = userEvent.setup();
         renderHeader();

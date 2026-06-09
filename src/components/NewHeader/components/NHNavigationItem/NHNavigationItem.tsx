@@ -46,7 +46,9 @@ export const NHNavigationItem: FC<NavigationItemOwnProps> = ({
         () => handleActiveTab(NO_MENU_TAB_SELECTED),
         [handleActiveTab],
     );
-    const handleToggle = useCallback(() => handleToggleTab(index), [handleToggleTab, index]);
+    const handleMouseDown = useCallback((event: React.MouseEvent<HTMLButtonElement>) => {
+        event.preventDefault();
+    }, []);
     const handlePopupFocus = useCallback(() => handleFocusTab(index), [handleFocusTab, index]);
     const handleLinkFocus = useCallback(
         () => handleFocusTab(NO_MENU_TAB_SELECTED),
@@ -57,9 +59,12 @@ export const NHNavigationItem: FC<NavigationItemOwnProps> = ({
             if (event.key === 'ArrowDown') {
                 event.preventDefault();
                 handleFocusTabPopup(index);
+            } else if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                handleToggleTab(index);
             }
         },
-        [handleFocusTabPopup, index],
+        [handleFocusTabPopup, handleToggleTab, index],
     );
 
     useEffect(
@@ -95,7 +100,7 @@ export const NHNavigationItem: FC<NavigationItemOwnProps> = ({
             <button
                 className={b('text', {active: isActive, cursor: 'default'})}
                 type="button"
-                onClick={handleToggle}
+                onMouseDown={handleMouseDown}
                 onFocus={handlePopupFocus}
                 onKeyDown={handleKeyDown}
                 aria-expanded={isActive}

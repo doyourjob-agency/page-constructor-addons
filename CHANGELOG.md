@@ -5,6 +5,7 @@
 ### Bug Fixes
 
 * improve NewHeader keyboard navigation, menu-bar popup switching, and focus visibility
+* prevent desktop NewHeader popup triggers from opening on mouse click
 * keep HeaderStripe keyboard focus on visible controls
 * show keyboard focus on the NewHeader logo
 
