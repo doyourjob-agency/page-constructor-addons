@@ -2,7 +2,7 @@ import React from 'react';
 
 import {Theme} from '@doyourjob/gravity-ui-page-constructor';
 import {MobileProvider, Platform, ThemeProvider} from '@gravity-ui/uikit';
-import {cleanup, render, screen, waitFor, within} from '@testing-library/react';
+import {cleanup, fireEvent, render, screen, waitFor, within} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import {NewHeader} from './NewHeader';
@@ -174,14 +174,13 @@ describe('NewHeader accessibility', () => {
 
         await user.hover(screen.getByRole('button', {name: 'Products'}));
 
-        expect(await screen.findByRole('link', {name: /New Arrivals/})).toBeInTheDocument();
+        expect(screen.getByRole('link', {name: /New Arrivals/})).toBeInTheDocument();
     });
 
-    test('does not toggle a desktop popup from a mouse click', async () => {
-        const user = userEvent.setup();
+    test('does not toggle a desktop popup from a mouse click', () => {
         renderHeader();
 
-        await user.click(screen.getByRole('button', {name: 'Products'}));
+        fireEvent.click(screen.getByRole('button', {name: 'Products'}));
 
         expect(screen.queryByRole('link', {name: /New Arrivals/})).not.toBeInTheDocument();
     });
@@ -398,14 +397,13 @@ describe('NewHeader accessibility', () => {
 
         await user.hover(screen.getByRole('button', {name: 'Log in'}));
 
-        expect(await screen.findByRole('link', {name: /Console/})).toBeInTheDocument();
+        expect(screen.getByRole('link', {name: /Console/})).toBeInTheDocument();
     });
 
-    test('does not toggle the login menu from a mouse click', async () => {
-        const user = userEvent.setup();
+    test('does not toggle the login menu from a mouse click', () => {
         renderHeader();
 
-        await user.click(screen.getByRole('button', {name: 'Log in'}));
+        fireEvent.click(screen.getByRole('button', {name: 'Log in'}));
 
         expect(screen.queryByRole('link', {name: /Console/})).not.toBeInTheDocument();
     });

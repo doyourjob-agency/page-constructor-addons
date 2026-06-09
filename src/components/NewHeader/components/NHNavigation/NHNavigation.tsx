@@ -57,10 +57,20 @@ export const NHNavigation = ({
         [navigationId, setActiveNavigationId],
     );
 
-    const handleActiveTab = useCallback((currentIndex: number) => {
-        setPreviouslyFocusedElement(document.activeElement as HTMLElement);
-        setPretendentAciveTab(currentIndex);
-    }, []);
+    const handleActiveTab = useCallback(
+        (currentIndex: number) => {
+            setPreviouslyFocusedElement(document.activeElement as HTMLElement);
+
+            if (activeTab === NO_MENU_TAB_SELECTED && currentIndex !== NO_MENU_TAB_SELECTED) {
+                setNavigationTab(currentIndex);
+
+                return;
+            }
+
+            setPretendentAciveTab(currentIndex);
+        },
+        [activeTab, setNavigationTab],
+    );
 
     const handleToggleTab = useCallback(
         (currentIndex: number) => {

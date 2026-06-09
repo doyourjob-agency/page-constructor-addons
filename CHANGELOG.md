@@ -4,6 +4,7 @@
 
 ### Bug Fixes
 
+* open desktop NewHeader hover menus immediately on first hover
 * improve NewHeader keyboard navigation, menu-bar popup switching, and focus visibility
 * keep NewHeader popup item focus rings limited to keyboard focus
 * prevent desktop NewHeader login menu from opening on mouse click

@@ -29,10 +29,17 @@ export const NHLoginButton = ({data, headerRef, setupRouteChangeHandler}: LoginB
     );
     const popupId = useUniqId();
 
-    const handleActiveTab = useCallback((val: boolean) => {
-        setPreviouslyFocusedElement(document.activeElement as HTMLElement);
-        setPretendentAciveTab(val);
-    }, []);
+    const handleActiveTab = useCallback(
+        (val: boolean) => {
+            setPreviouslyFocusedElement(document.activeElement as HTMLElement);
+            setPretendentAciveTab(val);
+
+            if (!isActive && val) {
+                setIsActive(true);
+            }
+        },
+        [isActive],
+    );
 
     const onEscapeKeyDown = useCallback(
         (event: KeyboardEvent) => {
