@@ -154,7 +154,7 @@ $block: '.#{$ns}new-header';
         padding: 0 $indentXS;
         @include text-size(body-2);
         font-weight: 500;
-        border-radius: $indentXXXS;
+        border-radius: $indentXXS;
         border: 1px solid rgba(5, 43, 66, 0.1);
         transition: border-color 0.2s;
 
