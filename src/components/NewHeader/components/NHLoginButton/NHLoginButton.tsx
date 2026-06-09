@@ -49,6 +49,10 @@ export const NHLoginButton = ({data, headerRef, setupRouteChangeHandler}: LoginB
 
     const handleMouseLeave = useCallback(() => handleActiveTab(false), [handleActiveTab]);
 
+    const handleMouseDown = useCallback((event: React.MouseEvent<HTMLButtonElement>) => {
+        event.preventDefault();
+    }, []);
+
     const handleToggle = useCallback(() => {
         const focusedElement = document.activeElement as HTMLElement;
         const nextIsActive = !isActive;
@@ -61,6 +65,16 @@ export const NHLoginButton = ({data, headerRef, setupRouteChangeHandler}: LoginB
             focusedElement?.focus({preventScroll: true});
         }
     }, [isActive]);
+
+    const handleKeyDown = useCallback(
+        (event: React.KeyboardEvent<HTMLButtonElement>) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                handleToggle();
+            }
+        },
+        [handleToggle],
+    );
 
     useEffect(() => {
         const timerId = setTimeout(() => {
@@ -95,7 +109,8 @@ export const NHLoginButton = ({data, headerRef, setupRouteChangeHandler}: LoginB
             <button
                 className={b()}
                 type="button"
-                onClick={handleToggle}
+                onMouseDown={handleMouseDown}
+                onKeyDown={handleKeyDown}
                 aria-expanded={isActive}
                 aria-controls={popupId}
             >

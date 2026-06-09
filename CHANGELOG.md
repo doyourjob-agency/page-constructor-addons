@@ -6,6 +6,7 @@
 
 * improve NewHeader keyboard navigation, menu-bar popup switching, and focus visibility
 * keep NewHeader popup item focus rings limited to keyboard focus
+* prevent desktop NewHeader login menu from opening on mouse click
 * prevent desktop NewHeader popup triggers from opening on mouse click
 * keep HeaderStripe keyboard focus on visible controls
 * show keyboard focus on the NewHeader logo

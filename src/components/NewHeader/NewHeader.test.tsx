@@ -392,6 +392,24 @@ describe('NewHeader accessibility', () => {
         expect(login).toHaveAttribute('aria-expanded', 'true');
     });
 
+    test('opens the login menu on hover', async () => {
+        const user = userEvent.setup();
+        renderHeader();
+
+        await user.hover(screen.getByRole('button', {name: 'Log in'}));
+
+        expect(await screen.findByRole('link', {name: /Console/})).toBeInTheDocument();
+    });
+
+    test('does not toggle the login menu from a mouse click', async () => {
+        const user = userEvent.setup();
+        renderHeader();
+
+        await user.click(screen.getByRole('button', {name: 'Log in'}));
+
+        expect(screen.queryByRole('link', {name: /Console/})).not.toBeInTheDocument();
+    });
+
     test('gives the mobile menu toggle an accessible name', async () => {
         const user = userEvent.setup();
         renderHeader();
