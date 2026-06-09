@@ -136,6 +136,11 @@ $block: '.#{$ns}header-stripe';
 
         text-decoration: none;
 
+        &:focus-visible {
+            outline: 2px solid var(--g-color-line-focus);
+            outline-offset: -2px;
+        }
+
         @media (min-width: map-get($gridBreakpoints, 'md')) {
             overflow: hidden;
             text-overflow: inherit;
@@ -162,6 +167,11 @@ $block: '.#{$ns}header-stripe';
 
         &:hover {
             opacity: 0.6;
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--g-color-line-focus);
+            outline-offset: -2px;
         }
     }
 }

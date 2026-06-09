@@ -37,12 +37,17 @@ export type HeaderStripeProps = {
 
 const b = block('header-stripe');
 
-const renderItemContent = (item: HeaderStripeItemType) => {
+const renderItemContent = (item: HeaderStripeItemType, isActive: boolean) => {
     if (typeof item === 'string') {
         return item;
     } else if (item.link) {
         return (
-            <a className={b('item-link')} href={item.link} target={item.target}>
+            <a
+                className={b('item-link')}
+                href={item.link}
+                target={item.target}
+                tabIndex={isActive ? undefined : -1}
+            >
                 {item.text}
             </a>
         );
@@ -64,6 +69,7 @@ export const HeaderStripe = ({
 }: HeaderStripeProps) => {
     const [activeIndex, setActiveIndex] = useState(0);
     const [isClosing, setIsClosing] = useState(false);
+    const [isFocusInside, setIsFocusInside] = useState(false);
     const isMobile = useMobile();
 
     const filteredItems = useMemo(
@@ -79,6 +85,21 @@ export const HeaderStripe = ({
         onClose?.();
     }, [onClose]);
 
+    const handleFocus = useCallback(() => {
+        setIsFocusInside(true);
+    }, []);
+
+    const handleBlur = useCallback((event: React.FocusEvent<HTMLDivElement>) => {
+        const nextFocusedElement = event.relatedTarget;
+
+        if (
+            !(nextFocusedElement instanceof Node) ||
+            !event.currentTarget.contains(nextFocusedElement)
+        ) {
+            setIsFocusInside(false);
+        }
+    }, []);
+
     useEffect(() => {
         if (filteredItems.length > 0) {
             setActiveIndex(0);
@@ -86,7 +107,7 @@ export const HeaderStripe = ({
     }, [filteredItems.length]);
 
     useEffect(() => {
-        if (filteredItems.length < 1) return undefined;
+        if (filteredItems.length < 2 || isFocusInside) return undefined;
 
         const interval = setInterval(() => {
             setActiveIndex((prevIndex) => (prevIndex + 1) % filteredItems.length);
@@ -95,7 +116,7 @@ export const HeaderStripe = ({
         return () => {
             clearInterval(interval);
         };
-    }, [duration, filteredItems.length]);
+    }, [duration, filteredItems.length, isFocusInside]);
 
     const rootStyle = useMemo(() => {
         const properties: React.CSSProperties = {};
@@ -140,6 +161,8 @@ export const HeaderStripe = ({
                     <div
                         className={b('content', {'with-close': Boolean(onClose)})}
                         style={contentStyle}
+                        onFocus={handleFocus}
+                        onBlur={handleBlur}
                     >
                         {filteredItems.map((item, index) => {
                             const isActive = index === activeIndex;
@@ -156,9 +179,10 @@ export const HeaderStripe = ({
                                         active: isActive,
                                         prev: isPrev,
                                     })}
+                                    aria-hidden={!isActive}
                                 >
                                     <div className={b('item-content')}>
-                                        {renderItemContent(item)}
+                                        {renderItemContent(item, isActive)}
                                     </div>
                                 </div>
                             );
