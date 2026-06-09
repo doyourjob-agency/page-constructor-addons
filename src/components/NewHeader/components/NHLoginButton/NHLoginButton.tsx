@@ -1,5 +1,5 @@
 import type {RefObject} from 'react';
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 
 import {Icon, useUniqId} from '@gravity-ui/uikit';
 
@@ -23,33 +23,41 @@ interface LoginButtonProps {
 
 export const NHLoginButton = ({data, headerRef, setupRouteChangeHandler}: LoginButtonProps) => {
     const [isActive, setIsActive] = useState(false);
-    const [pretendentActiveTab, setPretendentAciveTab] = useState(false);
     const [previouslyFocusedElement, setPreviouslyFocusedElement] = useState<HTMLElement | null>(
         null,
     );
     const popupId = useUniqId();
+    const hoverTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+    const clearHoverTimer = useCallback(() => {
+        if (hoverTimerRef.current) {
+            clearTimeout(hoverTimerRef.current);
+            hoverTimerRef.current = null;
+        }
+    }, []);
+
+    // Open/close run through a single cancelable timer so moving from the trigger into the
+    // portaled popup (across the gap) cannot force the menu closed.
     const handleActiveTab = useCallback(
         (val: boolean) => {
             setPreviouslyFocusedElement(document.activeElement as HTMLElement);
-            setPretendentAciveTab(val);
-
-            if (!isActive && val) {
-                setIsActive(true);
-            }
+            clearHoverTimer();
+            hoverTimerRef.current = setTimeout(() => {
+                setIsActive(val);
+            }, SWITCH_MENU_TAB_TIMEOUT);
         },
-        [isActive],
+        [clearHoverTimer],
     );
 
     const onEscapeKeyDown = useCallback(
         (event: KeyboardEvent) => {
             if (event.key === 'Escape' && isActive) {
+                clearHoverTimer();
                 setIsActive(false);
-                setPretendentAciveTab(false);
                 previouslyFocusedElement?.focus({preventScroll: true});
             }
         },
-        [isActive, previouslyFocusedElement],
+        [clearHoverTimer, isActive, previouslyFocusedElement],
     );
 
     const handleMouseEnter = useCallback(() => handleActiveTab(true), [handleActiveTab]);
@@ -59,7 +67,7 @@ export const NHLoginButton = ({data, headerRef, setupRouteChangeHandler}: LoginB
             const popup = document.getElementById(popupId);
             const nextHoveredElement = event?.relatedTarget || event?.nativeEvent.relatedTarget;
 
-            if (nextHoveredElement && popup?.contains(nextHoveredElement as Node)) {
+            if (nextHoveredElement instanceof Node && popup?.contains(nextHoveredElement)) {
                 return;
             }
 
@@ -76,14 +84,14 @@ export const NHLoginButton = ({data, headerRef, setupRouteChangeHandler}: LoginB
         const focusedElement = document.activeElement as HTMLElement;
         const nextIsActive = !isActive;
 
+        clearHoverTimer();
         setPreviouslyFocusedElement(focusedElement);
-        setPretendentAciveTab(nextIsActive);
         setIsActive(nextIsActive);
 
         if (!nextIsActive) {
             focusedElement?.focus({preventScroll: true});
         }
-    }, [isActive]);
+    }, [clearHoverTimer, isActive]);
 
     const handleKeyDown = useCallback(
         (event: React.KeyboardEvent<HTMLButtonElement>) => {
@@ -95,13 +103,7 @@ export const NHLoginButton = ({data, headerRef, setupRouteChangeHandler}: LoginB
         [handleToggle],
     );
 
-    useEffect(() => {
-        const timerId = setTimeout(() => {
-            setIsActive(pretendentActiveTab);
-        }, SWITCH_MENU_TAB_TIMEOUT);
-
-        return () => clearTimeout(timerId);
-    }, [pretendentActiveTab]);
+    useEffect(() => () => clearHoverTimer(), [clearHoverTimer]);
 
     useEffect(() => {
         document.addEventListener('keydown', onEscapeKeyDown);
@@ -114,9 +116,10 @@ export const NHLoginButton = ({data, headerRef, setupRouteChangeHandler}: LoginB
     useEffect(
         () =>
             setupRouteChangeHandler?.(() => {
-                handleMouseLeave();
+                clearHoverTimer();
+                setIsActive(false);
             }),
-        [handleMouseLeave, setupRouteChangeHandler],
+        [clearHoverTimer, setupRouteChangeHandler],
     );
 
     return (

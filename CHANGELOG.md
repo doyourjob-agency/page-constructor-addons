@@ -4,8 +4,7 @@
 
 ### Bug Fixes
 
-* keep desktop NewHeader hover menus open over popup content
-* open desktop NewHeader hover menus immediately on first hover
+* make desktop NewHeader hover menus open and stay open reliably with cancelable hover intent
 * improve NewHeader keyboard navigation, menu-bar popup switching, and focus visibility
 * keep NewHeader popup item focus rings limited to keyboard focus
 * prevent desktop NewHeader login menu from opening on mouse click

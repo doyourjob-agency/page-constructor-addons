@@ -1,12 +1,11 @@
 import type {FC, ReactNode} from 'react';
-import React, {useCallback, useContext, useEffect} from 'react';
+import React, {useCallback} from 'react';
 
 import {getLinkProps} from '@doyourjob/gravity-ui-page-constructor';
 import {Icon} from '@gravity-ui/uikit';
 
 import {block} from '../../../../utils/cn';
 import {NO_MENU_TAB_SELECTED} from '../../constants';
-import {RouteChangeHandlerContext} from '../../contexts/route-change';
 import {NHNavigationItemData, NHNavigationItemType} from '../../models';
 import {ChevronDown} from '../ChevronDown';
 import {ChevronUp} from '../ChevronUp';
@@ -38,8 +37,6 @@ export const NHNavigationItem: FC<NavigationItemOwnProps> = ({
     children,
     tooltipId,
 }) => {
-    const setupRouteChangeHandler = useContext(RouteChangeHandlerContext);
-
     const handleMouseEnter = useCallback(() => handleActiveTab(index), [handleActiveTab, index]);
 
     const handleMouseLeave = useCallback(
@@ -47,7 +44,7 @@ export const NHNavigationItem: FC<NavigationItemOwnProps> = ({
             const popup = tooltipId ? document.getElementById(tooltipId) : null;
             const nextHoveredElement = event?.relatedTarget || event?.nativeEvent.relatedTarget;
 
-            if (nextHoveredElement && popup?.contains(nextHoveredElement as Node)) {
+            if (nextHoveredElement instanceof Node && popup?.contains(nextHoveredElement)) {
                 return;
             }
 
@@ -74,14 +71,6 @@ export const NHNavigationItem: FC<NavigationItemOwnProps> = ({
             }
         },
         [handleFocusTabPopup, handleToggleTab, index],
-    );
-
-    useEffect(
-        () =>
-            setupRouteChangeHandler?.(() => {
-                handleMouseLeave();
-            }),
-        [handleMouseLeave, setupRouteChangeHandler],
     );
 
     if (item.type === NHNavigationItemType.Link) {

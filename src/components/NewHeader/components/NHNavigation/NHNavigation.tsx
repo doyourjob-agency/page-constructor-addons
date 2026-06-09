@@ -1,5 +1,5 @@
 import type {RefObject} from 'react';
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 
 import {block} from '../../../../utils/cn';
 import {NO_MENU_TAB_SELECTED, SWITCH_MENU_TAB_TIMEOUT} from '../../constants';
@@ -20,7 +20,7 @@ interface NavigationProps {
     headerRef?: RefObject<HTMLDivElement>;
     navigationId: string;
     setupRouteChangeHandler?: SetupRouteChangeHandler;
-    setActiveNavigationId: (navigationId: string | null) => void;
+    setActiveNavigationId: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
 const getPopupContent = (sectionData: NHNavigationItemData) => {
@@ -41,35 +41,44 @@ export const NHNavigation = ({
     setActiveNavigationId,
 }: NavigationProps) => {
     const [activeTab, setActiveTab] = useState(NO_MENU_TAB_SELECTED);
-    const [pretendentActiveTab, setPretendentAciveTab] = useState(NO_MENU_TAB_SELECTED);
     const [previouslyFocusedElement, setPreviouslyFocusedElement] = useState<HTMLElement | null>(
         null,
     );
     const [popupTabToFocus, setPopupTabToFocus] = useState<number | null>(null);
+    const hoverTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+    const clearHoverTimer = useCallback(() => {
+        if (hoverTimerRef.current) {
+            clearTimeout(hoverTimerRef.current);
+            hoverTimerRef.current = null;
+        }
+    }, []);
 
     const setNavigationTab = useCallback(
         (currentIndex: number) => {
-            setPretendentAciveTab(currentIndex);
             setActiveTab(currentIndex);
             setPopupTabToFocus(null);
-            setActiveNavigationId(currentIndex === NO_MENU_TAB_SELECTED ? null : navigationId);
+            setActiveNavigationId(
+                currentIndex === NO_MENU_TAB_SELECTED
+                    ? (prev) => (prev === navigationId ? null : prev)
+                    : navigationId,
+            );
         },
         [navigationId, setActiveNavigationId],
     );
 
+    // Hover open/switch/close all run through a single cancelable timer: every new pointer
+    // event cancels the pending one, so a brief transit across the trigger->popup gap (or
+    // rapid movement between items) can no longer force the popup closed.
     const handleActiveTab = useCallback(
         (currentIndex: number) => {
             setPreviouslyFocusedElement(document.activeElement as HTMLElement);
-
-            if (activeTab === NO_MENU_TAB_SELECTED && currentIndex !== NO_MENU_TAB_SELECTED) {
+            clearHoverTimer();
+            hoverTimerRef.current = setTimeout(() => {
                 setNavigationTab(currentIndex);
-
-                return;
-            }
-
-            setPretendentAciveTab(currentIndex);
+            }, SWITCH_MENU_TAB_TIMEOUT);
         },
-        [activeTab, setNavigationTab],
+        [clearHoverTimer, setNavigationTab],
     );
 
     const handleToggleTab = useCallback(
@@ -77,6 +86,7 @@ export const NHNavigation = ({
             const focusedElement = document.activeElement as HTMLElement;
             const nextActiveTab = activeTab === currentIndex ? NO_MENU_TAB_SELECTED : currentIndex;
 
+            clearHoverTimer();
             setPreviouslyFocusedElement(focusedElement);
             setNavigationTab(nextActiveTab);
 
@@ -84,18 +94,18 @@ export const NHNavigation = ({
                 focusedElement?.focus({preventScroll: true});
             }
         },
-        [activeTab, setNavigationTab],
+        [activeTab, clearHoverTimer, setNavigationTab],
     );
 
     const handleFocusTabPopup = useCallback(
         (currentIndex: number) => {
+            clearHoverTimer();
             setPreviouslyFocusedElement(document.activeElement as HTMLElement);
-            setPretendentAciveTab(currentIndex);
             setActiveTab(currentIndex);
             setPopupTabToFocus(currentIndex);
             setActiveNavigationId(navigationId);
         },
-        [navigationId, setActiveNavigationId],
+        [clearHoverTimer, navigationId, setActiveNavigationId],
     );
 
     const handleFocusTab = useCallback(
@@ -104,16 +114,18 @@ export const NHNavigation = ({
                 return;
             }
 
+            clearHoverTimer();
             setPreviouslyFocusedElement(document.activeElement as HTMLElement);
             setNavigationTab(currentIndex);
         },
-        [activeNavigationId, setNavigationTab],
+        [activeNavigationId, clearHoverTimer, setNavigationTab],
     );
 
     const handleCloseTab = useCallback(() => {
+        clearHoverTimer();
         setNavigationTab(NO_MENU_TAB_SELECTED);
         previouslyFocusedElement?.focus({preventScroll: true});
-    }, [previouslyFocusedElement, setNavigationTab]);
+    }, [clearHoverTimer, previouslyFocusedElement, setNavigationTab]);
 
     const handleBlur = useCallback(
         (event: React.FocusEvent<HTMLElement>) => {
@@ -132,9 +144,10 @@ export const NHNavigation = ({
                 return;
             }
 
+            clearHoverTimer();
             setNavigationTab(NO_MENU_TAB_SELECTED);
         },
-        [activeTab, setNavigationTab],
+        [activeTab, clearHoverTimer, setNavigationTab],
     );
 
     const onEscapeKeyDown = useCallback(
@@ -149,32 +162,21 @@ export const NHNavigation = ({
     useEffect(
         () =>
             setupRouteChangeHandler?.(() => {
-                handleActiveTab(NO_MENU_TAB_SELECTED);
+                clearHoverTimer();
+                setNavigationTab(NO_MENU_TAB_SELECTED);
             }),
-        [setupRouteChangeHandler, handleActiveTab],
+        [setupRouteChangeHandler, clearHoverTimer, setNavigationTab],
     );
 
     useEffect(() => {
-        const timerId = setTimeout(() => {
-            setActiveTab(pretendentActiveTab);
-
-            if (pretendentActiveTab !== NO_MENU_TAB_SELECTED) {
-                setActiveNavigationId(navigationId);
-            } else if (activeNavigationId === navigationId) {
-                setActiveNavigationId(null);
-            }
-        }, SWITCH_MENU_TAB_TIMEOUT);
-
-        return () => clearTimeout(timerId);
-    }, [activeNavigationId, navigationId, pretendentActiveTab, setActiveNavigationId]);
-
-    useEffect(() => {
         if (activeNavigationId !== navigationId && activeTab !== NO_MENU_TAB_SELECTED) {
+            clearHoverTimer();
             setActiveTab(NO_MENU_TAB_SELECTED);
-            setPretendentAciveTab(NO_MENU_TAB_SELECTED);
             setPopupTabToFocus(null);
         }
-    }, [activeNavigationId, activeTab, navigationId]);
+    }, [activeNavigationId, activeTab, navigationId, clearHoverTimer]);
+
+    useEffect(() => () => clearHoverTimer(), [clearHoverTimer]);
 
     useEffect(() => {
         if (popupTabToFocus === null || activeTab !== popupTabToFocus) {

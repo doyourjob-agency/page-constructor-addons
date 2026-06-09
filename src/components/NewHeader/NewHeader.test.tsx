@@ -178,7 +178,7 @@ describe('NewHeader accessibility', () => {
 
         await user.hover(screen.getByRole('button', {name: 'Products'}));
 
-        expect(screen.getByRole('link', {name: /New Arrivals/})).toBeInTheDocument();
+        expect(await screen.findByRole('link', {name: /New Arrivals/})).toBeInTheDocument();
     });
 
     test('keeps a desktop popup open after the hover timeout', async () => {
@@ -188,7 +188,7 @@ describe('NewHeader accessibility', () => {
         const products = screen.getByRole('button', {name: 'Products'});
 
         await user.hover(products);
-        expect(screen.getByRole('link', {name: /New Arrivals/})).toBeInTheDocument();
+        expect(await screen.findByRole('link', {name: /New Arrivals/})).toBeInTheDocument();
         await waitForHoverTimeout();
 
         expect(screen.getByRole('link', {name: /New Arrivals/})).toBeInTheDocument();
@@ -201,12 +201,65 @@ describe('NewHeader accessibility', () => {
         const products = screen.getByRole('button', {name: 'Products'});
 
         await user.hover(products);
-        const firstPopupLink = screen.getByRole('link', {name: /New Arrivals/});
+        const firstPopupLink = await screen.findByRole('link', {name: /New Arrivals/});
 
         fireEvent.mouseOut(products, {relatedTarget: firstPopupLink});
         await waitForHoverTimeout();
 
         expect(screen.getByRole('link', {name: /New Arrivals/})).toBeInTheDocument();
+    });
+
+    test('keeps a desktop popup open across the trigger-to-popup gap', async () => {
+        renderHeader();
+
+        const products = screen.getByRole('button', {name: 'Products'});
+        const logo = screen.getByRole('link', {name: 'Example Library'});
+
+        fireEvent.mouseOver(products);
+        const firstPopupLink = await screen.findByRole('link', {name: /New Arrivals/});
+
+        // Leave the trigger toward an element outside the popup (the header gap), then land
+        // in the portaled popup before the cancelable close timer elapses.
+        fireEvent.mouseOut(products, {relatedTarget: logo});
+        fireEvent.mouseOver(firstPopupLink);
+        await waitForHoverTimeout();
+
+        expect(screen.getByRole('link', {name: /New Arrivals/})).toBeInTheDocument();
+    });
+
+    test('reliably opens a desktop popup when re-hovering quickly', async () => {
+        renderHeader();
+
+        const products = screen.getByRole('button', {name: 'Products'});
+        const logo = screen.getByRole('link', {name: 'Example Library'});
+
+        // Out-and-back-in before the dwell elapses must still open the popup.
+        fireEvent.mouseOver(products);
+        fireEvent.mouseOut(products, {relatedTarget: logo});
+        fireEvent.mouseOver(products);
+
+        expect(await screen.findByRole('link', {name: /New Arrivals/})).toBeInTheDocument();
+    });
+
+    test('switches the open popup across navigation groups on hover', async () => {
+        renderHeader();
+
+        const products = screen.getByRole('button', {name: 'Products'});
+        const company = screen.getByRole('button', {name: 'Company'});
+        const logo = screen.getByRole('link', {name: 'Example Library'});
+
+        fireEvent.mouseOver(products);
+        expect(await screen.findByRole('link', {name: /New Arrivals/})).toBeInTheDocument();
+
+        fireEvent.mouseOut(products, {relatedTarget: logo});
+        fireEvent.mouseOver(company);
+        expect(
+            await screen.findByRole('link', {name: /About Example Library/}),
+        ).toBeInTheDocument();
+
+        await waitForHoverTimeout();
+        expect(screen.queryByRole('link', {name: /New Arrivals/})).not.toBeInTheDocument();
+        expect(screen.getByRole('link', {name: /About Example Library/})).toBeInTheDocument();
     });
 
     test('does not toggle a desktop popup from a mouse click', () => {
@@ -429,7 +482,7 @@ describe('NewHeader accessibility', () => {
 
         await user.hover(screen.getByRole('button', {name: 'Log in'}));
 
-        expect(screen.getByRole('link', {name: /Console/})).toBeInTheDocument();
+        expect(await screen.findByRole('link', {name: /Console/})).toBeInTheDocument();
     });
 
     test('keeps the login menu open when hovering its content', async () => {
@@ -439,7 +492,7 @@ describe('NewHeader accessibility', () => {
         const login = screen.getByRole('button', {name: 'Log in'});
 
         await user.hover(login);
-        const consoleLink = screen.getByRole('link', {name: /Console/});
+        const consoleLink = await screen.findByRole('link', {name: /Console/});
 
         fireEvent.mouseOut(login, {relatedTarget: consoleLink});
         await waitForHoverTimeout();
