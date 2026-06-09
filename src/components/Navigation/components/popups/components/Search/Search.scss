@@ -38,8 +38,25 @@ $block: '.#{$ns}popup-search';
     }
 
     &__search-suggest {
+        .g-text-input__control,
         .yc-text-input__control {
             padding-right: $indentM;
+        }
+
+        @media (max-width: map-get($gridBreakpoints, 'md') - 1) {
+            .g-text-input,
+            .yc-text-input {
+                --g-text-input-height: 44px;
+            }
+
+            .g-text-input__control,
+            .yc-text-input__control {
+                font-size: 16px;
+                line-height: 20px;
+                height: 42px;
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
         }
     }
 
@@ -50,5 +67,9 @@ $block: '.#{$ns}popup-search';
         height: $searchHeight;
         width: $searchWidth;
         max-width: 100%;
+
+        @media (max-width: map-get($gridBreakpoints, 'md') - 1) {
+            height: 44px;
+        }
     }
 }
