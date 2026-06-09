@@ -6,6 +6,7 @@
 
 * improve NewHeader keyboard navigation, menu-bar popup switching, and focus visibility
 * keep HeaderStripe keyboard focus on visible controls
+* show keyboard focus on the NewHeader logo
 
 ## [2.1.10] Add HeaderStripe block
 
