@@ -157,13 +157,16 @@ export const NHNavigation = ({
     useEffect(() => {
         const timerId = setTimeout(() => {
             setActiveTab(pretendentActiveTab);
-            setActiveNavigationId(
-                pretendentActiveTab === NO_MENU_TAB_SELECTED ? null : navigationId,
-            );
+
+            if (pretendentActiveTab !== NO_MENU_TAB_SELECTED) {
+                setActiveNavigationId(navigationId);
+            } else if (activeNavigationId === navigationId) {
+                setActiveNavigationId(null);
+            }
         }, SWITCH_MENU_TAB_TIMEOUT);
 
         return () => clearTimeout(timerId);
-    }, [activeTab, navigationId, pretendentActiveTab, setActiveNavigationId]);
+    }, [activeNavigationId, navigationId, pretendentActiveTab, setActiveNavigationId]);
 
     useEffect(() => {
         if (activeNavigationId !== navigationId && activeTab !== NO_MENU_TAB_SELECTED) {
@@ -209,7 +212,12 @@ export const NHNavigation = ({
                         tooltipId={`${tooltipPrefixId}-${i}`}
                     >
                         {activeTab === i && item.type !== NHNavigationItemType.Link && (
-                            <NHNavigationPopup headerRef={headerRef} id={`${tooltipPrefixId}-${i}`}>
+                            <NHNavigationPopup
+                                headerRef={headerRef}
+                                id={`${tooltipPrefixId}-${i}`}
+                                onMouseEnter={() => handleActiveTab(i)}
+                                onMouseLeave={() => handleActiveTab(NO_MENU_TAB_SELECTED)}
+                            >
                                 {getPopupContent(item)}
                             </NHNavigationPopup>
                         )}

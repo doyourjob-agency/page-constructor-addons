@@ -6,6 +6,7 @@ import {cleanup, fireEvent, render, screen, waitFor, within} from '@testing-libr
 import userEvent from '@testing-library/user-event';
 
 import {NewHeader} from './NewHeader';
+import {SWITCH_MENU_TAB_TIMEOUT} from './constants';
 import {NHNavigationData, NHNavigationItemType} from './models';
 
 const defaultPopup = {
@@ -134,6 +135,9 @@ const renderHeader = () =>
         </ThemeProvider>,
     );
 
+const waitForHoverTimeout = () =>
+    new Promise((resolve) => setTimeout(resolve, SWITCH_MENU_TAB_TIMEOUT + 50));
+
 describe('NewHeader accessibility', () => {
     afterEach(cleanup);
 
@@ -173,6 +177,34 @@ describe('NewHeader accessibility', () => {
         renderHeader();
 
         await user.hover(screen.getByRole('button', {name: 'Products'}));
+
+        expect(screen.getByRole('link', {name: /New Arrivals/})).toBeInTheDocument();
+    });
+
+    test('keeps a desktop popup open after the hover timeout', async () => {
+        const user = userEvent.setup();
+        renderHeader();
+
+        const products = screen.getByRole('button', {name: 'Products'});
+
+        await user.hover(products);
+        expect(screen.getByRole('link', {name: /New Arrivals/})).toBeInTheDocument();
+        await waitForHoverTimeout();
+
+        expect(screen.getByRole('link', {name: /New Arrivals/})).toBeInTheDocument();
+    });
+
+    test('keeps a desktop popup open when moving from trigger to popup content', async () => {
+        const user = userEvent.setup();
+        renderHeader();
+
+        const products = screen.getByRole('button', {name: 'Products'});
+
+        await user.hover(products);
+        const firstPopupLink = screen.getByRole('link', {name: /New Arrivals/});
+
+        fireEvent.mouseOut(products, {relatedTarget: firstPopupLink});
+        await waitForHoverTimeout();
 
         expect(screen.getByRole('link', {name: /New Arrivals/})).toBeInTheDocument();
     });
@@ -396,6 +428,21 @@ describe('NewHeader accessibility', () => {
         renderHeader();
 
         await user.hover(screen.getByRole('button', {name: 'Log in'}));
+
+        expect(screen.getByRole('link', {name: /Console/})).toBeInTheDocument();
+    });
+
+    test('keeps the login menu open when hovering its content', async () => {
+        const user = userEvent.setup();
+        renderHeader();
+
+        const login = screen.getByRole('button', {name: 'Log in'});
+
+        await user.hover(login);
+        const consoleLink = screen.getByRole('link', {name: /Console/});
+
+        fireEvent.mouseOut(login, {relatedTarget: consoleLink});
+        await waitForHoverTimeout();
 
         expect(screen.getByRole('link', {name: /Console/})).toBeInTheDocument();
     });

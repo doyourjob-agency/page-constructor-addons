@@ -43,8 +43,17 @@ export const NHNavigationItem: FC<NavigationItemOwnProps> = ({
     const handleMouseEnter = useCallback(() => handleActiveTab(index), [handleActiveTab, index]);
 
     const handleMouseLeave = useCallback(
-        () => handleActiveTab(NO_MENU_TAB_SELECTED),
-        [handleActiveTab],
+        (event?: React.MouseEvent<HTMLElement>) => {
+            const popup = tooltipId ? document.getElementById(tooltipId) : null;
+            const nextHoveredElement = event?.relatedTarget || event?.nativeEvent.relatedTarget;
+
+            if (nextHoveredElement && popup?.contains(nextHoveredElement as Node)) {
+                return;
+            }
+
+            handleActiveTab(NO_MENU_TAB_SELECTED);
+        },
+        [handleActiveTab, tooltipId],
     );
     const handleMouseDown = useCallback((event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();

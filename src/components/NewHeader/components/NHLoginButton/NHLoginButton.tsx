@@ -54,7 +54,19 @@ export const NHLoginButton = ({data, headerRef, setupRouteChangeHandler}: LoginB
 
     const handleMouseEnter = useCallback(() => handleActiveTab(true), [handleActiveTab]);
 
-    const handleMouseLeave = useCallback(() => handleActiveTab(false), [handleActiveTab]);
+    const handleMouseLeave = useCallback(
+        (event?: React.MouseEvent<HTMLElement>) => {
+            const popup = document.getElementById(popupId);
+            const nextHoveredElement = event?.relatedTarget || event?.nativeEvent.relatedTarget;
+
+            if (nextHoveredElement && popup?.contains(nextHoveredElement as Node)) {
+                return;
+            }
+
+            handleActiveTab(false);
+        },
+        [handleActiveTab, popupId],
+    );
 
     const handleMouseDown = useCallback((event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
@@ -125,7 +137,12 @@ export const NHLoginButton = ({data, headerRef, setupRouteChangeHandler}: LoginB
                 <Icon data={isActive ? ChevronUp : ChevronDown} size={16} />
             </button>
             {isActive && (
-                <NHNavigationPopup headerRef={headerRef} id={popupId}>
+                <NHNavigationPopup
+                    headerRef={headerRef}
+                    id={popupId}
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
+                >
                     <NHLoginPopup {...data} />
                 </NHNavigationPopup>
             )}

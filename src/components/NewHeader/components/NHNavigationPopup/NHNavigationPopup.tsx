@@ -25,9 +25,17 @@ interface NavigationPopupProps {
     headerRef?: RefObject<HTMLDivElement>;
     children: React.ReactNode;
     id?: string;
+    onMouseEnter?: React.MouseEventHandler<HTMLDivElement>;
+    onMouseLeave?: React.MouseEventHandler<HTMLDivElement>;
 }
 
-export const NHNavigationPopup = ({headerRef, children, id}: NavigationPopupProps) => {
+export const NHNavigationPopup = ({
+    headerRef,
+    children,
+    id,
+    onMouseEnter,
+    onMouseLeave,
+}: NavigationPopupProps) => {
     const popupRef = useRef<HTMLDivElement>(null);
 
     const focusRelativeElement = useCallback((offset: number) => {
@@ -83,7 +91,13 @@ export const NHNavigationPopup = ({headerRef, children, id}: NavigationPopupProp
 
     return headerRef?.current
         ? ReactDOM.createPortal(
-              <div className={b()} id={id} ref={popupRef}>
+              <div
+                  className={b()}
+                  id={id}
+                  onMouseEnter={onMouseEnter}
+                  onMouseLeave={onMouseLeave}
+                  ref={popupRef}
+              >
                   {children}
               </div>,
               headerRef.current,
