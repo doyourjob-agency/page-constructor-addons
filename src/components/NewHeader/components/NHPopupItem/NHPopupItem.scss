@@ -68,7 +68,6 @@ $block: '.#{$ns}nh-navigation-popup-item';
         }
     }
 
-    &:focus,
     &:focus-visible,
     &[data-keyboard-focus='true'] {
         outline: 2px solid var(--g-color-line-focus);
