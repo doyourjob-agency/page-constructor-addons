@@ -71,10 +71,6 @@ $mobileContainerHeight: 64px;
         & > li + li {
             border-top: 1px solid var(--g-color-line-generic);
         }
-
-        & + & {
-            margin-top: 150px;
-        }
     }
 
     &__buttons {
